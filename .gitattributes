@@ -1,0 +1,25 @@
+# Normalise line endings: LF in the repository and in the working tree,
+# so `dart format` stays clean on Windows whatever core.autocrlf is set to.
+* text=auto eol=lf
+
+# Windows scripts keep CRLF.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Binary files: never convert or diff as text.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.zip binary
+*.jar binary
+*.aar binary
+*.so binary
+*.jks binary
+*.keystore binary
+*.ttf binary
+*.otf binary
+*.webp binary
+*.ico binary

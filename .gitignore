@@ -1,0 +1,43 @@
+# Build outputs and tool caches
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+
+# IDE and editor files
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# Android local machine files and secrets (never commit)
+**/android/local.properties
+**/android/.gradle/
+**/android/key.properties
+*.jks
+*.keystore
+
+# Other secrets: environment files, certificates and private keys (never commit)
+.env
+.env.*
+*.p12
+*.pem
+
+# Local data (may contain personal SMS data — never commit).
+# If a test fixture database is ever needed, un-ignore it explicitly with `!`
+# and a comment giving the reason.
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Note: pubspec.lock is intentionally tracked (this is an application).

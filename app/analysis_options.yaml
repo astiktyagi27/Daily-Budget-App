@@ -1,0 +1,14 @@
+include: package:very_good_analysis/analysis_options.yaml
+
+analyzer:
+  # Added automatically by the Flutter tool (3.47+) on every `flutter pub get`
+  # (AnalysisOptionsMigration). Both hold only build output and generated
+  # Android platform files, no hand-written Dart. See plan F-001 section 11.
+  exclude:
+    - build/**
+    - android/**
+
+linter:
+  rules:
+    # App, not a published package: no public API docs needed (DECISIONS D-013).
+    public_member_api_docs: false
