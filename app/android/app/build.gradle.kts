@@ -7,8 +7,7 @@ plugins {
 android {
     namespace = "com.dailybudget.app"
     compileSdk = flutter.compileSdkVersion
-    // Installed NDK instead of flutter.ndkVersion (28.2, not installable here): see docs/DECISIONS.md D-025.
-    ndkVersion = "30.0.16248370"
+    ndkVersion = flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

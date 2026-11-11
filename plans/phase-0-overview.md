@@ -1,6 +1,6 @@
 # Phase 0 — Setup & team: Overview
 
-**Status:** Signed off by the Project Manager (Gate 5, 2026-11-01). Remaining steps: the CEO phase report, then the Owner's approval. T-010 (the Orchestrator's phase commit and push) and TC-001-48 (the Tester's post-push check) follow the CEO report.
+**Status:** Owner approved (Gate 6, 2026-11-05). Signed off by the Project Manager (Gate 5, 2026-11-01); CEO report `docs/reports/phase-0-report.md`; T-010 done (commit `d11fd32 Phase 0: Project foundation` pushed to `origin/main`); TC-001-48 Pass (R3, 2026-11-05).
 
 ## Phase goal *(CEO)*
 - **At the end of this phase the Owner can:** open the project and see a real (but empty) Flutter app in `app/` that starts, passes its automated checks with zero problems, and — once Android Studio is installed — opens on the Android emulator showing a simple placeholder screen. The Owner can also read, in plain language, which core libraries the team chose and why (`docs/DECISIONS.md`).

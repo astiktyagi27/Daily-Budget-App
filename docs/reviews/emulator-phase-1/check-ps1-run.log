@@ -1,0 +1,374 @@
+﻿Using Flutter: C:\src\flutter\bin\flutter.bat
+Using Dart:    C:\src\flutter\bin\dart.bat
+App folder:    C:\Users\mayan\Documents\Idea bank\daily-budget-app\app
+
+--- flutter pub get
+Resolving dependencies...
+Downloading packages...
+  flutter_riverpod 3.4.3 (3.5.0 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  meta 1.18.3 (1.19.0 available)
+  riverpod 3.4.3 (3.5.0 available)
+  shared_preferences_foundation 2.5.7 (2.6.1 available)
+  test_api 0.7.12 (0.7.15 available)
+  vector_math 2.4.0 (2.4.4 available)
+Got dependencies!
+7 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+PASS  flutter pub get
+--- dart format (check only)
+Formatted 146 files (0 changed) in 1.74 seconds.
+PASS  dart format (check only)
+--- flutter analyze
+Analyzing app...                                                
+No issues found! (ran in 39.8s)
+PASS  flutter analyze
+--- dart analyze --fatal-infos
+Analyzing app...
+No issues found!
+PASS  dart analyze --fatal-infos
+--- test names start with TC-NNN-NN
+Checked 63 test file(s).
+PASS  test names start with TC-NNN-NN
+--- flutter test
+00:00 +0: loading C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/domain_layering_test.dart
+00:00 +0: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/domain_layering_test.dart: TC-006-28 domain code never reads the clock
+00:00 +1: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/domain_layering_test.dart: TC-006-28 domain code never reads the clock
+00:00 +2: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/domain_layering_test.dart: TC-006-29 domain does not import data features or database packages
+00:00 +3: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/domain_layering_test.dart: TC-006-30 engine uses integers only for money
+00:00 +4: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:00 +5: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:00 +6: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:00 +7: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:00 +8: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:00 +9: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:00 +10: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:00 +11: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:01 +12: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:01 +13: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:01 +14: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:01 +15: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:01 +16: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:02 +17: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:02 +18: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:02 +19: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:02 +20: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:02 +21: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:02 +22: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:02 +23: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:02 +24: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:02 +25: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:02 +26: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:02 +27: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:02 +28: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:02 +29: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:03 +30: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:03 +31: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:03 +32: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:03 +33: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:03 +34: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:03 +35: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:03 +36: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:03 +37: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:03 +38: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:03 +39: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:03 +40: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:04 +41: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:04 +42: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:04 +43: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:04 +44: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:04 +45: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:04 +46: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:05 +47: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:05 +48: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:05 +49: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:05 +50: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:05 +51: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:05 +52: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:05 +53: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:05 +54: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/architecture/help_rule_test.dart: TC-004-06 every control has a label plus description or tooltip
+00:05 +55: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:06 +56: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:06 +57: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:06 +58: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:06 +59: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:06 +60: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:06 +61: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:06 +62: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:06 +63: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:06 +64: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:06 +65: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:06 +66: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:06 +67: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:06 +68: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:06 +69: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:06 +70: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:06 +71: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:06 +72: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:07 +73: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:07 +74: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:07 +75: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:07 +76: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:07 +77: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:07 +78: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:07 +79: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:07 +80: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:07 +81: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:07 +82: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:07 +83: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:07 +84: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:07 +85: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:07 +86: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:07 +87: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:07 +88: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:08 +89: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:08 +90: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:08 +91: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:08 +92: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/widgets/budget_list_row_test.dart: TC-003-16 coming soon tag reflows from its measured width at text scale 2
+00:08 +93: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:08 +94: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:08 +95: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:08 +96: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:08 +97: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:08 +98: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:08 +99: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:08 +100: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:08 +101: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:08 +102: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:08 +103: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:08 +104: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:08 +105: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:08 +106: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:08 +107: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:08 +108: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:08 +109: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:08 +110: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:08 +111: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +112: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +113: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +114: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +115: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +116: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +117: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +118: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +119: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +120: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +121: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +122: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +123: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +124: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +125: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +126: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +127: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +128: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +129: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +130: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +131: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +132: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +133: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +134: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +135: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +136: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +137: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +138: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +139: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +140: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +141: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +142: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +143: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +144: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +145: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +146: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +147: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +148: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +149: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +150: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +151: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +152: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +153: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +154: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +155: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +156: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +157: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +158: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +159: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +160: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +161: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +162: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +163: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +164: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +165: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +166: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +167: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +168: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:09 +169: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +170: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +171: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +172: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +173: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +174: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +175: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +176: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +177: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +178: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +179: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +180: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +181: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +182: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +183: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +184: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +185: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +186: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +187: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +188: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +189: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +190: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +191: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +192: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +193: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +194: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +195: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +196: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +197: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-10 theme choice survives restart from the first frame
+00:10 +198: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:10 +199: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:10 +200: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:10 +201: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:10 +202: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:10 +203: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:10 +204: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:10 +205: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:10 +206: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:10 +207: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:10 +208: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:10 +209: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:10 +210: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:10 +211: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:10 +212: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:10 +213: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:10 +214: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:10 +215: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:10 +216: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:11 +217: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:11 +218: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:11 +219: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:11 +220: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:11 +221: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:11 +222: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:11 +223: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:11 +224: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/help/hints_test.dart: TC-004-16 hint cards fit at text scale 2 on every tab
+00:12 +225: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:12 +226: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:12 +227: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:12 +228: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:12 +229: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:13 +230: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:13 +231: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:13 +232: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:13 +233: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:13 +234: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:14 +235: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:14 +236: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:14 +237: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:14 +238: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:14 +239: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:14 +240: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:14 +241: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:14 +242: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:14 +243: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:15 +244: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:15 +245: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:15 +246: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/core/theme/theme_choice_test.dart: TC-002-13 corrupt or missing theme value falls back to auto
+00:15 +247: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:15 +248: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:15 +249: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:15 +250: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:15 +251: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:15 +252: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:15 +253: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:16 +254: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:16 +255: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:16 +256: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:16 +257: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:16 +258: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:16 +259: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:16 +260: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:16 +261: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:16 +262: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:17 +263: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:17 +264: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:17 +265: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:17 +266: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:17 +267: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:17 +268: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:17 +269: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:17 +270: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:17 +271: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:17 +272: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:17 +273: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:18 +274: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:18 +275: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:18 +276: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:18 +277: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:18 +278: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:18 +279: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:18 +280: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:18 +281: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:18 +282: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:18 +283: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:19 +284: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:19 +285: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:19 +286: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:19 +287: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:19 +288: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:19 +289: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:19 +290: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:19 +291: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:19 +292: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:19 +293: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:20 +294: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:20 +295: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:20 +296: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:20 +297: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:20 +298: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:20 +299: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:20 +300: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:20 +301: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:20 +302: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:20 +303: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:21 +304: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:21 +305: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:21 +306: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:21 +307: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:21 +308: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:21 +309: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:21 +310: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:22 +311: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:22 +312: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:23 +313: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:23 +314: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:23 +315: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:23 +316: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:23 +317: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:23 +318: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:23 +319: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:24 +320: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:24 +321: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:24 +322: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:24 +323: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:24 +324: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:24 +325: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:25 +326: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:25 +327: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:26 +328: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-03 every phase 1 screen renders in every theme
+00:26 +329: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-22 every phase 1 screen meets text contrast guideline
+00:32 +330: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-23 every phase 1 screen meets tap target guidelines
+00:41 +331: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-24 every phase 1 screen fits at text scale 2 on a small phone
+00:45 +332: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-38 phase 1 screens survive a 320 dp wide screen
+00:53 +333: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-39 phase 1 screens survive landscape on a small phone
+00:56 +334: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-40 bold text setting does not break layouts
+00:59 +335: C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/screens/p1_screen_sweeps_test.dart: TC-002-29 every screen uses the bundled font families
+01:03 +336: All tests passed!
+PASS  flutter test
+
+ALL CHECKS PASSED

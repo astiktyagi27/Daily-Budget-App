@@ -1,0 +1,4 @@
+﻿ | Theme | [53,560][2348,629]
+ | Choose how the app looks. Auto switches between Light and Dark with your phone's setting. Dim is a softer, warm grey theme that's easy on the eyes at any time of day. | [53,660][2348,786]
+ | Got it, Close this explanation | [53,828][2348,964]
+ | Scrim | [0,0][2400,466]

@@ -12,3 +12,8 @@ linter:
   rules:
     # App, not a published package: no public API docs needed (DECISIONS D-013).
     public_member_api_docs: false
+
+# riverpod_lint 3.x is an analysis-server plugin, enabled here rather than as a
+# pubspec dev dependency (DECISIONS D-017, D-027). Its rules are not overridden.
+plugins:
+  riverpod_lint: 3.1.9

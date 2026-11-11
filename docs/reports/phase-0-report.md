@@ -2,6 +2,8 @@
 
 *Written by the CEO for the Owner. 2026-11-01.*
 
+**Your approval:** ✅ Approved by the Owner on 2026-11-05 (Gate 6). Published to GitHub as commit `d11fd32 Phase 0: Project foundation`.
+
 ## In one line
 The app's foundation is ready. An empty starter app builds, passes every automated check and opens on the Android emulator. The Project Manager has signed off the phase, and it now needs your approval.
 

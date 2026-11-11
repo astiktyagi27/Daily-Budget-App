@@ -4,7 +4,7 @@
 
 A minimalist Android app that reads your bank SMS alerts, splits your monthly salary into a **daily budget**, and shows every rupee you spend on a **calendar** — so you always know whether today you are under budget (saved) or over budget (overspent).
 
-**Status:** 🟢 Phase 0 — Setup & team: signed off by the Project Manager; CEO report ready (`docs/reports/phase-0-report.md`); waiting for Owner approval.
+**Status:** ✅ Phase 0 approved by the Owner (2026-11-05). 🟡 Phase 1 — Design system & app shell: built, tested and signed off by the Project Manager (Gate 5, 2026-11-11); waiting for the CEO report and your approval.
 
 ---
 
@@ -491,10 +491,10 @@ Updated by the Project Manager and CEO as work moves forward.
 
 | Phase | Plan approved | Design | Development | Testing | PM sign-off | CEO report | Your approval |
 |---|---|---|---|---|---|---|---|
-| 0 — Setup & team | ✅ | — | ✅ | ✅ | ✅ | ✅ | ⬜ |
-| 1 — Design system & shell | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| 2 — Budget engine & month setup | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| 3 — Calendar & dashboard | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| 0 — Setup & team | ✅ | — | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 1 — Design system & shell | ✅ | ✅ | ✅ | ✅ | ✅ | ⬜ | ⬜ |
+| 2 — Budget engine & month setup | 🟡 | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| 3 — Calendar & dashboard | 🟡 | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | 4 — SMS reading & categories | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | 5 — Notifications | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | 6 — Polish & real-phone testing | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -513,8 +513,8 @@ You have plenty of disk space (~234 GB free) and enough RAM (~14 GB) for the emu
 1. Download from **developer.android.com/studio** and install with default options.
 2. Open it and finish the setup wizard (it downloads the Android SDK, ~5–8 GB).
 3. In Android Studio: **More Actions → SDK Manager → SDK Tools** tab → tick **Android SDK Command-line Tools** → Apply.
-4. Same **SDK Tools** tab → tick **Show Package Details** (bottom right) → under **NDK (Side by side)** tick **30.0.16248370** → Apply (~1 GB).
-   Why: Flutter's default NDK could not be installed automatically on this setup, so the app is pinned to this version (`docs/DECISIONS.md` D-025). Without it the first build fails.
+4. Same **SDK Tools** tab → tick **Show Package Details** (bottom right) → under **NDK (Side by side)** tick **28.2.13676358**, and under **CMake** tick **3.22.1** → Apply (~2.4 GB with SDK Platform 35, which Gradle adds itself).
+   Why: Flutter 3.47.9's default NDK, used by the app (from Phase 1 T-101) and by every plugin with native code (e.g. `shared_preferences` → `jni`). Gradle usually downloads these on the first build, but on this laptop that failed once (T-008), so install them up front (`docs/DECISIONS.md` D-025, D-029). NDK 30.0.16248370 was used by the app in Phase 0 and is only needed until T-101 is done; after that it can be removed.
 5. **More Actions → Virtual Device Manager → Create device** → pick a phone (e.g. Pixel 7) → download a recent system image → Finish. This is the emulator the app runs on.
 6. Install the **Flutter** plugin: **Plugins → Marketplace → "Flutter"** → Install (it also installs Dart).
 
@@ -541,8 +541,8 @@ flutter doctor
 
 All Android items should show ✅. (Items about Visual Studio / Windows desktop / Chrome can be ignored — we only build for Android.)
 
-### Step 4 — Windows Developer Mode
-Flutter plugins need symlink support: **Settings → System → For developers → Developer Mode → On**.
+### Step 4 — Windows Developer Mode (not needed)
+Not needed for this app. Flutter only needs symlinks (and so Developer Mode) when a `windows/` or `linux/` app folder exists; this app is Android-only (D-020, D-029). Turn it on only if a Windows or Linux target is ever added: **Settings → System → For developers → Developer Mode → On**.
 
 ### Step 5 (optional) — VS Code
 Install from **code.visualstudio.com**, then add the **Flutter** extension.

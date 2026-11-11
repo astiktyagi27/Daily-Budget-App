@@ -1,8 +1,11 @@
 # One-command check for the Daily Budget App (plan F-001, task T-006).
 #
 # Runs, from app/: flutter pub get -> dart format check -> flutter analyze ->
-# test-name check -> flutter test. Prints PASS/FAIL per step, stops at the
-# first failure and exits 1; exits 0 when every step passes.
+# dart analyze --fatal-infos -> test-name check -> flutter test. Prints
+# PASS/FAIL per step, stops at the first failure and exits 1; exits 0 when
+# every step passes.
+# dart analyze runs as well because analyzer plugins (riverpod_lint, D-027)
+# report only there, not in flutter analyze (T-129).
 # The cheap test-name check runs before flutter test so a bad name fails fast.
 #
 # PowerShell:  .\tool\check.ps1
@@ -87,11 +90,20 @@ try {
     if ($LASTEXITCODE -ne 0) { Stop-WithFailure $step }
     Write-Result $step $true
 
+    # Analyzer plugins (riverpod_lint) report only here; infos fail too.
+    $step = 'dart analyze --fatal-infos'
+    Write-Host ('--- ' + $step)
+    & $dart analyze --fatal-infos
+    if ($LASTEXITCODE -ne 0) { Stop-WithFailure $step }
+    Write-Result $step $true
+
     # Every test()/testWidgets() name must start with a test case ID: TC-NNN-NN.
-    # The name may be on the line after the opening parenthesis.
+    # The name may be on the line after the opening parenthesis. A call
+    # preceded by '.' or a word character (ProviderContainer.test(, mytest()
+    # is not a test declaration (T-129).
     $step = 'test names start with TC-NNN-NN'
     Write-Host ('--- ' + $step)
-    $callPattern = '\b(?:test|testWidgets)\(\s*'
+    $callPattern = '(?<![.\w])(?:test|testWidgets)\(\s*'
     $namePattern = '\G[''"]TC-\d{3}-\d{2} '
     $badNames = @()
     $testFiles = Get-ChildItem -LiteralPath (Join-Path $appDir 'test') -Recurse -Filter '*.dart' -File

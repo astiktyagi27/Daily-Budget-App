@@ -23,3 +23,7 @@
 *.otf binary
 *.webp binary
 *.ico binary
+
+# Upstream font licence texts are kept byte-for-byte as downloaded (the Plex
+# one has CRLF), so their SHA-256 in app/assets/fonts/SOURCES.md stays valid.
+app/assets/fonts/*.txt -text
