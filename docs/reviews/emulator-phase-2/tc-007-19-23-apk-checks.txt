@@ -1,0 +1,25 @@
+﻿build-tools: 36.0.0
+== debug manifest
+
+        A: http://schemas.android.com/apk/res/android:allowBackup(0x01010280)=false
+        A: http://schemas.android.com/apk/res/android:fullBackupContent(0x010104eb)=@0x7f100000
+        A: http://schemas.android.com/apk/res/android:dataExtractionRules(0x0101063e)=@0x7f100001
+== debug permissions
+package: com.dailybudget.app
+uses-permission: name='android.permission.INTERNET'
+permission: com.dailybudget.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+uses-permission: name='com.dailybudget.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION'
+== release manifest
+        A: http://schemas.android.com/apk/res/android:allowBackup(0x01010280)=false
+        A: http://schemas.android.com/apk/res/android:fullBackupContent(0x010104eb)=@0x7f100000
+        A: http://schemas.android.com/apk/res/android:dataExtractionRules(0x0101063e)=@0x7f100001
+== release permissions
+package: com.dailybudget.app
+permission: com.dailybudget.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+uses-permission: name='com.dailybudget.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION'
+== zipalign debug
+Verification successful
+== zipalign release
+Verification successful
+
+

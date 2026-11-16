@@ -398,8 +398,8 @@ void main() {
     final semantics = tester.ensureSemantics();
     await _pump(tester, _onboarded(), size: const Size(400, 1200));
     const emptyState =
-        "Your daily budget lives here. Once you set up your month, you'll see "
-        "what you can spend today, what you've spent and your calendar.";
+        'Your daily budget lives here. Tell us your salary and fixed costs, '
+        "and we'll work out what you can spend each day.";
     // Labelled stops only; the label includes merged children.
     final nodes = tester.semantics
         .simulatedAccessibilityTraversal()

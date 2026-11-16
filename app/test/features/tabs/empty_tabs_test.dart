@@ -15,18 +15,13 @@ import '../../helpers/theme_cases.dart';
 const _tabs = {
   'Home': (
     'Your daily budget lives here',
-    "Once you set up your month, you'll see what you can spend today, what "
-        "you've spent and your calendar.",
+    "Tell us your salary and fixed costs, and we'll work out what you can "
+        'spend each day.',
   ),
   'Dashboard': (
     'Insights are on their way',
     "After a few days of spending, you'll see where your money goes and how "
         'many days you saved.',
-  ),
-  'Transactions': (
-    'No transactions yet',
-    "Spends from your bank SMS will show up here. You'll also be able to add "
-        'them yourself.',
   ),
 };
 
@@ -59,28 +54,29 @@ void main() {
       );
 
       // Title header + empty state only: no amounts, digits or controls.
+      // Home (F-008) also has its one Primary button, `Set up your month`.
+      final hasButton = tab == 'Home';
       final texts = tester
           .widgetList<Text>(inPage(find.byType(Text)))
           .map((t) => t.data!)
           .toList();
-      expect(texts, hasLength(3), reason: '$tab: $texts');
+      expect(texts, hasLength(hasButton ? 4 : 3), reason: '$tab: $texts');
       for (final text in texts) {
         expect(text, isNot(contains('₹')), reason: tab);
         expect(text, isNot(contains(RegExp(r'\d'))), reason: tab);
       }
       for (final type in [
-        ButtonStyleButton,
+        if (!hasButton) ...[ButtonStyleButton, GestureDetector],
         IconButton,
-        InkWell,
-        GestureDetector,
       ]) {
         expect(inPage(find.byType(type)), findsNothing, reason: '$tab $type');
       }
-      // The only tappable items on screen are the four tabs.
+      // The only tappable items on screen are the four tabs, and on Home its
+      // one button (two nodes: the button's hint wraps its merged label).
       expect(
         find.semantics.byAction(SemanticsAction.tap),
-        findsNWidgets(4),
-        reason: '$tab has nothing to tap',
+        findsNWidgets(hasButton ? 6 : 4),
+        reason: '$tab has nothing else to tap',
       );
 
       // Read as one item, title then description.
@@ -127,11 +123,7 @@ void main() {
   testWidgets('TC-003-31 empty states are left aligned on the page gutter', (
     tester,
   ) async {
-    const titles = {
-      'Home': 'Daily Budget App',
-      'Dashboard': 'Dashboard',
-      'Transactions': 'Transactions',
-    };
+    const titles = {'Home': 'Daily Budget App', 'Dashboard': 'Dashboard'};
     const gutter = 20.0; // space5
     await pumpShell(tester, size: kSmallPhone);
     for (final MapEntry(key: tab, value: (title, description))

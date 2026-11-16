@@ -1,9 +1,14 @@
 # One-command check for the Daily Budget App (plan F-001, task T-006).
 #
 # Runs, from app/: flutter pub get -> dart format check -> flutter analyze ->
-# dart analyze --fatal-infos -> test-name check -> flutter test. Prints
-# PASS/FAIL per step, stops at the first failure and exits 1; exits 0 when
-# every step passes.
+# dart analyze --fatal-infos -> test-name check -> flutter test -> engine
+# coverage gate -> time-zone matrix. Prints PASS/FAIL per step, stops at the
+# first failure and exits 1; exits 0 when every step passes.
+# Phase 2 (F-007, T-206): a Drift codegen step runs right after pub get and
+# fails if a committed generated file or schema snapshot is out of date; the
+# coverage gate (tool/domain_coverage.ps1) and the TZ matrix
+# (tool/tz_matrix.ps1) run after flutter test, only when lib/domain/ and
+# test/domain/ exist (PM decision, T-206).
 # dart analyze runs as well because analyzer plugins (riverpod_lint, D-027)
 # report only there, not in flutter analyze (T-129).
 # The cheap test-name check runs before flutter test so a bad name fails fast.
@@ -78,6 +83,53 @@ try {
     if ($LASTEXITCODE -ne 0) { Stop-WithFailure $step }
     Write-Result $step $true
 
+    # Generated Drift code and schema snapshots are committed (F-007). The
+    # step regenerates them and fails if any file changed, so a source edit
+    # can never leave stale generated code behind. Skipped until the database
+    # exists.
+    $databaseSource = Join-Path $appDir 'lib/data/database/app_database.dart'
+    if (Test-Path -LiteralPath $databaseSource) {
+        $step = 'drift codegen is up to date'
+        Write-Host ('--- ' + $step)
+        $generatedRoots = @('lib', 'drift_schemas', 'test\drift') |
+            ForEach-Object { Join-Path $appDir $_ } |
+            Where-Object { Test-Path -LiteralPath $_ }
+        $snapshot = {
+            Get-ChildItem -LiteralPath $generatedRoots -Recurse -File |
+                Where-Object { $_.Name -like '*.g.dart' -or $_.FullName -like '*drift_schemas*' -or $_.FullName -like '*test?drift*' } |
+                Sort-Object FullName |
+                ForEach-Object { $_.FullName.Substring($appDir.Length + 1) + ' ' + (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash }
+        }
+        $before = @(& $snapshot)
+        & $dart run build_runner build
+        if ($LASTEXITCODE -ne 0) { Stop-WithFailure $step }
+        $after = @(& $snapshot)
+        $changed = @(Compare-Object $before $after)
+        if ($changed.Count -gt 0) {
+            Write-Host 'Generated files changed (commit them, they are part of the source):'
+            $changed | ForEach-Object { Write-Host ('  ' + $_.InputObject) }
+            Stop-WithFailure $step
+        }
+        # The committed snapshot of the current schema must equal a fresh dump
+        # (TC-007-14): a schema edit without a version bump or snapshot fails.
+        $dump = Join-Path ([IO.Path]::GetTempPath()) 'daily_budget_schema_dump.json'
+        & $dart run drift_dev schema dump lib/data/database/app_database.dart $dump
+        if ($LASTEXITCODE -ne 0) { Stop-WithFailure $step }
+        $versionLine = Select-String -LiteralPath $databaseSource -Pattern 'int get schemaVersion => (\d+);'
+        $version = $versionLine.Matches[0].Groups[1].Value
+        $snapshotFile = Join-Path $appDir ('drift_schemas/app_database/drift_schema_v' + $version + '.json')
+        if (-not (Test-Path -LiteralPath $snapshotFile)) {
+            Write-Host ('Missing schema snapshot: ' + $snapshotFile)
+            Stop-WithFailure $step
+        }
+        if ((Get-FileHash -LiteralPath $dump).Hash -ne (Get-FileHash -LiteralPath $snapshotFile).Hash) {
+            Write-Host ('The schema differs from the committed snapshot ' + $snapshotFile)
+            Stop-WithFailure $step
+        }
+        Write-Host ('Checked ' + $after.Count + ' generated file(s).')
+        Write-Result $step $true
+    }
+
     $step = 'dart format (check only)'
     Write-Host ('--- ' + $step)
     & $dart format --output=none --set-exit-if-changed .
@@ -130,6 +182,29 @@ try {
     & $flutter test
     if ($LASTEXITCODE -ne 0) { Stop-WithFailure $step }
     Write-Result $step $true
+
+    # Engine coverage and the three-zone date run (F-006 AC-23, AC-24). The
+    # scripts run in this process; they call `exit`, which ends only the
+    # script. The TZ matrix also runs the F-007 date test.
+    if ((Test-Path -LiteralPath (Join-Path $appDir 'lib\domain')) -and
+        (Test-Path -LiteralPath (Join-Path $appDir 'test\domain'))) {
+        $step = 'domain coverage (lib/domain/budget)'
+        Write-Host ('--- ' + $step)
+        & (Join-Path $PSScriptRoot 'domain_coverage.ps1')
+        if ($LASTEXITCODE -ne 0) { Stop-WithFailure $step }
+        Write-Result $step $true
+
+        $step = 'time-zone matrix (UTC, PST8PDT, IST)'
+        Write-Host ('--- ' + $step)
+        $tzTests = @('test/domain/budget')
+        $databaseTzTest = 'test/data/database/database_time_zone_test.dart'
+        if (Test-Path -LiteralPath (Join-Path $appDir $databaseTzTest)) {
+            $tzTests += $databaseTzTest
+        }
+        & (Join-Path $PSScriptRoot 'tz_matrix.ps1') -Tests $tzTests
+        if ($LASTEXITCODE -ne 0) { Stop-WithFailure $step }
+        Write-Result $step $true
+    }
 
     Write-Host ''
     Write-Host 'ALL CHECKS PASSED' -ForegroundColor Green

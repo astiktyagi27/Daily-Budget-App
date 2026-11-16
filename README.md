@@ -4,7 +4,7 @@
 
 A minimalist Android app that reads your bank SMS alerts, splits your monthly salary into a **daily budget**, and shows every rupee you spend on a **calendar** — so you always know whether today you are under budget (saved) or over budget (overspent).
 
-**Status:** ✅ Phase 0 approved by the Owner (2026-11-05). 🟡 Phase 1 — Design system & app shell: built, tested and signed off by the Project Manager (Gate 5, 2026-11-11); waiting for the CEO report and your approval.
+**Status:** ✅ Phase 0 approved by the Owner (2026-11-05). ✅ Phase 1 — Design system & app shell: approved by the Owner and pushed to GitHub (2026-11-11, commit `73bac1e`). 🟡 Phase 2 (engine, database, month setup, manual transactions): all four features are Done and the Project Manager signed it off (Gate 5, 2026-11-16); the CEO report and your approval are pending.
 
 ---
 
@@ -492,8 +492,8 @@ Updated by the Project Manager and CEO as work moves forward.
 | Phase | Plan approved | Design | Development | Testing | PM sign-off | CEO report | Your approval |
 |---|---|---|---|---|---|---|---|
 | 0 — Setup & team | ✅ | — | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 1 — Design system & shell | ✅ | ✅ | ✅ | ✅ | ✅ | ⬜ | ⬜ |
-| 2 — Budget engine & month setup | 🟡 | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| 1 — Design system & shell | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 2 — Budget engine & month setup | ✅ | ✅ | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | 3 — Calendar & dashboard | 🟡 | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | 4 — SMS reading & categories | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | 5 — Notifications | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -546,6 +546,9 @@ Not needed for this app. Flutter only needs symlinks (and so Developer Mode) whe
 
 ### Step 5 (optional) — VS Code
 Install from **code.visualstudio.com**, then add the **Flutter** extension.
+
+### Step 6 — Internet for the first build after a clean
+The first build after `flutter clean` (or on a fresh clone) needs internet access: the database library downloads its prebuilt SQLite binaries from GitHub (about 7 MB, `sqlite3` build hooks, Phase 2 F-007). They are cached in `app/.dart_tool`, so later builds work offline until the next clean.
 
 Once `flutter doctor` is clean, tell Claude **"Setup done"** and Phase 0 continues.
 

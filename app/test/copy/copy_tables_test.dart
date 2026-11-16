@@ -173,8 +173,8 @@ void main() {
       ),
       'homeEmptyDescription': (
         ScreenCopy.homeEmptyDescription,
-        "Once you set up your month, you'll see what you can spend today, "
-            "what you've spent and your calendar.",
+        "Tell us your salary and fixed costs, and we'll work out what you can "
+            'spend each day.',
       ),
       'dashboardEmptyTitle': (
         ScreenCopy.dashboardEmptyTitle,
@@ -184,15 +184,6 @@ void main() {
         ScreenCopy.dashboardEmptyDescription,
         "After a few days of spending, you'll see where your money goes and "
             'how many days you saved.',
-      ),
-      'transactionsEmptyTitle': (
-        ScreenCopy.transactionsEmptyTitle,
-        'No transactions yet',
-      ),
-      'transactionsEmptyDescription': (
-        ScreenCopy.transactionsEmptyDescription,
-        "Spends from your bank SMS will show up here. You'll also be able to "
-            'add them yourself.',
       ),
       'groupGeneral': (ScreenCopy.groupGeneral, 'General'),
       'groupMoney': (ScreenCopy.groupMoney, 'Money'),

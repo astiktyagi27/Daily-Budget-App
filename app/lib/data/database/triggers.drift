@@ -1,0 +1,28 @@
+import 'tables.dart';
+
+-- History is append-only (D-037, F-007 AC-16): the database itself refuses
+-- to change or remove a period or one of its fixed-cost items.
+
+CREATE TRIGGER budget_periods_no_update
+BEFORE UPDATE ON budget_periods
+BEGIN
+  SELECT RAISE(ABORT, 'append-only');
+END;
+
+CREATE TRIGGER budget_periods_no_delete
+BEFORE DELETE ON budget_periods
+BEGIN
+  SELECT RAISE(ABORT, 'append-only');
+END;
+
+CREATE TRIGGER period_fixed_costs_no_update
+BEFORE UPDATE ON period_fixed_costs
+BEGIN
+  SELECT RAISE(ABORT, 'append-only');
+END;
+
+CREATE TRIGGER period_fixed_costs_no_delete
+BEFORE DELETE ON period_fixed_costs
+BEGIN
+  SELECT RAISE(ABORT, 'append-only');
+END;

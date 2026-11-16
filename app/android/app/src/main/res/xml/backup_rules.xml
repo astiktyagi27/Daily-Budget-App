@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Android 11 and older backup rules (F-007 AC-11, D-049). Nothing is backed
+  up: on these versions phone-to-phone transfer is tied to backup, and no cloud
+  copy of money data is ever risked (D-003).
+-->
+<full-backup-content>
+    <exclude domain="root" path="." />
+    <exclude domain="file" path="." />
+    <exclude domain="database" path="." />
+    <exclude domain="sharedpref" path="." />
+    <exclude domain="external" path="." />
+</full-backup-content>

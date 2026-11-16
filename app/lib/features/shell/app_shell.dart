@@ -5,6 +5,7 @@ import 'package:daily_budget/features/home/home_tab.dart';
 import 'package:daily_budget/features/settings/settings_tab.dart';
 import 'package:daily_budget/features/shell/app_tab.dart';
 import 'package:daily_budget/features/shell/budget_navigation_bar.dart';
+import 'package:daily_budget/features/transactions/add_spend_button.dart';
 import 'package:daily_budget/features/transactions/transactions_tab.dart';
 import 'package:flutter/material.dart';
 
@@ -93,6 +94,9 @@ class _AppShellState extends State<AppShell>
               ),
           ],
         ),
+        floatingActionButton: _tab == AppTab.transactions
+            ? const AddSpendButton()
+            : null,
         bottomNavigationBar: BudgetNavigationBar(
           selected: _tab,
           onSelect: _select,

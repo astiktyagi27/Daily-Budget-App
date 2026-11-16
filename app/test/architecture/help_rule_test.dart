@@ -17,6 +17,10 @@ const List<_Control> _nav = [
   (label: 'Transactions, tab 3 of 4', hint: 'Every spend and credit'),
   (label: 'Settings, tab 4 of 4', hint: 'Theme and app options'),
 ];
+// F-009: with no month set up, the Transactions tab has one button.
+const List<_Control> _setUpMonth = [
+  (label: 'Set up your month', hint: 'Open month setup'),
+];
 const List<_Control> _hint = [
   (label: 'Got it', hint: "Dismiss this tip. It won't show again."),
   (label: 'Dismiss tip', hint: ''),
@@ -36,10 +40,15 @@ const List<_Control> _slides123 = [
 /// two sheets, nowhere else.
 const _scrimLabel = 'Close';
 
+const _Control _homeSetUp = (
+  label: 'Set up your month',
+  hint: 'Open month setup',
+);
+
 const Map<P1Screen, List<_Control>> _expected = {
-  P1Screen.home: _nav,
+  P1Screen.home: [_homeSetUp, ..._nav],
   P1Screen.dashboard: _nav,
-  P1Screen.transactions: _nav,
+  P1Screen.transactions: [..._setUpMonth, ..._nav],
   P1Screen.settings: [..._settingsRows, ..._nav],
   P1Screen.settingsEnd: [..._settingsRows, ..._nav],
   P1Screen.themePicker: [
@@ -52,9 +61,9 @@ const Map<P1Screen, List<_Control>> _expected = {
   P1Screen.themeExplanation: [
     (label: 'Got it', hint: 'Close this explanation'),
   ],
-  P1Screen.homeWithHint: [..._hint, ..._nav],
+  P1Screen.homeWithHint: [..._hint, _homeSetUp, ..._nav],
   P1Screen.dashboardWithHint: [..._hint, ..._nav],
-  P1Screen.transactionsWithHint: [..._hint, ..._nav],
+  P1Screen.transactionsWithHint: [..._hint, ..._setUpMonth, ..._nav],
   P1Screen.settingsWithHint: [..._hint, ..._settingsRows, ..._nav],
   P1Screen.slide1: _slides123,
   P1Screen.slide2: _slides123,

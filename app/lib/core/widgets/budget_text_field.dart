@@ -1,3 +1,5 @@
+import 'package:daily_budget/core/help/help_info.dart';
+import 'package:daily_budget/core/help/label_description.dart';
 import 'package:daily_budget/core/theme/budget_text.dart';
 import 'package:daily_budget/core/theme/budget_tokens.dart';
 import 'package:daily_budget/core/theme/theme_context.dart';
@@ -8,7 +10,7 @@ import 'package:flutter/material.dart';
 ///
 /// An error is shown as a 2 dp `overspent` outline **plus** an error icon
 /// **plus** the message, never by colour alone. Built for Phase 2; no Phase 1
-/// screen uses it.
+/// screen uses it. Money fields use the `AmountField` wrapper.
 class BudgetTextField extends StatelessWidget {
   const new({
     required this.label,
@@ -19,7 +21,12 @@ class BudgetTextField extends StatelessWidget {
     this.errorText,
     this.enabled = true,
     this.isAmount = false,
+    this.large = false,
+    this.info,
+    this.textInputAction,
     this.onChanged,
+    this.onEditingComplete,
+    this.onSubmitted,
     super.key,
   });
 
@@ -33,40 +40,46 @@ class BudgetTextField extends StatelessWidget {
   final String? errorText;
   final bool enabled;
 
-  /// A fixed "₹" prefix, the money style and the number keypad. Indian
-  /// grouping while typing arrives with the Phase 2 money formatter.
+  /// A fixed "₹" prefix, the money style and the number keypad with a
+  /// decimal point.
   final bool isAmount;
+
+  /// The big amount field (design system §7.3, Add spend): the value in
+  /// `moneyLarge`, 64 dp tall. Only with [isAmount].
+  final bool large;
+
+  /// Adds an (i) after the label that opens this explanation (F-004).
+  final HelpInfo? info;
+  final TextInputAction? textInputAction;
   final ValueChanged<String>? onChanged;
+
+  /// Replaces the keyboard action's default (Next moves to the traversal
+  /// successor, Done closes the keyboard), for forms with their own order.
+  final VoidCallback? onEditingComplete;
+  final ValueChanged<String>? onSubmitted;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.budgetColors;
-    final valueStyle =
-        (isAmount ? BudgetTypeScale.moneyMedium : BudgetTypeScale.bodyLarge)
-            .copyWith(
-              color: enabled ? colors.textPrimary : colors.textSecondary,
-            );
+    final moneyStyle = large
+        ? BudgetTypeScale.moneyLarge
+        : BudgetTypeScale.moneyMedium;
+    final valueStyle = (isAmount ? moneyStyle : BudgetTypeScale.bodyLarge)
+        .copyWith(color: enabled ? colors.textPrimary : colors.textSecondary);
     final error = errorText;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: MainAxisSize.min,
       children: [
-        ExcludeSemantics(
-          child: Text(
-            label,
-            style: BudgetTypeScale.label.copyWith(color: colors.textPrimary),
-          ),
+        // The text field's own node reads label and description; only the
+        // (i) stays a separate item.
+        LabelDescription(
+          label: label,
+          description: description,
+          info: info,
+          announce: false,
         ),
-        if (description case final description?) ...[
-          const SizedBox(height: BudgetSpacing.space1),
-          ExcludeSemantics(
-            child: Text(
-              description,
-              style: BudgetTypeScale.body.copyWith(color: colors.textSecondary),
-            ),
-          ),
-        ],
         const SizedBox(height: BudgetSpacing.space2),
         Semantics(
           label: label,
@@ -76,11 +89,27 @@ class BudgetTextField extends StatelessWidget {
             focusNode: focusNode,
             enabled: enabled,
             onChanged: onChanged,
+            onEditingComplete: onEditingComplete,
+            onSubmitted: onSubmitted,
+            textInputAction: textInputAction,
             style: valueStyle,
-            keyboardType: isAmount ? TextInputType.number : TextInputType.text,
+            keyboardType: isAmount
+                ? const TextInputType.numberWithOptions(decimal: true)
+                : TextInputType.text,
             decoration: InputDecoration(
               hintText: hintText,
               prefixText: isAmount ? '₹' : null,
+              prefixStyle: large
+                  ? moneyStyle.copyWith(color: colors.textSecondary)
+                  : null,
+              // 16 dp above and below a 24 dp line is 56 dp; a 34 dp line
+              // needs 15 dp for 64 dp.
+              contentPadding: large
+                  ? const EdgeInsets.symmetric(
+                      horizontal: BudgetSpacing.space4,
+                      vertical: 15,
+                    )
+                  : null,
               fillColor: enabled ? null : colors.neutralSoft,
               error: error == null ? null : _ErrorMessage(error),
             ),

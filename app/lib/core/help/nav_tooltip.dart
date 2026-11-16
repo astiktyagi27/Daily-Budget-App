@@ -7,10 +7,14 @@ import 'package:flutter/material.dart';
 /// The hint is merged into [child]'s own node, so it is read with the
 /// control's label and not as a separate item.
 class NavTooltip extends StatelessWidget {
-  const new({required this.message, required this.child, super.key});
+  const new({required this.message, required this.child, this.hint, super.key});
 
   final String message;
   final Widget child;
+
+  /// The screen-reader hint when it differs from [message], e.g. a close
+  /// button whose tooltip is `Close` and whose hint says what closing does.
+  final String? hint;
 
   /// How long the tooltip stays after the finger is lifted (help-pattern §5).
   static const showDuration = Duration(milliseconds: 1500);
@@ -23,7 +27,7 @@ class NavTooltip extends StatelessWidget {
       // The hint below already carries the text for screen readers.
       excludeFromSemantics: true,
       child: MergeSemantics(
-        child: Semantics(hint: message, child: child),
+        child: Semantics(hint: hint ?? message, child: child),
       ),
     );
   }

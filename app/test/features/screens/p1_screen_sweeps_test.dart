@@ -18,13 +18,11 @@ const _sweepTimeout = Timeout(Duration(minutes: 10));
 
 /// The last thing on each screen, which the user must be able to reach.
 Finder _lastElement(P1Screen screen) => switch (screen) {
-  P1Screen.home ||
-  P1Screen.homeWithHint => find.text(ScreenCopy.homeEmptyDescription),
+  P1Screen.home || P1Screen.homeWithHint => find.text('Set up your month'),
   P1Screen.dashboard ||
   P1Screen.dashboardWithHint => find.text(ScreenCopy.dashboardEmptyDescription),
-  P1Screen.transactions || P1Screen.transactionsWithHint => find.text(
-    ScreenCopy.transactionsEmptyDescription,
-  ),
+  P1Screen.transactions ||
+  P1Screen.transactionsWithHint => find.text('Set up your month'),
   P1Screen.settings ||
   P1Screen.settingsEnd ||
   P1Screen.settingsWithHint => find.text('Disclaimer'),

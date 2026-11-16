@@ -1,0 +1,994 @@
+{
+  "_meta": {
+    "description": "This file contains a serialized version of schema entities for drift.",
+    "version": "1.3.0"
+  },
+  "options": {
+    "store_date_time_values_as_text": false
+  },
+  "entities": [
+    {
+      "id": 0,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "budget_months",
+        "was_declared_in_moor": false,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "defaultConstraints": "PRIMARY KEY AUTOINCREMENT",
+            "dialectAwareDefaultConstraints": {
+              "sqlite": "PRIMARY KEY AUTOINCREMENT"
+            },
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "auto-increment"
+            ]
+          },
+          {
+            "name": "start_day",
+            "getter_name": "startDay",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "defaultConstraints": "UNIQUE",
+            "dialectAwareDefaultConstraints": {
+              "sqlite": "UNIQUE"
+            },
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "unique"
+            ],
+            "type_converter": {
+              "dart_expr": "const CalendarDateConverter()",
+              "dart_type_name": "CalendarDate"
+            }
+          },
+          {
+            "name": "end_day",
+            "getter_name": "endDay",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [],
+            "type_converter": {
+              "dart_expr": "const CalendarDateConverter()",
+              "dart_type_name": "CalendarDate"
+            }
+          },
+          {
+            "name": "salary_day",
+            "getter_name": "salaryDay",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              {
+                "check": {
+                  "dart_expression": {
+                    "elements": [
+                      {
+                        "lexeme": "ComparableExpr",
+                        "import_uri": "package:drift/src/runtime/query_builder/query_builder.dart"
+                      },
+                      "(",
+                      {
+                        "lexeme": "salaryDay",
+                        "tag": "salaryDay"
+                      },
+                      ").isBetweenValues(1,31)"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "first_budgeted_day",
+            "getter_name": "firstBudgetedDay",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [],
+            "type_converter": {
+              "dart_expr": "const CalendarDateConverter()",
+              "dart_type_name": "CalendarDate"
+            }
+          },
+          {
+            "name": "confirmed_at",
+            "getter_name": "confirmedAt",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": []
+      }
+    },
+    {
+      "id": 1,
+      "references": [
+        0
+      ],
+      "type": "table",
+      "data": {
+        "name": "budget_periods",
+        "was_declared_in_moor": false,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "defaultConstraints": "PRIMARY KEY AUTOINCREMENT",
+            "dialectAwareDefaultConstraints": {
+              "sqlite": "PRIMARY KEY AUTOINCREMENT"
+            },
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "auto-increment"
+            ]
+          },
+          {
+            "name": "month_id",
+            "getter_name": "monthId",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "defaultConstraints": "REFERENCES budget_months (id) ON DELETE RESTRICT",
+            "dialectAwareDefaultConstraints": {
+              "sqlite": "REFERENCES budget_months (id) ON DELETE RESTRICT"
+            },
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              {
+                "foreign_key": {
+                  "to": {
+                    "table": "budget_months",
+                    "column": "id"
+                  },
+                  "initially_deferred": false,
+                  "on_update": null,
+                  "on_delete": "restrict"
+                }
+              }
+            ]
+          },
+          {
+            "name": "start_day",
+            "getter_name": "startDay",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [],
+            "type_converter": {
+              "dart_expr": "const CalendarDateConverter()",
+              "dart_type_name": "CalendarDate"
+            }
+          },
+          {
+            "name": "changed_at",
+            "getter_name": "changedAt",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "kind",
+            "getter_name": "kind",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              {
+                "check": {
+                  "dart_expression": {
+                    "elements": [
+                      {
+                        "lexeme": "kind",
+                        "tag": "kind"
+                      },
+                      ".isIn(['full','midMonthStart'])"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "salary_paise",
+            "getter_name": "salaryPaise",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [],
+            "type_converter": {
+              "dart_expr": "const PaiseConverter()",
+              "dart_type_name": "Paise"
+            }
+          },
+          {
+            "name": "target_paise",
+            "getter_name": "targetPaise",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [],
+            "type_converter": {
+              "dart_expr": "const PaiseConverter()",
+              "dart_type_name": "Paise"
+            }
+          },
+          {
+            "name": "money_left_paise",
+            "getter_name": "moneyLeftPaise",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [],
+            "type_converter": {
+              "dart_expr": "const PaiseConverter()",
+              "dart_type_name": "Paise"
+            }
+          },
+          {
+            "name": "continued_with_shortfall",
+            "getter_name": "continuedWithShortfall",
+            "moor_type": "bool",
+            "nullable": false,
+            "customConstraints": null,
+            "defaultConstraints": "CHECK (\"continued_with_shortfall\" IN (0, 1))",
+            "dialectAwareDefaultConstraints": {
+              "sqlite": "CHECK (\"continued_with_shortfall\" IN (0, 1))"
+            },
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "shortfall_paise",
+            "getter_name": "shortfallPaise",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": [
+              {
+                "check": {
+                  "dart_expression": {
+                    "elements": [
+                      {
+                        "lexeme": "ComparableExpr",
+                        "import_uri": "package:drift/src/runtime/query_builder/query_builder.dart"
+                      },
+                      "(",
+                      {
+                        "lexeme": "shortfallPaise",
+                        "tag": "shortfallPaise"
+                      },
+                      ").isBiggerOrEqualValue(0)"
+                    ]
+                  }
+                }
+              }
+            ],
+            "type_converter": {
+              "dart_expr": "const PaiseConverter()",
+              "dart_type_name": "Paise"
+            }
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [
+          "CHECK (kind <> 'full' OR salary_paise IS NOT NULL)",
+          "CHECK (kind <> 'midMonthStart' OR money_left_paise IS NOT NULL)"
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "references": [
+        1
+      ],
+      "type": "trigger",
+      "data": {
+        "on": 1,
+        "references_in_body": [
+          1
+        ],
+        "name": "budget_periods_no_update",
+        "sql": "CREATE TRIGGER budget_periods_no_update\nBEFORE UPDATE ON budget_periods\nBEGIN\n  SELECT RAISE(ABORT, 'append-only');\nEND;"
+      }
+    },
+    {
+      "id": 3,
+      "references": [
+        1
+      ],
+      "type": "trigger",
+      "data": {
+        "on": 1,
+        "references_in_body": [
+          1
+        ],
+        "name": "budget_periods_no_delete",
+        "sql": "CREATE TRIGGER budget_periods_no_delete\nBEFORE DELETE ON budget_periods\nBEGIN\n  SELECT RAISE(ABORT, 'append-only');\nEND;"
+      }
+    },
+    {
+      "id": 4,
+      "references": [
+        1
+      ],
+      "type": "table",
+      "data": {
+        "name": "period_fixed_costs",
+        "was_declared_in_moor": false,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "defaultConstraints": "PRIMARY KEY AUTOINCREMENT",
+            "dialectAwareDefaultConstraints": {
+              "sqlite": "PRIMARY KEY AUTOINCREMENT"
+            },
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "auto-increment"
+            ]
+          },
+          {
+            "name": "period_id",
+            "getter_name": "periodId",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "defaultConstraints": "REFERENCES budget_periods (id) ON DELETE RESTRICT",
+            "dialectAwareDefaultConstraints": {
+              "sqlite": "REFERENCES budget_periods (id) ON DELETE RESTRICT"
+            },
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              {
+                "foreign_key": {
+                  "to": {
+                    "table": "budget_periods",
+                    "column": "id"
+                  },
+                  "initially_deferred": false,
+                  "on_update": null,
+                  "on_delete": "restrict"
+                }
+              }
+            ]
+          },
+          {
+            "name": "position",
+            "getter_name": "position",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "name",
+            "getter_name": "name",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              {
+                "check": {
+                  "dart_expression": {
+                    "elements": [
+                      {
+                        "lexeme": "ComparableExpr",
+                        "import_uri": "package:drift/src/runtime/query_builder/query_builder.dart"
+                      },
+                      "(",
+                      {
+                        "lexeme": "name",
+                        "tag": "name"
+                      },
+                      ".length).isBetweenValues(1,160)"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "amount_paise",
+            "getter_name": "amountPaise",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              {
+                "check": {
+                  "dart_expression": {
+                    "elements": [
+                      {
+                        "lexeme": "ComparableExpr",
+                        "import_uri": "package:drift/src/runtime/query_builder/query_builder.dart"
+                      },
+                      "(",
+                      {
+                        "lexeme": "amountPaise",
+                        "tag": "amountPaise"
+                      },
+                      ").isBiggerOrEqualValue(0)"
+                    ]
+                  }
+                }
+              }
+            ],
+            "type_converter": {
+              "dart_expr": "const PaiseConverter()",
+              "dart_type_name": "Paise"
+            }
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": []
+      }
+    },
+    {
+      "id": 5,
+      "references": [
+        4
+      ],
+      "type": "trigger",
+      "data": {
+        "on": 4,
+        "references_in_body": [
+          4
+        ],
+        "name": "period_fixed_costs_no_update",
+        "sql": "CREATE TRIGGER period_fixed_costs_no_update\nBEFORE UPDATE ON period_fixed_costs\nBEGIN\n  SELECT RAISE(ABORT, 'append-only');\nEND;"
+      }
+    },
+    {
+      "id": 6,
+      "references": [
+        4
+      ],
+      "type": "trigger",
+      "data": {
+        "on": 4,
+        "references_in_body": [
+          4
+        ],
+        "name": "period_fixed_costs_no_delete",
+        "sql": "CREATE TRIGGER period_fixed_costs_no_delete\nBEFORE DELETE ON period_fixed_costs\nBEGIN\n  SELECT RAISE(ABORT, 'append-only');\nEND;"
+      }
+    },
+    {
+      "id": 7,
+      "references": [
+        0
+      ],
+      "type": "table",
+      "data": {
+        "name": "transactions",
+        "was_declared_in_moor": false,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "defaultConstraints": "PRIMARY KEY AUTOINCREMENT",
+            "dialectAwareDefaultConstraints": {
+              "sqlite": "PRIMARY KEY AUTOINCREMENT"
+            },
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "auto-increment"
+            ]
+          },
+          {
+            "name": "month_id",
+            "getter_name": "monthId",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "defaultConstraints": "REFERENCES budget_months (id) ON DELETE RESTRICT",
+            "dialectAwareDefaultConstraints": {
+              "sqlite": "REFERENCES budget_months (id) ON DELETE RESTRICT"
+            },
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              {
+                "foreign_key": {
+                  "to": {
+                    "table": "budget_months",
+                    "column": "id"
+                  },
+                  "initially_deferred": false,
+                  "on_update": null,
+                  "on_delete": "restrict"
+                }
+              }
+            ]
+          },
+          {
+            "name": "day",
+            "getter_name": "day",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [],
+            "type_converter": {
+              "dart_expr": "const CalendarDateConverter()",
+              "dart_type_name": "CalendarDate"
+            }
+          },
+          {
+            "name": "amount_paise",
+            "getter_name": "amountPaise",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              {
+                "check": {
+                  "dart_expression": {
+                    "elements": [
+                      {
+                        "lexeme": "ComparableExpr",
+                        "import_uri": "package:drift/src/runtime/query_builder/query_builder.dart"
+                      },
+                      "(",
+                      {
+                        "lexeme": "amountPaise",
+                        "tag": "amountPaise"
+                      },
+                      ").isBiggerThanValue(0)"
+                    ]
+                  }
+                }
+              }
+            ],
+            "type_converter": {
+              "dart_expr": "const PaiseConverter()",
+              "dart_type_name": "Paise"
+            }
+          },
+          {
+            "name": "direction",
+            "getter_name": "direction",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": "const CustomExpression('\\'spend\\'')",
+            "default_client_dart": null,
+            "dsl_features": [
+              {
+                "check": {
+                  "dart_expression": {
+                    "elements": [
+                      {
+                        "lexeme": "direction",
+                        "tag": "direction"
+                      },
+                      ".isIn(['spend','money_in'])"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "note",
+            "getter_name": "note",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": "const CustomExpression('\\'\\'')",
+            "default_client_dart": null,
+            "dsl_features": [
+              {
+                "check": {
+                  "dart_expression": {
+                    "elements": [
+                      {
+                        "lexeme": "ComparableExpr",
+                        "import_uri": "package:drift/src/runtime/query_builder/query_builder.dart"
+                      },
+                      "(",
+                      {
+                        "lexeme": "note",
+                        "tag": "note"
+                      },
+                      ".length).isSmallerOrEqualValue(400)"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "source",
+            "getter_name": "source",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": "const CustomExpression('\\'manual\\'')",
+            "default_client_dart": null,
+            "dsl_features": [
+              {
+                "check": {
+                  "dart_expression": {
+                    "elements": [
+                      {
+                        "lexeme": "source",
+                        "tag": "source"
+                      },
+                      ".isIn(['manual'])"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "category",
+            "getter_name": "category",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "created_at",
+            "getter_name": "createdAt",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "edited_at",
+            "getter_name": "editedAt",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": []
+      }
+    },
+    {
+      "id": 8,
+      "references": [
+        0
+      ],
+      "type": "table",
+      "data": {
+        "name": "savings_moves",
+        "was_declared_in_moor": false,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "defaultConstraints": "PRIMARY KEY AUTOINCREMENT",
+            "dialectAwareDefaultConstraints": {
+              "sqlite": "PRIMARY KEY AUTOINCREMENT"
+            },
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "auto-increment"
+            ]
+          },
+          {
+            "name": "month_id",
+            "getter_name": "monthId",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "defaultConstraints": "REFERENCES budget_months (id) ON DELETE RESTRICT",
+            "dialectAwareDefaultConstraints": {
+              "sqlite": "REFERENCES budget_months (id) ON DELETE RESTRICT"
+            },
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              {
+                "foreign_key": {
+                  "to": {
+                    "table": "budget_months",
+                    "column": "id"
+                  },
+                  "initially_deferred": false,
+                  "on_update": null,
+                  "on_delete": "restrict"
+                }
+              }
+            ]
+          },
+          {
+            "name": "covered_day",
+            "getter_name": "coveredDay",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [],
+            "type_converter": {
+              "dart_expr": "const CalendarDateConverter()",
+              "dart_type_name": "CalendarDate"
+            }
+          },
+          {
+            "name": "amount_paise",
+            "getter_name": "amountPaise",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              {
+                "check": {
+                  "dart_expression": {
+                    "elements": [
+                      {
+                        "lexeme": "ComparableExpr",
+                        "import_uri": "package:drift/src/runtime/query_builder/query_builder.dart"
+                      },
+                      "(",
+                      {
+                        "lexeme": "amountPaise",
+                        "tag": "amountPaise"
+                      },
+                      ").isBiggerOrEqualValue(0)"
+                    ]
+                  }
+                }
+              }
+            ],
+            "type_converter": {
+              "dart_expr": "const PaiseConverter()",
+              "dart_type_name": "Paise"
+            }
+          },
+          {
+            "name": "made_at",
+            "getter_name": "madeAt",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": []
+      }
+    },
+    {
+      "id": 9,
+      "references": [
+        1
+      ],
+      "type": "index",
+      "data": {
+        "on": 1,
+        "name": "idx_periods_month",
+        "sql": null,
+        "unique": false,
+        "columns": [
+          {
+            "column": "month_id",
+            "order_by": null
+          },
+          {
+            "column": "start_day",
+            "order_by": null
+          },
+          {
+            "column": "changed_at",
+            "order_by": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "references": [
+        7
+      ],
+      "type": "index",
+      "data": {
+        "on": 7,
+        "name": "idx_transactions_month_day",
+        "sql": null,
+        "unique": false,
+        "columns": [
+          {
+            "column": "month_id",
+            "order_by": null
+          },
+          {
+            "column": "day",
+            "order_by": null
+          }
+        ]
+      }
+    }
+  ],
+  "fixed_sql": [
+    {
+      "name": "budget_months",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"budget_months\" (\"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \"start_day\" INTEGER NOT NULL UNIQUE, \"end_day\" INTEGER NOT NULL, \"salary_day\" INTEGER NOT NULL CHECK(\"salary_day\" BETWEEN 1 AND 31), \"first_budgeted_day\" INTEGER NOT NULL, \"confirmed_at\" INTEGER NOT NULL);"
+        }
+      ]
+    },
+    {
+      "name": "budget_periods",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"budget_periods\" (\"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \"month_id\" INTEGER NOT NULL REFERENCES budget_months (id) ON DELETE RESTRICT, \"start_day\" INTEGER NOT NULL, \"changed_at\" INTEGER NOT NULL, \"kind\" TEXT NOT NULL CHECK(\"kind\" IN ('full', 'midMonthStart')), \"salary_paise\" INTEGER NULL, \"target_paise\" INTEGER NULL, \"money_left_paise\" INTEGER NULL, \"continued_with_shortfall\" INTEGER NOT NULL DEFAULT 0 CHECK (\"continued_with_shortfall\" IN (0, 1)), \"shortfall_paise\" INTEGER NOT NULL DEFAULT 0 CHECK(\"shortfall_paise\" >= 0), CHECK (kind <> 'full' OR salary_paise IS NOT NULL), CHECK (kind <> 'midMonthStart' OR money_left_paise IS NOT NULL));"
+        }
+      ]
+    },
+    {
+      "name": "budget_periods_no_update",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TRIGGER budget_periods_no_update BEFORE UPDATE ON budget_periods BEGIN SELECT RAISE (ABORT, 'append-only');END"
+        }
+      ]
+    },
+    {
+      "name": "budget_periods_no_delete",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TRIGGER budget_periods_no_delete BEFORE DELETE ON budget_periods BEGIN SELECT RAISE (ABORT, 'append-only');END"
+        }
+      ]
+    },
+    {
+      "name": "period_fixed_costs",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"period_fixed_costs\" (\"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \"period_id\" INTEGER NOT NULL REFERENCES budget_periods (id) ON DELETE RESTRICT, \"position\" INTEGER NOT NULL, \"name\" TEXT NOT NULL CHECK(LENGTH(\"name\") BETWEEN 1 AND 160), \"amount_paise\" INTEGER NOT NULL CHECK(\"amount_paise\" >= 0));"
+        }
+      ]
+    },
+    {
+      "name": "period_fixed_costs_no_update",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TRIGGER period_fixed_costs_no_update BEFORE UPDATE ON period_fixed_costs BEGIN SELECT RAISE (ABORT, 'append-only');END"
+        }
+      ]
+    },
+    {
+      "name": "period_fixed_costs_no_delete",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TRIGGER period_fixed_costs_no_delete BEFORE DELETE ON period_fixed_costs BEGIN SELECT RAISE (ABORT, 'append-only');END"
+        }
+      ]
+    },
+    {
+      "name": "transactions",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"transactions\" (\"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \"month_id\" INTEGER NOT NULL REFERENCES budget_months (id) ON DELETE RESTRICT, \"day\" INTEGER NOT NULL, \"amount_paise\" INTEGER NOT NULL CHECK(\"amount_paise\" > 0), \"direction\" TEXT NOT NULL DEFAULT 'spend' CHECK(\"direction\" IN ('spend', 'money_in')), \"note\" TEXT NOT NULL DEFAULT '' CHECK(LENGTH(\"note\") <= 400), \"source\" TEXT NOT NULL DEFAULT 'manual' CHECK(\"source\" IN ('manual')), \"category\" TEXT NULL, \"created_at\" INTEGER NOT NULL, \"edited_at\" INTEGER NOT NULL);"
+        }
+      ]
+    },
+    {
+      "name": "savings_moves",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"savings_moves\" (\"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \"month_id\" INTEGER NOT NULL REFERENCES budget_months (id) ON DELETE RESTRICT, \"covered_day\" INTEGER NOT NULL, \"amount_paise\" INTEGER NOT NULL CHECK(\"amount_paise\" >= 0), \"made_at\" INTEGER NOT NULL);"
+        }
+      ]
+    },
+    {
+      "name": "idx_periods_month",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX idx_periods_month ON budget_periods (month_id, start_day, changed_at)"
+        }
+      ]
+    },
+    {
+      "name": "idx_transactions_month_day",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX idx_transactions_month_day ON transactions (month_id, day)"
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,9 @@
 import 'package:daily_budget/app.dart';
+import 'package:daily_budget/core/providers/database_providers.dart';
 import 'package:daily_budget/core/providers/preferences_providers.dart';
 import 'package:daily_budget/core/theme/budget_theme.dart';
 import 'package:daily_budget/core/theme/system_bars.dart';
+import 'package:daily_budget/data/database/app_database.dart';
 import 'package:daily_budget/data/preferences/in_memory_preferences_store.dart';
 import 'package:daily_budget/data/preferences/preference_keys.dart';
 import 'package:daily_budget/data/preferences/preferences_store.dart';
@@ -9,6 +11,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'fake_app_database.dart';
+import 'fake_money_store.dart';
+import 'fake_month_repository.dart';
+import 'fake_savings_repository.dart';
+import 'fake_transaction_repository.dart';
 import 'theme_cases.dart';
 
 /// Test screen sizes in dp (test cases §0).
@@ -56,6 +63,12 @@ void setUpScreen(
 /// unless [onboarded] is false (the F-005 onboarding tests).
 ///
 /// [settle] false stops after the first frame, for "first frame" checks.
+///
+/// The money database opens through [openDatabase], by default a
+/// `FakeAppDatabase` that opens at once and is never used (widget tests
+/// never touch Drift). Pass a function that throws a `StorageException` to
+/// see the storage error screen (F-007 T-208). The three repositories are the
+/// in-memory fakes on [money] (an empty store by default).
 Future<void> pumpBudgetApp(
   WidgetTester tester, {
   PreferencesStore? store,
@@ -66,7 +79,10 @@ Future<void> pumpBudgetApp(
   double textScale = 1,
   bool disableAnimations = false,
   bool settle = true,
+  Future<AppDatabase> Function()? openDatabase,
+  FakeMoneyStore? money,
 }) async {
+  final moneyStore = money ?? FakeMoneyStore();
   theme.applyTo(tester);
   setUpScreen(
     tester,
@@ -87,6 +103,18 @@ Future<void> pumpBudgetApp(
       overrides: [
         preferencesStoreProvider.overrideWithValue(
           onboarded ? OnboardedStore(preferences) : preferences,
+        ),
+        appDatabaseProvider.overrideWith(
+          (ref) => (openDatabase ?? () async => FakeAppDatabase())(),
+        ),
+        monthRepositoryProvider.overrideWithValue(
+          FakeMonthRepository(moneyStore),
+        ),
+        transactionRepositoryProvider.overrideWithValue(
+          FakeTransactionRepository(moneyStore),
+        ),
+        savingsRepositoryProvider.overrideWithValue(
+          FakeSavingsRepository(moneyStore),
         ),
       ],
       child: const DailyBudgetApp(),

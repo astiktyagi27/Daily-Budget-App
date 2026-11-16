@@ -97,18 +97,18 @@ void main() {
     String soon(String label, String description) =>
         '$label, coming soon, not available yet. $description';
     const homeText =
-        "Your daily budget lives here. Once you set up your month, you'll see "
-        "what you can spend today, what you've spent and your calendar.";
+        'Your daily budget lives here. Tell us your salary and fixed costs, '
+        "and we'll work out what you can spend each day.";
     const dashboardText =
         "Insights are on their way. After a few days of spending, you'll see "
         'where your money goes and how many days you saved.';
     const transactionsText =
-        'No transactions yet. Spends from your bank SMS will show up here. '
-        "You'll also be able to add them yourself.";
+        'Set up your month first. Your spends need a budget month. It takes a '
+        'minute.';
     final bodies = {
-      'Home': ['Daily Budget App', homeText],
+      'Home': ['Daily Budget App', homeText, 'Set up your month'],
       'Dashboard': ['Dashboard', dashboardText],
-      'Transactions': ['Transactions', transactionsText],
+      'Transactions': ['Transactions', transactionsText, 'Set up your month'],
       'Settings': [
         'Settings',
         'General',
@@ -136,7 +136,7 @@ void main() {
       final expected = [...body, ...nav];
       final read = tester.semantics
           .simulatedAccessibilityTraversal()
-          .map((node) => node.label)
+          .map((node) => node.getSemanticsData().label)
           .where(expected.contains)
           .toList();
       expect(read, expected, reason: tab);

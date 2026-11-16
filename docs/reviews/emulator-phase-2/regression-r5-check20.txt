@@ -1,0 +1,2 @@
+R5 2026-11-16 (debug build, emulator-5554)
+TC-007-17/-41 (check 20): random 4096 bytes written over budget.sqlite -> "We couldn't open your data" screen; Try again leaves SHA-256 f4f7baea...9b32 unchanged; restored file (f3909464...d987) opens (This month 5 Nov - 4 Dec). user_version set to 99 (printf "   c" at offset 60) -> same screen, SHA-256 bf4e32c2...a3 unchanged after the launch; restored again -> opens.

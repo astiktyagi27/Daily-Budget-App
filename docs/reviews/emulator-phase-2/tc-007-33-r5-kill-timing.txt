@@ -1,0 +1,10 @@
+TC-007-33 R5, 2026-11-16, debug build, emulator-5554, emulator date 5 Nov 2026.
+Each run: pm clear, tour, Set up your month, salary day 5th, 90000, 10 fixed-cost rows (Rent, EMI, Subscriptions empty amounts; Food 1000, Bus 1100, Phone 1200, Gym 1300, Net 1400, Water 1500, Gas 1600; total 9,100), Done, then in ONE adb shell: input tap Start my month; sleep <delay>; am force-stop. Then the database (app_flutter/budget.sqlite + -wal) was pulled with run-as and the rows counted.
+delay 0.00 s : months 0, periods 0, fixed costs 0, (no month)
+delay 0.10 s : months 0, periods 0, fixed costs 0, (no month)
+delay 0.14 s : months 0, periods 0, fixed costs 0, (no month)
+delay 0.15 s : months 1, periods 1, fixed costs 10 (full month)
+delay 0.17 s : months 1, periods 1, fixed costs 10 (full month)
+delay 0.20 s : months 1, periods 1, fixed costs 10 (full month)
+delay 0.30 s : months 1, periods 1, fixed costs 10 (full month)
+Result: 7 kills, the delays bracket the moment of the commit (between 0.14 and 0.15 s). Every outcome is either no month or the whole month with all 10 items. Never a month with fewer items.

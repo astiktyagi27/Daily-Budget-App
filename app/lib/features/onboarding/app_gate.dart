@@ -6,6 +6,7 @@ import 'package:daily_budget/features/onboarding/explainers/sms_explainer_screen
 import 'package:daily_budget/features/onboarding/onboarding_provider.dart';
 import 'package:daily_budget/features/onboarding/tour/tour_screen.dart';
 import 'package:daily_budget/features/shell/app_shell.dart';
+import 'package:daily_budget/features/storage_error/database_gate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -62,7 +63,7 @@ class _AppGateState extends ConsumerState<AppGate> {
       OnboardingStage.explainers => const SmsExplainerScreen(),
       OnboardingStage.finished => AbsorbPointer(
         absorbing: _homeGuard.isActive,
-        child: const AppShell(),
+        child: const DatabaseGate(child: AppShell()),
       ),
     };
     return AnimatedSwitcher(

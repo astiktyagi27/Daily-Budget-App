@@ -148,7 +148,7 @@ Sizes are in sp, so they scale with the phone's font size. Line height is given 
 
 ### 4.3 Money formatting (Indian grouping)
 
-- All money text comes from the one shared formatter `formatRupees(Paise)` (F-008 AC-19, plan F-008 §1.4). It takes **integer** rupees (`paise.abs() ~/ 100`, rounded toward ₹0) and groups them with `NumberFormat.decimalPattern('en_IN')`. **Never** `NumberFormat.currency` (it takes a `double` and rounds half-up, so ₹666.67 would show ₹667; look-ahead #12). Money is stored in paise (D-010), so convert on display only. *(Corrected at Gate 2, 2026-11-10.)*
+- All money text comes from the one shared formatter `formatRupees(Paise)` (F-008 AC-19, plan F-008 §1.4). It takes **integer** rupees (`paise.abs() ~/ 100`, rounded toward ₹0) and groups them by hand in the Indian 3-then-2 pattern, with no `intl` package (D-070; the output is identical to `NumberFormat.decimalPattern('en_IN')` on whole rupees). **Never** `NumberFormat.currency` (it takes a `double` and rounds half-up, so ₹666.67 would show ₹667; look-ahead #12). Money is stored in paise (D-010), so convert on display only. *(Corrected at Gate 2, 2026-11-10.)*
 - Examples: **₹1,33,333** · **₹40,000** · **₹15,100** · **₹830** · **₹1,00,000** · **₹12,34,567**.
 - Paise are shown only inside input fields (D-038; see the rule below).
 - No space between ₹ and the digits. Negative amounts use the true minus sign U+2212: **−₹467**. In the UI, overspending is normally written in words ("Overspent ₹467") rather than as a negative number.
@@ -249,7 +249,7 @@ States: pressed = 8 % `textPrimary` overlay (Light) / 10 % `#FFFFFF` overlay (Da
 ### 7.3 Input (text and amount)
 - Label above the field (`label`, `textPrimary`), description below the label (`body`, `textSecondary`), then the field. The label never disappears into the field (no floating-label animation).
 - Field: height 56 dp, `sunken` fill, 1 dp `borderStrong` outline, `radiusMd`. Focused: 2 dp `accent` outline. Error: 2 dp `overspent` outline + error icon + message below in `overspent` `body`.
-- Amount fields show a fixed "₹" prefix in `textSecondary`, use `moneyMedium` for the value, the number keypad, and Indian grouping as you type (₹1,33,333).
+- Amount fields show a fixed "₹" prefix in `textSecondary`, use `moneyMedium` for the value, and the number keypad. The field shows the digits **exactly as typed** (`133333`), with no grouping while typing (D-069): nothing rewrites the text, so the cursor never jumps and the screen reader reads the same digits the keypad entered. The grouped amount (₹1,33,333) appears in the screen's live preview line under the form, in the same frame as the keystroke. Pasted text such as `₹40,000` is accepted and shown as typed.
 
 ### 7.4 List row
 - Min height 56 dp (72 dp with a description). Padding `space5` sides, `space3` top/bottom.
@@ -356,7 +356,9 @@ Red is reserved for overspent (STANDARDS §7). Errors share the red hue (`ColorS
 A bar pinned to the bottom of a full-screen form, holding the screen's Primary button and, optionally, one live summary line above it.
 - `surface` fill, 1 dp `border` top rule, no shadow, padding `space4` × `space5` + the system / keyboard inset.
 - **Only in portrait at text ≤ 1.3×.** Above 1.3× or in landscape the dock's contents move inline to the end of the form, because a pinned bar would take too much of the screen.
-- With the keyboard open the dock sits on the keyboard. Per screen: month setup keeps only the summary line (`Daily budget ₹830 a day`) and hides Confirm until the keyboard closes; Add/Edit spend keeps only Save.
+- With the keyboard open the dock **sits directly on the keyboard and stays visible** (it follows the keyboard inset; being covered by the keyboard is a defect, T-248). Per screen: month setup keeps only the summary line (`Daily budget ₹830 a day`) and hides Confirm until the keyboard closes; Add/Edit spend keeps only Save.
+- **Mechanism (T-251):** the dock is the Scaffold's bottom bar lifted by the keyboard inset, so a snackbar stays above the dock and never covers the Primary button.
+- **Keyboard action key (T-248):** forms with a dock use **Next** on every field and **Done** on the last field; Done closes the keyboard and the Confirm button returns. Above 1.3× or in landscape there is no dock, so the Confirm button is the last item of the page and is reached by scrolling with the keyboard open.
 - The summary line is decorative for screen readers (the full value is read in the form's own preview).
 - Specs: `screens/month-setup.md` §6, `screens/transactions.md` §8.1.
 
@@ -475,9 +477,12 @@ Resolved on 2026-11-05 with the Phase 1 screen specs (`docs/design/screens/`):
 | 2026-11-05 | Gate 3 (PM): §4.1 ₹/figures check accepts tabular default digits (Plex has no `tnum` feature; its digits are all 600 units wide). No visual change | Project Manager |
 | 2026-11-10 | Phase 2 screen specs (`screens/month-setup.md`, `screens/transactions.md`): §4.3 minus sign U+2212 confirmed, no-split and screen-reader rules, D-038 whole rupees (paise only in inputs); §7.8 decision sheet replaces dialogs, button order rule; §7.10 Primary button allowed in an empty state that is the only way forward; new §7.13 action dock. Existing Phase 1 components unchanged | Designer |
 | 2026-11-10 | Gate 2 (PM, Phase 2): §4.3 formatter rule corrected (integer `decimalPattern`, never `NumberFormat.currency`), no `−₹0`, `less than ₹1` wording, no invisible characters in semantics labels (D-050). §7.8, §7.10, §7.13 approved as written | Project Manager |
+| 2026-11-13 | T-238 (D-069, D-070): §7.3 amount fields show digits as typed (no grouping while typing; the grouped amount shows in the screen's live preview line); §4.3 the formatter groups by hand, no `intl` / `NumberFormat`. No token change | Designer |
 | 2026-11-11 | T-231 (Gate 3 N1): §7.8 sheet scrim screen-reader label is `Close` instead of "Scrim". No visual change; code in T-233 | Designer |
 | 2026-11-06 | T-128 (Gate 2 N1): Owner-preview Home mockup's hint card now shows the `Tip` overline, lightbulb and × like the real card (§7.11c). Mockup only; no spec change | Designer |
 | 2026-11-11 | Phase 3 screen specs (planned ahead, D-033; `screens/home-summary.md`, `calendar.md`, `day-details.md`, `dashboard.md`, `month-statement.md`, `transactions-search.md`). §7.5: **Not budgeted** cell state, **change-day marker** (ink tick), amount fit rule and **short forms** `₹12k` / `₹1.5L` / `₹10Cr` (`formatRupeesShort`), negative net amounts, landscape cap 56 dp (phase-3 overview open item 7). §3: `accent` on the three day fills and the share-bar pair (computed, all ≥ 5.30). §4.3: short-form pointer, `→` glyph check. §7.6: Phase 3 summary additions, ₹0 saved/overspent shown neutral with no mark. New §7.14 month switcher, §7.15 chips and segmented control, §7.16 share bar row. §8.4 `DayStatus.notBudgeted` + `periodStart` flag. Existing Phase 1–2 components unchanged. **Phase 3 parts pending Gate 2** | Designer |
+| 2026-11-13 | T-248 (D-071): §7.13 with the keyboard open the dock stays visible directly above it; Next / Done keyboard actions; the no-dock block at the end above 1.3x is intended | Designer |
+| 2026-11-16 | T-251: §7.13 one line: the dock is the Scaffold bottom bar lifted by the keyboard inset, so snackbars stay above it. No visual change | Designer |
 
 ---
 

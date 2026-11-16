@@ -23,7 +23,7 @@ const _tabContent = [
   'Settings',
   'Your daily budget lives here',
   'Insights are on their way',
-  'No transactions yet',
+  'Set up your month first',
 ];
 
 const _homeHint =

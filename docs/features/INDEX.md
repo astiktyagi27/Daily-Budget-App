@@ -16,9 +16,9 @@ Every feature has **three files with the same name** in three folders:
 | F-004 | Help & tooltip system | 1 | Done | [F-004-help-tooltip-system.md](F-004-help-tooltip-system.md) | [plan](../../plans/F-004-help-tooltip-system.md) | [tests](../../tests/F-004-help-tooltip-system.md) |
 | F-005 | Welcome tour & permission explainers (UI only) | 1 | Done | [F-005-welcome-tour-permission-explainers.md](F-005-welcome-tour-permission-explainers.md) | [plan](../../plans/F-005-welcome-tour-permission-explainers.md) | [tests](../../tests/F-005-welcome-tour-permission-explainers.md) |
 | F-006 | Budget engine | 2 | Done | [F-006-budget-engine.md](F-006-budget-engine.md) | [plan](../../plans/F-006-budget-engine.md) | [tests](../../tests/F-006-budget-engine.md) |
-| F-007 | Local database | 2 | Plan approved | [F-007-local-database.md](F-007-local-database.md) | [plan](../../plans/F-007-local-database.md) | [tests](../../tests/F-007-local-database.md) |
-| F-008 | Month setup screen | 2 | Plan approved | [F-008-month-setup.md](F-008-month-setup.md) | [plan](../../plans/F-008-month-setup.md) | [tests](../../tests/F-008-month-setup.md) |
-| F-009 | Manual transactions | 2 | Plan approved | [F-009-manual-transactions.md](F-009-manual-transactions.md) | [plan](../../plans/F-009-manual-transactions.md) | [tests](../../tests/F-009-manual-transactions.md) |
+| F-007 | Local database | 2 | Done | [F-007-local-database.md](F-007-local-database.md) | [plan](../../plans/F-007-local-database.md) | [tests](../../tests/F-007-local-database.md) |
+| F-008 | Month setup screen | 2 | Done | [F-008-month-setup.md](F-008-month-setup.md) | [plan](../../plans/F-008-month-setup.md) | [tests](../../tests/F-008-month-setup.md) |
+| F-009 | Manual transactions | 2 | Done | [F-009-manual-transactions.md](F-009-manual-transactions.md) | [plan](../../plans/F-009-manual-transactions.md) | [tests](../../tests/F-009-manual-transactions.md) |
 | F-010 | Home summary | 3 | Spec | [F-010-home-summary.md](F-010-home-summary.md) | [plan](../../plans/F-010-home-summary.md) | [tests](../../tests/F-010-home-summary.md) |
 | F-011 | Calendar | 3 | Spec | [F-011-calendar.md](F-011-calendar.md) | [plan](../../plans/F-011-calendar.md) | [tests](../../tests/F-011-calendar.md) |
 | F-012 | Day details & cover with savings | 3 | Spec | [F-012-day-details.md](F-012-day-details.md) | [plan](../../plans/F-012-day-details.md) | [tests](../../tests/F-012-day-details.md) |

@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 /// What a screen shows before it has content (design system §7.10,
 /// app-shell §4): left-aligned, an 88 dp `neutralSoft` circle with a 40 dp
 /// line icon, a title and a description that wraps freely; optionally one
-/// button (not used in Phase 1).
+/// button: Secondary by default, **Primary** when it is the only way forward
+/// on the screen (Home and Transactions `Set up your month`, a load error's
+/// `Try again`; design system §7.10).
 ///
 /// A screen reader reads the title and description as one item.
 class EmptyState extends StatelessWidget {
@@ -22,7 +24,9 @@ class EmptyState extends StatelessWidget {
   final String title;
   final String description;
 
-  /// An optional Secondary button under the text.
+  /// An optional button under the text: a `BudgetButton.secondary`, or a
+  /// `BudgetButton.primary` when it is the only way forward. It is as wide as
+  /// the text above it, at most 320 dp.
   final Widget? action;
 
   static const double circleSize = 88;
@@ -88,7 +92,10 @@ class EmptyState extends StatelessWidget {
           ),
           if (action case final action?) ...[
             const SizedBox(height: BudgetSpacing.space5),
-            action,
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: _maxTextWidth),
+              child: action,
+            ),
           ],
         ],
       ),

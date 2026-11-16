@@ -33,16 +33,12 @@ abstract final class ScreenCopy {
   // F-003: empty states.
   static const homeEmptyTitle = 'Your daily budget lives here';
   static const homeEmptyDescription =
-      "Once you set up your month, you'll see what you can spend today, "
-      "what you've spent and your calendar.";
+      "Tell us your salary and fixed costs, and we'll work out what you can "
+      'spend each day.';
   static const dashboardEmptyTitle = 'Insights are on their way';
   static const dashboardEmptyDescription =
       "After a few days of spending, you'll see where your money goes and "
       'how many days you saved.';
-  static const transactionsEmptyTitle = 'No transactions yet';
-  static const transactionsEmptyDescription =
-      "Spends from your bank SMS will show up here. You'll also be able to "
-      'add them yourself.';
 
   // F-003: Settings list.
   static const groupGeneral = 'General';

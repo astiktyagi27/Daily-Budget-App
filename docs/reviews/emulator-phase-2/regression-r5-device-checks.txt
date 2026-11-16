@@ -1,0 +1,16 @@
+== bmgr backupnow
+Running incremental backup for 1 requested packages.
+Backup finished with result: Backup is not allowed
+Unable to run backup
+== dumpsys package flags
+    flags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ]
+    pkgFlags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ]
+        android.permission.ACCESS_LOCAL_NETWORK: granted=true, flags=[ REVOKE_WHEN_REQUESTED|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+== run-as find
+./app_flutter/budget.sqlite
+== ls private dir without run-as
+ls: /data/user/0/com.dailybudget.app: Permission denied
+== granted permissions (dumpsys)
+      com.dailybudget.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: granted=true
+      android.permission.INTERNET: granted=true
+        android.permission.ACCESS_LOCAL_NETWORK: granted=true, flags=[ REVOKE_WHEN_REQUESTED|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]

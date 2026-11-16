@@ -17,6 +17,7 @@ import '../../helpers/failing_preferences_store.dart';
 import '../../helpers/pump_app.dart';
 import '../../helpers/shell.dart';
 import '../../helpers/theme_cases.dart';
+import '../../support/app_lifecycle.dart';
 
 // Backgrounds and text colours as literals from design-system.md §2.
 const _lightBg = 0xFFF6F3ED;
@@ -227,9 +228,9 @@ void main() {
     expectKept('back to light', _lightBg);
 
     // Switched while the app was in the background.
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+    sendToBackground(tester);
     tester.platformDispatcher.platformBrightnessTestValue = Brightness.dark;
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    bringToForeground(tester);
     await _pumpOneSecond(tester);
     expectKept('in the background', _darkBg);
     semantics.dispose();

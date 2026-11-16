@@ -1,0 +1,15 @@
+# Drift code generation (plan F-007, T-206). Generated *.g.dart files and the
+# schema snapshots are committed; tool/check.ps1 regenerates them and fails if
+# anything changed.
+targets:
+  $default:
+    builders:
+      drift_dev:
+        options:
+          # The schema has no DateTime columns for calendar dates (day numbers,
+          # F-007 AC-3); the only timestamps are INTEGER epoch milliseconds.
+          store_date_time_values_as_text: false
+          databases:
+            app_database: lib/data/database/app_database.dart
+          schema_dir: drift_schemas/
+          test_dir: test/drift/

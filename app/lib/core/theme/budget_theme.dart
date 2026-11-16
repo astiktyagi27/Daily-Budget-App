@@ -315,5 +315,31 @@ ThemeData buildBudgetTheme(BudgetColors c, Brightness brightness) {
       constraints: const BoxConstraints(maxWidth: 280),
     ),
     dividerTheme: DividerThemeData(color: c.border, thickness: 1, space: 1),
+    datePickerTheme: DatePickerThemeData(
+      backgroundColor: c.surface,
+      surfaceTintColor: Colors.transparent,
+      headerBackgroundColor: c.surface,
+      headerForegroundColor: c.textPrimary,
+      headerHeadlineStyle: BudgetTypeScale.title.copyWith(color: c.textPrimary),
+      headerHelpStyle: BudgetTypeScale.label.copyWith(color: c.textSecondary),
+      dayForegroundColor: WidgetStateProperty.resolveWith(
+        (states) => states.contains(WidgetState.selected)
+            ? c.onAccent
+            : states.contains(WidgetState.disabled)
+            ? c.textSecondary.withValues(alpha: 0.5)
+            : c.textPrimary,
+      ),
+      dayBackgroundColor: WidgetStateProperty.resolveWith(
+        (states) => states.contains(WidgetState.selected) ? c.accent : null,
+      ),
+      todayForegroundColor: WidgetStateProperty.resolveWith(
+        (states) =>
+            states.contains(WidgetState.selected) ? c.onAccent : c.textPrimary,
+      ),
+      todayBorder: BorderSide(color: c.accent),
+      weekdayStyle: BudgetTypeScale.caption.copyWith(color: c.textSecondary),
+      cancelButtonStyle: TextButton.styleFrom(foregroundColor: c.accent),
+      confirmButtonStyle: TextButton.styleFrom(foregroundColor: c.accent),
+    ),
   );
 }
