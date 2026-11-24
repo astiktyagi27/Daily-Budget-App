@@ -25,9 +25,7 @@ enum _State {
   edit('edit this month'),
   discardSheet('discard dialog'),
   homeNoMonth('Home: no month'),
-  homeCard('Home: This month card'),
   homeNewMonth('Home: new month notice'),
-  homeShortfall('Home: shortfall line'),
   homeLoadError('Home: load error');
 
   new(this.description);
@@ -64,22 +62,12 @@ enum _State {
       midMonth => d(2026, 11, 10),
       prefilled || homeNewMonth => d(2026, 12, 5),
       edit => d(2026, 11, 20),
-      homeCard || homeShortfall || homeLoadError => d(2026, 11, 9),
+      homeLoadError => d(2026, 11, 9),
       _ => d(2026, 11, 5),
     });
     final money = switch (this) {
-      prefilled || edit || homeCard || homeNewMonth => storeWithMonth(),
+      prefilled || edit || homeNewMonth => storeWithMonth(),
       homeLoadError => storeWithMonth()..readFails = true,
-      homeShortfall => storeWithMonth(
-        periods: [
-          period(
-            d(2026, 11, 5),
-            s1Values(),
-            changedAt: at(d(2026, 11, 4), 0),
-            continued: true,
-          ),
-        ],
-      ),
       _ => FakeMoneyStore(),
     };
     await pumpHome(
@@ -91,13 +79,13 @@ enum _State {
       textScale: textScale,
     );
     switch (this) {
-      case homeNoMonth || homeCard || homeNewMonth || homeShortfall:
+      case homeNoMonth || homeNewMonth:
       case homeLoadError:
         return;
       case prefilled:
         await tapText(tester, 'Set up this month');
       case edit:
-        await tapText(tester, 'Edit this month');
+        await tapEditThisMonth(tester);
         await tester.enterText(itemAmountFields.first, '13000');
         await tester.pump();
       case firstEmpty ||
@@ -149,11 +137,7 @@ enum _State {
       case discardSheet:
         await pickSalaryDay(tester, 5);
         await tester.binding.handlePopRoute();
-      case homeNoMonth ||
-          homeCard ||
-          homeNewMonth ||
-          homeShortfall ||
-          homeLoadError:
+      case homeNoMonth || homeNewMonth || homeLoadError:
         break;
     }
     await tester.pumpAndSettle();

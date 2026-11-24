@@ -12,10 +12,19 @@ import 'package:flutter/services.dart';
 /// count once each), growing to 3 lines. A `<n>/100` counter shows from 80
 /// characters on and stays neutral at the limit: it is blocked, not an error.
 class NoteField extends StatelessWidget {
-  const new({required this.controller, this.onChanged, super.key});
+  const new({
+    required this.controller,
+    this.onChanged,
+    this.description = TransactionsCopy.noteDescription,
+    super.key,
+  });
 
   final TextEditingController controller;
   final ValueChanged<String>? onChanged;
+
+  /// The line under the label: the Lunch / Petrol example, or the Money back
+  /// one (F-016).
+  final String description;
 
   /// The counter appears from this many characters.
   static const int counterFrom = 80;
@@ -27,15 +36,15 @@ class NoteField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: MainAxisSize.min,
       children: [
-        const LabelDescription(
+        LabelDescription(
           label: TransactionsCopy.noteLabel,
-          description: TransactionsCopy.noteDescription,
+          description: description,
           announce: false,
         ),
         const SizedBox(height: BudgetSpacing.space2),
         Semantics(
           label: TransactionsCopy.noteLabel,
-          hint: TransactionsCopy.noteDescription,
+          hint: description,
           child: TextField(
             controller: controller,
             onChanged: onChanged,

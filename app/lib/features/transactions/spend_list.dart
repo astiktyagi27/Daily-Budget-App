@@ -1,3 +1,5 @@
+import 'package:daily_budget/core/copy/category_copy.dart';
+import 'package:daily_budget/core/copy/search_copy.dart';
 import 'package:daily_budget/core/copy/transactions_copy.dart';
 import 'package:daily_budget/core/format/date_format.dart';
 import 'package:daily_budget/core/format/money_format.dart';
@@ -5,49 +7,131 @@ import 'package:daily_budget/core/theme/budget_text.dart';
 import 'package:daily_budget/core/theme/budget_tokens.dart';
 import 'package:daily_budget/core/theme/theme_context.dart';
 import 'package:daily_budget/core/widgets/budget_card.dart';
+import 'package:daily_budget/core/widgets/category_chip.dart';
 import 'package:daily_budget/core/widgets/focus_ring.dart';
 import 'package:daily_budget/data/repositories/transaction_repository.dart';
 import 'package:daily_budget/domain/budget/budget.dart';
 import 'package:flutter/material.dart';
 
-/// The days of the month's spends, newest day first (`transactions.md` §5):
-/// a heading with the day's total, then one card with a row per spend.
+/// The Transactions list (`transactions.md` §5, `transactions-search.md`
+/// §7): budget months of day groups, newest first. Each day is a heading with
+/// the day's total, then one card with a row per entry.
 ///
-/// It is a sliver whose days are built as they scroll into view, so 500
-/// spends open at once (F-009 AC-15). [onOpen] is null for a past month's
-/// read-only list.
-class SpendListSliver extends StatelessWidget {
+/// It is a sliver whose days are built as they scroll into view, so 1,000
+/// spends open at once (F-015 AC-16). A month separator is drawn only when
+/// more than one month is shown. While [filtering], a day total counts only
+/// the shown entries and says so. [editableMonthId] is the one month whose
+/// rows open the editor; the others are read-only but keep their category
+/// chip (AC-14). [onCategory] is called with the entry whose chip was tapped.
+class TransactionListSliver extends StatelessWidget {
   const new({
-    required this.spends,
-    required this.today,
+    required this.sections,
+    required this.filtering,
+    required this.editableMonthId,
     required this.onOpen,
+    required this.onCategory,
     super.key,
   });
 
-  final List<StoredSpend> spends;
-  final CalendarDate today;
-
-  /// Called with the tapped spend; null makes every row read-only.
-  final void Function(StoredSpend spend)? onOpen;
+  final List<MonthSection> sections;
+  final bool filtering;
+  final int? editableMonthId;
+  final void Function(StoredSpend spend) onOpen;
+  final void Function(StoredSpend spend) onCategory;
 
   @override
   Widget build(BuildContext context) {
-    final byId = {for (final stored in spends) stored.spend.id: stored};
-    final groups = groupSpendsByDay([for (final s in spends) s.spend], today);
+    final items = <_ListItem>[
+      for (final section in sections) ...[
+        if (sections.length > 1) _SeparatorItem(section.month),
+        for (final day in section.days)
+          _DayItem(day, editable: section.monthId == editableMonthId),
+      ],
+    ];
     return SliverList.builder(
-      itemCount: groups.length,
-      itemBuilder: (context, index) =>
-          _DaySection(group: groups[index], byId: byId, onOpen: onOpen),
+      itemCount: items.length,
+      itemBuilder: (context, index) => switch (items[index]) {
+        _SeparatorItem(:final month) => MonthSeparator(month: month),
+        _DayItem(:final day, :final editable) => _DaySection(
+          day: day,
+          filtering: filtering,
+          onOpen: editable ? onOpen : null,
+          onCategory: onCategory,
+        ),
+      },
+    );
+  }
+}
+
+sealed class _ListItem {
+  const new();
+}
+
+final class _SeparatorItem extends _ListItem {
+  const new(this.month);
+
+  final BudgetMonth month;
+}
+
+final class _DayItem extends _ListItem {
+  const new(this.day, {required this.editable});
+
+  final NotedDay day;
+  final bool editable;
+}
+
+/// `October · 5 Oct – 4 Nov` under a full-width hairline.
+class MonthSeparator extends StatelessWidget {
+  const new({required this.month, super.key});
+
+  final BudgetMonth month;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.budgetColors;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const SizedBox(height: BudgetSpacing.space6),
+        const Divider(height: 1),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(
+            BudgetSpacing.space5,
+            BudgetSpacing.space3,
+            BudgetSpacing.space5,
+            0,
+          ),
+          child: Semantics(
+            header: true,
+            child: Text(
+              SearchCopy.monthSeparator(
+                formatMonthName(month.start),
+                formatRange(month.start, month.end),
+              ),
+              style: BudgetTypeScale.label.copyWith(
+                fontWeight: FontWeight.w600,
+                color: colors.textPrimary,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
 
 class _DaySection extends StatelessWidget {
-  const new({required this.group, required this.byId, required this.onOpen});
+  const new({
+    required this.day,
+    required this.filtering,
+    required this.onOpen,
+    required this.onCategory,
+  });
 
-  final DayGroup group;
-  final Map<int, StoredSpend> byId;
+  final NotedDay day;
+  final bool filtering;
   final void Function(StoredSpend spend)? onOpen;
+  final void Function(StoredSpend spend) onCategory;
 
   @override
   Widget build(BuildContext context) {
@@ -55,21 +139,20 @@ class _DaySection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _DayHeader(group: group),
+        _DayHeader(group: day.group, filtering: filtering),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: BudgetSpacing.space5),
           child: BudgetCard(
             padding: EdgeInsets.zero,
             child: Column(
               children: [
-                for (final (index, spend) in group.spends.indexed) ...[
+                for (final (index, entry) in day.entries.indexed) ...[
                   if (index > 0)
                     const Divider(indent: BudgetSpacing.space5, height: 1),
-                  _SpendRow(
-                    stored: byId[spend.id]!,
-                    onTap: onOpen == null
-                        ? null
-                        : () => onOpen(byId[spend.id]!),
+                  _EntryRow(
+                    stored: StoredSpend(spend: entry.spend, note: entry.note),
+                    onOpen: onOpen,
+                    onCategory: onCategory,
                   ),
                 ],
               ],
@@ -81,6 +164,41 @@ class _DaySection extends StatelessWidget {
   }
 }
 
+/// A spend with its category chip, or a refund with its `Refund` line.
+class _EntryRow extends StatelessWidget {
+  const new({
+    required this.stored,
+    required this.onOpen,
+    required this.onCategory,
+  });
+
+  final StoredSpend stored;
+  final void Function(StoredSpend spend)? onOpen;
+  final void Function(StoredSpend spend) onCategory;
+
+  @override
+  Widget build(BuildContext context) {
+    final open = onOpen;
+    final spend = stored.spend;
+    final onTap = open == null ? null : () => open(stored);
+    if (spend.direction == SpendDirection.moneyIn) {
+      return SpendRow(
+        stored: stored,
+        isRefund: true,
+        subtitle: SearchCopy.refundWordRow,
+        spokenDate: formatFullDate(spend.date),
+        onTap: onTap,
+      );
+    }
+    return SpendRow(
+      stored: stored,
+      category: spend.category ?? SpendCategory.other,
+      onCategoryTap: () => onCategory(stored),
+      onTap: onTap,
+    );
+  }
+}
+
 String _heading(DayGroup group) => switch (group.label) {
   DayLabel.today => TransactionsCopy.todayTitle,
   DayLabel.yesterday => TransactionsCopy.yesterday,
@@ -88,21 +206,22 @@ String _heading(DayGroup group) => switch (group.label) {
 };
 
 class _DayHeader extends StatelessWidget {
-  const new({required this.group});
+  const new({required this.group, required this.filtering});
 
   final DayGroup group;
+  final bool filtering;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.budgetColors;
     final heading = _heading(group);
     final total = formatRupees(group.total);
+    final speech = formatRupeesForSpeech(group.total);
     return Semantics(
       header: true,
-      label: TransactionsCopy.dayHeaderSemantics(
-        heading,
-        formatRupeesForSpeech(group.total),
-      ),
+      label: filtering
+          ? SearchCopy.dayShownSemantics(heading, speech)
+          : TransactionsCopy.dayHeaderSemantics(heading, speech),
       child: ExcludeSemantics(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(
@@ -125,7 +244,7 @@ class _DayHeader extends StatelessWidget {
                 ),
               ),
               Text(
-                total,
+                filtering ? SearchCopy.dayShown(total) : total,
                 style: BudgetTypeScale.moneyMedium.copyWith(
                   color: colors.textSecondary,
                 ),
@@ -138,17 +257,47 @@ class _DayHeader extends StatelessWidget {
   }
 }
 
-class _SpendRow extends StatefulWidget {
-  const new({required this.stored, required this.onTap});
+/// One spend row (`transactions.md` §5): note, amount, tap to edit. [onTap]
+/// null makes it read-only. Public so day details shows the same row (F-012).
+class SpendRow extends StatefulWidget {
+  const new({
+    required this.stored,
+    required this.onTap,
+    this.subtitle,
+    this.isRefund = false,
+    this.category,
+    this.onCategoryTap,
+    this.spokenDate,
+    super.key,
+  });
 
   final StoredSpend stored;
   final VoidCallback? onTap;
 
+  /// The category shown as a chip on a second line, with [onCategoryTap]
+  /// (the Transactions list, F-015). The chip is its own screen-reader stop
+  /// and the row's sentence gains the category: `₹250, Lunch, Food, Monday 9
+  /// November`.
+  final SpendCategory? category;
+  final VoidCallback? onCategoryTap;
+
+  /// For a refund: the date added to its sentence (`Refund, ₹500, Amazon
+  /// return, Friday 13 November`); day details leaves it out.
+  final String? spokenDate;
+
+  /// A second line under the note in `textSecondary`: `Refund` or `Dated in
+  /// the future` (day details, `day-details.md` §3 item 7).
+  final String? subtitle;
+
+  /// Money in: the amount reads `+₹500` and the sentence `Refund, ₹500, note`
+  /// (F-012 AC-16, AC-19).
+  final bool isRefund;
+
   @override
-  State<_SpendRow> createState() => _SpendRowState();
+  State<SpendRow> createState() => _SpendRowState();
 }
 
-class _SpendRowState extends State<_SpendRow> {
+class _SpendRowState extends State<SpendRow> {
   final _focusNode = FocusNode(debugLabel: 'SpendRow');
 
   /// The least width the note keeps beside the amount; below it the amount
@@ -166,18 +315,39 @@ class _SpendRowState extends State<_SpendRow> {
     final colors = context.budgetColors;
     final StoredSpend(:spend, :note) = widget.stored;
     final hasNote = note != null && note.isNotEmpty;
-    final noteText = Text(
+    final noteLine = Text(
       hasNote ? note : TransactionsCopy.noNote,
       style: BudgetTypeScale.bodyLarge.copyWith(
         color: hasNote ? colors.textPrimary : colors.textSecondary,
       ),
     );
-    final amount = formatRupees(spend.amount);
+    final subtitle = widget.subtitle;
+    final noteText = subtitle == null
+        ? noteLine
+        : Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              noteLine,
+              Text(
+                subtitle,
+                style: BudgetTypeScale.body.copyWith(
+                  color: colors.textSecondary,
+                ),
+              ),
+            ],
+          );
+    final amount = widget.isRefund
+        ? '+${formatRupees(spend.amount)}'
+        : formatRupees(spend.amount);
     final amountStyle = BudgetTypeScale.moneyMedium.copyWith(
       color: colors.textPrimary,
     );
     final amountText = Text(amount, style: amountStyle);
 
+    final chipName = widget.category == null
+        ? null
+        : CategoryCopy.nameOf(widget.category!);
     final content = LayoutBuilder(
       builder: (context, constraints) {
         final amountWidth = _textWidth(context, amount, amountStyle);
@@ -189,9 +359,12 @@ class _SpendRowState extends State<_SpendRow> {
         return ConstrainedBox(
           constraints: const BoxConstraints(minHeight: 56),
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: BudgetSpacing.space5,
-              vertical: BudgetSpacing.space3,
+            padding: EdgeInsets.fromLTRB(
+              BudgetSpacing.space5,
+              BudgetSpacing.space3,
+              BudgetSpacing.space5,
+              // The chip line below brings its own room.
+              chipName == null ? BudgetSpacing.space3 : 0,
             ),
             child: noteWidth < _minNoteWidth
                 ? Column(
@@ -215,11 +388,29 @@ class _SpendRowState extends State<_SpendRow> {
     );
 
     final onTap = widget.onTap;
-    final label = TransactionsCopy.rowSemantics(
-      formatRupeesForSpeech(spend.amount),
-      hasNote ? note : TransactionsCopy.noNote,
-      formatFullDate(spend.date),
-    );
+    final spokenAmount = formatRupeesForSpeech(spend.amount);
+    final spokenNote = hasNote ? note : TransactionsCopy.noNote;
+    final spokenDate = widget.spokenDate;
+    final label = widget.isRefund
+        ? (spokenDate == null
+              ? TransactionsCopy.refundRowSemantics(spokenAmount, spokenNote)
+              : SearchCopy.refundRowSemantics(
+                  spokenAmount,
+                  spokenNote,
+                  spokenDate,
+                ))
+        : chipName == null
+        ? TransactionsCopy.rowSemantics(
+            spokenAmount,
+            spokenNote,
+            formatFullDate(spend.date),
+          )
+        : SearchCopy.rowSemantics(
+            spokenAmount,
+            spokenNote,
+            chipName,
+            formatFullDate(spend.date),
+          );
     final tappable = Material(
       type: MaterialType.transparency,
       child: FocusRing(
@@ -238,13 +429,45 @@ class _SpendRowState extends State<_SpendRow> {
       ),
     );
     // One node per row, so the amount, note and date are read together.
-    return MergeSemantics(
+    final row = MergeSemantics(
       child: Semantics(
         button: onTap != null,
         label: label,
         hint: onTap == null ? null : TransactionsCopy.editHint,
         child: tappable,
       ),
+    );
+    final onCategoryTap = widget.onCategoryTap;
+    if (chipName == null || onCategoryTap == null) return row;
+    // The chip is a stop of its own under the row; the rest of its line still
+    // opens the row.
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        row,
+        Padding(
+          padding: const EdgeInsets.only(left: BudgetSpacing.space5),
+          child: Row(
+            children: [
+              CategoryChip(
+                name: chipName,
+                semanticsLabel: SearchCopy.chipRowSemantics(chipName),
+                tooltip: SearchCopy.changeCategoryTooltip,
+                onPressed: onCategoryTap,
+              ),
+              Expanded(
+                child: ExcludeSemantics(
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: onTap,
+                    child: const SizedBox(height: CategoryChip.targetHeight),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 

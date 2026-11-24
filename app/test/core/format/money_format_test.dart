@@ -96,4 +96,24 @@ void main() {
       '$_neg₹92,23,37,20,36,85,47,758',
     );
   });
+
+  test('TC-014-28 spoken amounts read as whole rupees in words', () {
+    const table = <int, String>{
+      3500000: '35,000 rupees',
+      100: '1 rupee',
+      199: '1 rupee',
+      200: '2 rupees',
+      99: '0 rupees',
+      0: '0 rupees',
+      // Under one rupee the sign is left out, as formatRupees does.
+      -99: '0 rupees',
+      -100000: 'minus 1,000 rupees',
+      -100: 'minus 1 rupee',
+      123456700: '12,34,567 rupees',
+      1000000000: '1,00,00,000 rupees',
+    };
+    for (final MapEntry(key: paise, value: text) in table.entries) {
+      expect(formatRupeesSpoken(Paise(paise)), text, reason: '$paise paise');
+    }
+  });
 }

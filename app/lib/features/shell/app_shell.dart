@@ -5,25 +5,26 @@ import 'package:daily_budget/features/home/home_tab.dart';
 import 'package:daily_budget/features/settings/settings_tab.dart';
 import 'package:daily_budget/features/shell/app_tab.dart';
 import 'package:daily_budget/features/shell/budget_navigation_bar.dart';
+import 'package:daily_budget/features/shell/selected_tab_provider.dart';
 import 'package:daily_budget/features/transactions/add_spend_button.dart';
 import 'package:daily_budget/features/transactions/transactions_tab.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// The app's frame: the four tabs and the bottom bar (F-003).
 ///
-/// The selected tab is session-only state: the app always opens on Home
-/// (AC-7). An [IndexedStack] keeps every tab alive, so each keeps its scroll
-/// position while the app runs (AC-9).
-class AppShell extends StatefulWidget {
+/// The selected tab is session-only state in [selectedTabProvider]: the app
+/// always opens on Home (AC-7). An [IndexedStack] keeps every tab alive, so
+/// each keeps its scroll position while the app runs (AC-9).
+class AppShell extends ConsumerStatefulWidget {
   const new({super.key});
 
   @override
-  State<AppShell> createState() => _AppShellState();
+  ConsumerState<AppShell> createState() => _AppShellState();
 }
 
-class _AppShellState extends State<AppShell>
+class _AppShellState extends ConsumerState<AppShell>
     with SingleTickerProviderStateMixin {
-  AppTab _tab = AppTab.home;
   final Map<AppTab, ScrollController> _controllers = {
     for (final tab in AppTab.values) tab: ScrollController(),
   };
@@ -41,8 +42,8 @@ class _AppShellState extends State<AppShell>
   }
 
   void _select(AppTab tab) {
-    final motion = BudgetMotion.of(context);
-    if (tab == _tab) {
+    if (tab == ref.read(selectedTabProvider)) {
+      final motion = BudgetMotion.of(context);
       // Re-tap: back to the top if scrolled, otherwise nothing.
       final controller = _controllers[tab]!;
       if (!controller.hasClients || controller.offset <= 0) return;
@@ -57,9 +58,15 @@ class _AppShellState extends State<AppShell>
       }
       return;
     }
-    setState(() => _tab = tab);
+    ref.read(selectedTabProvider.notifier).select(tab);
+  }
+
+  /// Fades the new tab in, however the change came (bar, Back, or a screen
+  /// that sends the user to another tab).
+  void _onTabChanged(AppTab? previous, AppTab next) {
+    if (previous == next) return;
     _fade
-      ..duration = motion.base
+      ..duration = BudgetMotion.of(context).base
       ..forward(from: 0);
   }
 
@@ -75,30 +82,32 @@ class _AppShellState extends State<AppShell>
 
   @override
   Widget build(BuildContext context) {
+    final selected = ref.watch(selectedTabProvider);
+    ref.listen(selectedTabProvider, _onTabChanged);
     return RootPopScope(
       // Back on another tab goes Home; back on Home leaves the app (AC-8).
-      canPop: _tab == AppTab.home,
+      canPop: selected == AppTab.home,
       onBack: () => _select(AppTab.home),
       child: Scaffold(
         body: IndexedStack(
-          index: _tab.index,
+          index: selected.index,
           children: [
             for (final tab in AppTab.values)
               // Offstage tabs keep their state but run no animations.
               TickerMode(
-                enabled: tab == _tab,
+                enabled: tab == selected,
                 child: FadeTransition(
-                  opacity: tab == _tab ? _fade : kAlwaysCompleteAnimation,
+                  opacity: tab == selected ? _fade : kAlwaysCompleteAnimation,
                   child: _page(tab),
                 ),
               ),
           ],
         ),
-        floatingActionButton: _tab == AppTab.transactions
+        floatingActionButton: selected == AppTab.transactions
             ? const AddSpendButton()
             : null,
         bottomNavigationBar: BudgetNavigationBar(
-          selected: _tab,
+          selected: selected,
           onSelect: _select,
         ),
       ),

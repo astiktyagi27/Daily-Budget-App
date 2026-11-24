@@ -193,4 +193,18 @@ void main() {
       hasLength(1),
     );
   });
+
+  test('TC-013-24 statistics code has no floating point', () {
+    // The generic guard above scans every file; this one names the two
+    // Dashboard statistics files so a rename or move cannot drop them.
+    for (final name in ['category_breakdown.dart', 'month_figures.dart']) {
+      final file = File('lib/domain/budget/$name');
+      expect(file.existsSync(), isTrue, reason: name);
+      expect(
+        _matches(name, file.readAsStringSync(), _floatPatterns, codeOnly: true),
+        isEmpty,
+        reason: '$name: integer paise only, ~/ for shares and the average.',
+      );
+    }
+  });
 }

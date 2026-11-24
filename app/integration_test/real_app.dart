@@ -10,6 +10,7 @@ import 'package:daily_budget/data/preferences/in_memory_preferences_store.dart';
 import 'package:daily_budget/data/preferences/preference_keys.dart';
 import 'package:daily_budget/data/preferences/preferences_store.dart';
 import 'package:daily_budget/domain/preferences/hint_id.dart';
+import 'package:flutter/foundation.dart' show kProfileMode;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -40,12 +41,17 @@ Future<PreferencesStore> onboardedPreferences() async {
 /// The whole app on the real database [file], as after a process restart: a
 /// new tree and a new `ProviderScope`, only the file (and [store], when it
 /// is the real device store) survives. Today is [now].
+///
+/// With [settle] false the launch ends right after `pumpWidget`, so a speed
+/// test can time the frames itself: `pumpAndSettle` steps 100 ms of real time
+/// in the live binding and would round the reading up.
 Future<void> launchOnFile(
   WidgetTester tester,
   File file,
   PreferencesStore store,
-  DateTime now,
-) async {
+  DateTime now, {
+  bool settle = true,
+}) async {
   await tester.pumpWidget(const SizedBox());
   await tester.pumpWidget(
     ProviderScope(
@@ -57,7 +63,7 @@ Future<void> launchOnFile(
       child: const DailyBudgetApp(),
     ),
   );
-  await tester.pumpAndSettle();
+  if (settle) await tester.pumpAndSettle();
 }
 
 /// Pumps real frames until [done] is true (a database answer arrives between
@@ -75,3 +81,12 @@ Future<void> pumpUntil(
   }
   await tester.pumpAndSettle();
 }
+
+/// The loose guard of a speed test in debug and JIT builds (D-100 (3)).
+const int kDebugSpeedGuardMs = 3000;
+
+/// The limit a speed test asserts: the AC's [acLimitMs] in profile mode, the
+/// build closest to what a user runs (D-100); in any other mode only the
+/// loose [kDebugSpeedGuardMs], and the figures are logged for the record.
+int speedLimitMs(int acLimitMs) =>
+    kProfileMode ? acLimitMs : kDebugSpeedGuardMs;

@@ -15,7 +15,13 @@ Future<(Repos, int)> seedW2({List<Spend>? spends}) async {
   for (final (i, s) in (spends ?? w2Spends()).indexed) {
     await repos.spends.add(
       month.id,
-      (amount: s.amount, date: s.date, note: null),
+      (
+        amount: s.amount,
+        date: s.date,
+        note: null,
+        category: null,
+        direction: SpendDirection.spend,
+      ),
       today: d(2026, 11, 10),
       now: at(d(2026, 11, 5), 8, i),
     );

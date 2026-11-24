@@ -1,0 +1,4 @@
+00:00 +0: loading C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/test/features/home/home_collapsed_row_test.dart
+00:00 +0: TC-010-33 summary collapses to one pinned row on scroll
+00:01 +1: TC-010-34 collapsed row for negative left and its large text rule
+00:01 +2: All tests passed!

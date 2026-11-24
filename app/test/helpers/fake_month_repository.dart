@@ -23,7 +23,21 @@ final class FakeMonthRepository implements MonthRepository {
 
   @override
   Stream<StoredMonth?> watchMonth(int monthId) =>
-      store.watch(() => store.monthById(monthId));
+      store.watch(() => store.monthById(monthId), monthId: monthId);
+
+  @override
+  Stream<List<MonthRef>> watchMonthIndex() => store.watch(
+    () => [
+      for (final stored in [
+        ...store.months,
+      ]..sort((a, b) => b.month.start.compareTo(a.month.start)))
+        MonthRef(
+          id: stored.id,
+          month: stored.month,
+          firstBudgetedDay: stored.firstBudgetedDay,
+        ),
+    ],
+  );
 
   @override
   Future<StoredMonth?> latestConfirmedMonth() => watchLatestMonth().first;

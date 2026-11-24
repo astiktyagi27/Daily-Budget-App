@@ -49,7 +49,13 @@ void main() {
     // A spend on today changes the live day result at once.
     await FakeTransactionRepository(store).add(
       month.id,
-      (amount: const Paise(25000), date: today, note: 'Lunch'),
+      (
+        amount: const Paise(25000),
+        date: today,
+        note: 'Lunch',
+        category: null,
+        direction: SpendDirection.spend,
+      ),
       today: today,
       now: at(today, 9),
     );
@@ -104,7 +110,13 @@ void main() {
       for (final (i, s) in w2Spends().indexed) {
         final outcome = await spends.add(
           month.id,
-          (amount: s.amount, date: s.date, note: null),
+          (
+            amount: s.amount,
+            date: s.date,
+            note: null,
+            category: null,
+            direction: SpendDirection.spend,
+          ),
           today: today,
           now: at(d(2026, 11, 5), 8, i),
         );
@@ -113,13 +125,25 @@ void main() {
       store.coversByMonth[month.id] = w2Covers();
       await spends.update(
         ids[d(2026, 11, 5)]!,
-        (amount: const Paise(83000), date: d(2026, 11, 5), note: null),
+        (
+          amount: const Paise(83000),
+          date: d(2026, 11, 5),
+          note: null,
+          category: null,
+          direction: SpendDirection.spend,
+        ),
         today: today,
         now: at(today, 8),
       );
       final outcome = await spends.update(
         ids[d(2026, 11, 8)]!,
-        (amount: const Paise(83000), date: d(2026, 11, 8), note: null),
+        (
+          amount: const Paise(83000),
+          date: d(2026, 11, 8),
+          note: null,
+          category: null,
+          direction: SpendDirection.spend,
+        ),
         today: today,
         now: at(today, 9),
       );

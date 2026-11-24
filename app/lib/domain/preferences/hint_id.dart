@@ -7,7 +7,10 @@ enum HintId {
   home('home.v1'),
   dashboard('dashboard.v1'),
   transactions('transactions.v1'),
-  settings('settings.v1');
+  settings('settings.v1'),
+
+  /// The tip above the Home calendar (F-011), shown once `home` is gone.
+  calendar('calendar.v1');
 
   new(this.storageSuffix);
 

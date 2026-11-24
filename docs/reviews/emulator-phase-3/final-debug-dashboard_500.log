@@ -1,0 +1,217 @@
+00:00 +0: loading C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/integration_test/dashboard_500_test.dart
+Running Gradle task 'assembleDebug'...                          
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/C:/Users/mayan/.gradle/wrapper/dists/gradle-9.3.1-all/9ot9r568e8zfvvd4mn8rbu1j0/gradle-9.3.1/lib/native-platform-0.22-milestone-29.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+Running Gradle task 'assembleDebug'...                             16.4s
+√ Built build\app\outputs\flutter-apk\app-debug.apk
+Installing build\app\outputs\flutter-apk\app-debug.apk...        1,141ms
+00:00 +0: TC-013-32 dashboard with five hundred spends is fast
+TC-013-32 run 0: final figures after 636 ms
+TC-013-32 run 1: final figures after 182 ms
+TC-013-32 run 2: final figures after 273 ms
+TC-013-32 run 3: final figures after 209 ms
+TC-013-32 run 4: final figures after 208 ms
+TC-013-32 worst of 5: 636 ms (limit 3000)
+
+Warning: A call to tap() with finder "Found 1 widget with text "This month" (ignoring all but first): [
+  Text("This month", inherit: true, color: Color(alpha: 1.0000, red: 0.3608, green: 0.3451, blue: 0.3922, colorSpace: ColorSpace.sRGB), family: Plex, size: 14.0, weight: 500, letterSpacing: 0.1, height: 1.4x, textAlign: center, dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+]" derived an Offset (Offset(120.9, -16.7)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+Indeed, Offset(120.9, -16.7) is outside the bounds of the root of the render tree, Size(411.4, 914.3).
+The finder corresponds to this RenderBox: RenderParagraph#3cb6e relayoutBoundary=up11
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#eca9b(_ReusableRenderView#cfae0), HitTestEntry<HitTestTarget>#b1b29(<IntegrationTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/dashboard_500_test.dart:146:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with text "One day": [
+  Text("One day", inherit: true, color: Color(alpha: 1.0000, red: 0.1098, green: 0.1059, blue: 0.1333, colorSpace: ColorSpace.sRGB), family: Plex, size: 14.0, weight: 600, letterSpacing: 0.1, height: 1.4x, textAlign: center, dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+]" derived an Offset (Offset(300.6, -16.7)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+Indeed, Offset(300.6, -16.7) is outside the bounds of the root of the render tree, Size(411.4, 914.3).
+The finder corresponds to this RenderBox: RenderParagraph#ce135 relayoutBoundary=up11
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#2f49c(_ReusableRenderView#cfae0), HitTestEntry<HitTestTarget>#546f5(<IntegrationTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/dashboard_500_test.dart:142:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with text "This month" (ignoring all but first): [
+  Text("This month", inherit: true, color: Color(alpha: 1.0000, red: 0.3608, green: 0.3451, blue: 0.3922, colorSpace: ColorSpace.sRGB), family: Plex, size: 14.0, weight: 500, letterSpacing: 0.1, height: 1.4x, textAlign: center, dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+]" derived an Offset (Offset(120.9, -16.7)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+Indeed, Offset(120.9, -16.7) is outside the bounds of the root of the render tree, Size(411.4, 914.3).
+The finder corresponds to this RenderBox: RenderParagraph#3cb6e relayoutBoundary=up11
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#3b895(_ReusableRenderView#cfae0), HitTestEntry<HitTestTarget>#fcfb1(<IntegrationTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/dashboard_500_test.dart:146:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with text "One day": [
+  Text("One day", inherit: true, color: Color(alpha: 1.0000, red: 0.1098, green: 0.1059, blue: 0.1333, colorSpace: ColorSpace.sRGB), family: Plex, size: 14.0, weight: 600, letterSpacing: 0.1, height: 1.4x, textAlign: center, dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+]" derived an Offset (Offset(300.6, -16.7)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+Indeed, Offset(300.6, -16.7) is outside the bounds of the root of the render tree, Size(411.4, 914.3).
+The finder corresponds to this RenderBox: RenderParagraph#ce135 relayoutBoundary=up11
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#8d369(_ReusableRenderView#cfae0), HitTestEntry<HitTestTarget>#cf7c1(<IntegrationTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/dashboard_500_test.dart:142:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with text "This month" (ignoring all but first): [
+  Text("This month", inherit: true, color: Color(alpha: 1.0000, red: 0.3608, green: 0.3451, blue: 0.3922, colorSpace: ColorSpace.sRGB), family: Plex, size: 14.0, weight: 500, letterSpacing: 0.1, height: 1.4x, textAlign: center, dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+]" derived an Offset (Offset(120.9, -16.7)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+Indeed, Offset(120.9, -16.7) is outside the bounds of the root of the render tree, Size(411.4, 914.3).
+The finder corresponds to this RenderBox: RenderParagraph#3cb6e relayoutBoundary=up11
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#11c2a(_ReusableRenderView#cfae0), HitTestEntry<HitTestTarget>#b7e85(<IntegrationTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/dashboard_500_test.dart:146:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with text "One day": [
+  Text("One day", inherit: true, color: Color(alpha: 1.0000, red: 0.1098, green: 0.1059, blue: 0.1333, colorSpace: ColorSpace.sRGB), family: Plex, size: 14.0, weight: 600, letterSpacing: 0.1, height: 1.4x, textAlign: center, dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+]" derived an Offset (Offset(300.6, -16.7)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+Indeed, Offset(300.6, -16.7) is outside the bounds of the root of the render tree, Size(411.4, 914.3).
+The finder corresponds to this RenderBox: RenderParagraph#ce135 relayoutBoundary=up11
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#98504(_ReusableRenderView#cfae0), HitTestEntry<HitTestTarget>#40bbc(<IntegrationTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/dashboard_500_test.dart:142:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with text "This month" (ignoring all but first): [
+  Text("This month", inherit: true, color: Color(alpha: 1.0000, red: 0.3608, green: 0.3451, blue: 0.3922, colorSpace: ColorSpace.sRGB), family: Plex, size: 14.0, weight: 500, letterSpacing: 0.1, height: 1.4x, textAlign: center, dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+]" derived an Offset (Offset(120.9, -16.7)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+Indeed, Offset(120.9, -16.7) is outside the bounds of the root of the render tree, Size(411.4, 914.3).
+The finder corresponds to this RenderBox: RenderParagraph#3cb6e relayoutBoundary=up11
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#45921(_ReusableRenderView#cfae0), HitTestEntry<HitTestTarget>#d96c8(<IntegrationTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/dashboard_500_test.dart:146:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with text "One day": [
+  Text("One day", inherit: true, color: Color(alpha: 1.0000, red: 0.1098, green: 0.1059, blue: 0.1333, colorSpace: ColorSpace.sRGB), family: Plex, size: 14.0, weight: 600, letterSpacing: 0.1, height: 1.4x, textAlign: center, dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+]" derived an Offset (Offset(300.6, -16.7)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+Indeed, Offset(300.6, -16.7) is outside the bounds of the root of the render tree, Size(411.4, 914.3).
+The finder corresponds to this RenderBox: RenderParagraph#ce135 relayoutBoundary=up11
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#7cd8d(_ReusableRenderView#cfae0), HitTestEntry<HitTestTarget>#a1e7f(<IntegrationTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/dashboard_500_test.dart:142:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with text "This month" (ignoring all but first): [
+  Text("This month", inherit: true, color: Color(alpha: 1.0000, red: 0.3608, green: 0.3451, blue: 0.3922, colorSpace: ColorSpace.sRGB), family: Plex, size: 14.0, weight: 500, letterSpacing: 0.1, height: 1.4x, textAlign: center, dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+]" derived an Offset (Offset(120.9, -16.7)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+Indeed, Offset(120.9, -16.7) is outside the bounds of the root of the render tree, Size(411.4, 914.3).
+The finder corresponds to this RenderBox: RenderParagraph#3cb6e relayoutBoundary=up11
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#c81e5(_ReusableRenderView#cfae0), HitTestEntry<HitTestTarget>#dcbf6(<IntegrationTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/dashboard_500_test.dart:146:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+00:09 +1: (tearDownAll)
+00:10 +1: All tests passed!

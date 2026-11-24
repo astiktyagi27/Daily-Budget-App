@@ -1,0 +1,157 @@
+00:00 +0: loading C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/integration_test/calendar_500_test.dart
+Running Gradle task 'assembleDebug'...                          
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/C:/Users/mayan/.gradle/wrapper/dists/gradle-9.3.1-all/9ot9r568e8zfvvd4mn8rbu1j0/gradle-9.3.1/lib/native-platform-0.22-milestone-29.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+Running Gradle task 'assembleDebug'...                             19.7s
+√ Built build\app\outputs\flutter-apk\app-debug.apk
+Installing build\app\outputs\flutter-apk\app-debug.apk...        1,007ms
+00:00 +0: TC-011-37 five hundred spends: grid and month change within 500 ms
+TC-011-37 run 0: grid after 2571 ms
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate: [
+  Tooltip("Previous month", semantics: excluded, show duration: 0:00:01.500000, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#7af94], _ScrollableScope], state: TooltipState#75200),
+]" derived an Offset (Offset(319.4, 860.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: _RenderLayoutSurrogateProxyBox#635d1 relayoutBoundary=up9
+The hit test result at that offset is: HitTestResult(RenderPointerListener#9ec0f@Offset(10.9, 33.7), RenderSemanticsAnnotations#161ac@Offset(10.9, 33.7), RenderMouseRegion#f9097@Offset(10.9, 33.7), RenderSemanticsAnnotations#2619c@Offset(10.9, 33.7), RenderSemanticsAnnotations#a5dfa@Offset(10.9, 33.7), RenderSemanticsAnnotations#05351@Offset(10.9, 33.7), RenderMergeSemantics#785fb@Offset(10.9, 33.7), RenderMouseRegion#9de39@Offset(10.9, 33.7), RenderSemanticsAnnotations#6d59f@Offset(10.9, 33.7), RenderPointerListener#89d8c@Offset(10.9, 33.7), _RenderExclusiveMouseRegion#609f1@Offset(10.9, 33.7), RenderSemanticsAnnotations#8c2d2@Offset(10.9, 33.7), _RenderLayoutSurrogateProxyBox#f6836@Offset(10.9, 33.7), RenderFlex#1e153@Offset(319.4, 33.7), RenderStack#eae73@Offset(319.4, 33.7), RenderPadding#7b706@Offset(319.4, 33.7), RenderDecoratedBox#d5888@Offset(319.4, 33.7), _RenderInkFeatures#d7961@Offset(319.4, 33.7), RenderPhysicalModel#8cb93@Offset(319.4, 33.7), RenderCustomMultiChildLayoutBox#bd91b@Offset(319.4, 860.0), _RenderInkFeatures#a7360@Offset(319.4, 860.0), RenderPhysicalModel#16873@Offset(319.4, 860.0), RenderAbsorbPointer#5b5f2@Offset(319.4, 860.0), RenderAnimatedOpacity#55abf@Offset(319.4, 860.0), RenderExcludeSemantics#9051b@Offset(319.4, 860.0), RenderIgnorePointer#c8ff7@Offset(319.4, 860.0), RenderStack#b0e29@Offset(319.4, 860.0), RenderSemanticsAnnotations#4f956@Offset(319.4, 860.0), RenderRepaintBoundary#fc176@Offset(319.4, 860.0), RenderIgnorePointer#4ff47@Offset(319.4, 860.0), RenderAnimatedOpacity#83811@Offset(319.4, 860.0), RenderAnimatedOpacity#761af@Offset(319.4, 860.0), _RenderColoredBox#ac6c5@Offset(319.4, 860.0), RenderAnimatedOpacity#9d011@Offset(319.4, 860.0), RenderIgnorePointer#f5933@Offset(319.4, 860.0), RenderAnimatedOpacity#aad79@Offset(319.4, 860.0), RenderRepaintBoundary#9afc2@Offset(319.4, 860.0), RenderSemanticsAnnotations#62d57@Offset(319.4, 860.0), RenderOffstage#cdfd3@Offset(319.4, 860.0), RenderSemanticsAnnotations#cdefe@Offset(319.4, 860.0), _RenderTheater#0f274@Offset(319.4, 860.0), RenderAbsorbPointer#9b66a@Offset(319.4, 860.0), RenderPointerListener#a5b6f@Offset(319.4, 860.0), RenderSemanticsAnnotations#05ef8@Offset(319.4, 860.0), RenderAnnotatedRegion<SystemUiOverlayStyle>#1aba1@Offset(319.4, 860.0), RenderCustomPaint#f6f50@Offset(319.4, 860.0), RenderSemanticsAnnotations#cdb47@Offset(319.4, 860.0), RenderSemanticsAnnotations#ba84d@Offset(319.4, 860.0), RenderSemanticsAnnotations#82201@Offset(319.4, 860.0), RenderTapRegionSurface#ef34d@Offset(319.4, 860.0), RenderSemanticsAnnotations#3fd71@Offset(319.4, 860.0), RenderSemanticsAnnotations#78857@Offset(319.4, 860.0), HitTestEntry<HitTestTarget>#ae52b(_ReusableRenderView#cdf1c), HitTestEntry<HitTestTarget>#3b1c3(<IntegrationTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/calendar_500_test.dart:74:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+TC-011-37 run 0: month change after 5032 ms
+TC-011-37 run 1: grid after 866 ms
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate: [
+  Tooltip("Previous month", semantics: excluded, show duration: 0:00:01.500000, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#9bc8e], _ScrollableScope], state: TooltipState#eb928),
+]" derived an Offset (Offset(319.4, 860.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: _RenderLayoutSurrogateProxyBox#5dc57 relayoutBoundary=up9
+The hit test result at that offset is: HitTestResult(RenderPointerListener#42af9@Offset(10.9, 33.7), RenderSemanticsAnnotations#fac02@Offset(10.9, 33.7), RenderMouseRegion#c269b@Offset(10.9, 33.7), RenderSemanticsAnnotations#2dd73@Offset(10.9, 33.7), RenderSemanticsAnnotations#6046c@Offset(10.9, 33.7), RenderSemanticsAnnotations#75d05@Offset(10.9, 33.7), RenderMergeSemantics#2a916@Offset(10.9, 33.7), RenderMouseRegion#e91e3@Offset(10.9, 33.7), RenderSemanticsAnnotations#52cfc@Offset(10.9, 33.7), RenderPointerListener#604c6@Offset(10.9, 33.7), _RenderExclusiveMouseRegion#2c238@Offset(10.9, 33.7), RenderSemanticsAnnotations#edd0a@Offset(10.9, 33.7), _RenderLayoutSurrogateProxyBox#0836b@Offset(10.9, 33.7), RenderFlex#50b19@Offset(319.4, 33.7), RenderStack#4af2c@Offset(319.4, 33.7), RenderPadding#70c9f@Offset(319.4, 33.7), RenderDecoratedBox#89734@Offset(319.4, 33.7), _RenderInkFeatures#792b2@Offset(319.4, 33.7), RenderPhysicalModel#ba4de@Offset(319.4, 33.7), RenderCustomMultiChildLayoutBox#91be3@Offset(319.4, 860.0), _RenderInkFeatures#d0f4d@Offset(319.4, 860.0), RenderPhysicalModel#760e9@Offset(319.4, 860.0), RenderAbsorbPointer#ce1f4@Offset(319.4, 860.0), RenderAnimatedOpacity#b9dfa@Offset(319.4, 860.0), RenderExcludeSemantics#153d8@Offset(319.4, 860.0), RenderIgnorePointer#d0e83@Offset(319.4, 860.0), RenderStack#dc9f5@Offset(319.4, 860.0), RenderSemanticsAnnotations#2f19d@Offset(319.4, 860.0), RenderRepaintBoundary#41346@Offset(319.4, 860.0), RenderIgnorePointer#e06d5@Offset(319.4, 860.0), RenderAnimatedOpacity#ef028@Offset(319.4, 860.0), RenderAnimatedOpacity#531a8@Offset(319.4, 860.0), _RenderColoredBox#5a83d@Offset(319.4, 860.0), RenderAnimatedOpacity#19ffd@Offset(319.4, 860.0), RenderIgnorePointer#78d7d@Offset(319.4, 860.0), RenderAnimatedOpacity#7d4a6@Offset(319.4, 860.0), RenderRepaintBoundary#4f947@Offset(319.4, 860.0), RenderSemanticsAnnotations#dbe7c@Offset(319.4, 860.0), RenderOffstage#116e2@Offset(319.4, 860.0), RenderSemanticsAnnotations#b6e47@Offset(319.4, 860.0), _RenderTheater#978f2@Offset(319.4, 860.0), RenderAbsorbPointer#0b6c8@Offset(319.4, 860.0), RenderPointerListener#04123@Offset(319.4, 860.0), RenderSemanticsAnnotations#1599d@Offset(319.4, 860.0), RenderAnnotatedRegion<SystemUiOverlayStyle>#aa457@Offset(319.4, 860.0), RenderCustomPaint#6c5f8@Offset(319.4, 860.0), RenderSemanticsAnnotations#638ff@Offset(319.4, 860.0), RenderSemanticsAnnotations#a6106@Offset(319.4, 860.0), RenderSemanticsAnnotations#7049e@Offset(319.4, 860.0), RenderTapRegionSurface#08175@Offset(319.4, 860.0), RenderSemanticsAnnotations#f4db8@Offset(319.4, 860.0), RenderSemanticsAnnotations#50c85@Offset(319.4, 860.0), HitTestEntry<HitTestTarget>#515ee(_ReusableRenderView#cdf1c), HitTestEntry<HitTestTarget>#aa544(<IntegrationTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/calendar_500_test.dart:74:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+TC-011-37 run 1: month change after 5030 ms
+TC-011-37 run 2: grid after 917 ms
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate: [
+  Tooltip("Previous month", semantics: excluded, show duration: 0:00:01.500000, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#66ff3], _ScrollableScope], state: TooltipState#bb118),
+]" derived an Offset (Offset(319.4, 860.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: _RenderLayoutSurrogateProxyBox#f77da relayoutBoundary=up9
+The hit test result at that offset is: HitTestResult(RenderPointerListener#cf46c@Offset(10.9, 33.7), RenderSemanticsAnnotations#26528@Offset(10.9, 33.7), RenderMouseRegion#5fecb@Offset(10.9, 33.7), RenderSemanticsAnnotations#be3d0@Offset(10.9, 33.7), RenderSemanticsAnnotations#4e687@Offset(10.9, 33.7), RenderSemanticsAnnotations#e8db7@Offset(10.9, 33.7), RenderMergeSemantics#0b898@Offset(10.9, 33.7), RenderMouseRegion#f3a6e@Offset(10.9, 33.7), RenderSemanticsAnnotations#7f903@Offset(10.9, 33.7), RenderPointerListener#0549e@Offset(10.9, 33.7), _RenderExclusiveMouseRegion#76aaf@Offset(10.9, 33.7), RenderSemanticsAnnotations#707be@Offset(10.9, 33.7), _RenderLayoutSurrogateProxyBox#3b046@Offset(10.9, 33.7), RenderFlex#b5cfa@Offset(319.4, 33.7), RenderStack#d1752@Offset(319.4, 33.7), RenderPadding#e8c46@Offset(319.4, 33.7), RenderDecoratedBox#c7a1f@Offset(319.4, 33.7), _RenderInkFeatures#4eb03@Offset(319.4, 33.7), RenderPhysicalModel#41090@Offset(319.4, 33.7), RenderCustomMultiChildLayoutBox#77589@Offset(319.4, 860.0), _RenderInkFeatures#aee0c@Offset(319.4, 860.0), RenderPhysicalModel#fbd59@Offset(319.4, 860.0), RenderAbsorbPointer#48e60@Offset(319.4, 860.0), RenderAnimatedOpacity#6ec43@Offset(319.4, 860.0), RenderExcludeSemantics#5c43f@Offset(319.4, 860.0), RenderIgnorePointer#90df0@Offset(319.4, 860.0), RenderStack#eeb2e@Offset(319.4, 860.0), RenderSemanticsAnnotations#bc32e@Offset(319.4, 860.0), RenderRepaintBoundary#308d5@Offset(319.4, 860.0), RenderIgnorePointer#b46d0@Offset(319.4, 860.0), RenderAnimatedOpacity#da7ca@Offset(319.4, 860.0), RenderAnimatedOpacity#54e30@Offset(319.4, 860.0), _RenderColoredBox#b4b3d@Offset(319.4, 860.0), RenderAnimatedOpacity#26467@Offset(319.4, 860.0), RenderIgnorePointer#2ca37@Offset(319.4, 860.0), RenderAnimatedOpacity#f2083@Offset(319.4, 860.0), RenderRepaintBoundary#30dc2@Offset(319.4, 860.0), RenderSemanticsAnnotations#92f89@Offset(319.4, 860.0), RenderOffstage#eabb9@Offset(319.4, 860.0), RenderSemanticsAnnotations#f4b80@Offset(319.4, 860.0), _RenderTheater#2172b@Offset(319.4, 860.0), RenderAbsorbPointer#47452@Offset(319.4, 860.0), RenderPointerListener#58e93@Offset(319.4, 860.0), RenderSemanticsAnnotations#b4102@Offset(319.4, 860.0), RenderAnnotatedRegion<SystemUiOverlayStyle>#e1c48@Offset(319.4, 860.0), RenderCustomPaint#f9348@Offset(319.4, 860.0), RenderSemanticsAnnotations#a5efa@Offset(319.4, 860.0), RenderSemanticsAnnotations#075c1@Offset(319.4, 860.0), RenderSemanticsAnnotations#c7149@Offset(319.4, 860.0), RenderTapRegionSurface#07328@Offset(319.4, 860.0), RenderSemanticsAnnotations#6c26b@Offset(319.4, 860.0), RenderSemanticsAnnotations#f4a47@Offset(319.4, 860.0), HitTestEntry<HitTestTarget>#7a7e8(_ReusableRenderView#cdf1c), HitTestEntry<HitTestTarget>#5c9e5(<IntegrationTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/calendar_500_test.dart:74:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+TC-011-37 run 2: month change after 5013 ms
+TC-011-37 run 3: grid after 719 ms
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate: [
+  Tooltip("Previous month", semantics: excluded, show duration: 0:00:01.500000, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#c6a08], _ScrollableScope], state: TooltipState#c1366),
+]" derived an Offset (Offset(319.4, 860.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: _RenderLayoutSurrogateProxyBox#3bc57 relayoutBoundary=up9
+The hit test result at that offset is: HitTestResult(RenderPointerListener#fc8c0@Offset(10.9, 33.7), RenderSemanticsAnnotations#eb125@Offset(10.9, 33.7), RenderMouseRegion#47d5f@Offset(10.9, 33.7), RenderSemanticsAnnotations#119f1@Offset(10.9, 33.7), RenderSemanticsAnnotations#1fc06@Offset(10.9, 33.7), RenderSemanticsAnnotations#c2f16@Offset(10.9, 33.7), RenderMergeSemantics#80667@Offset(10.9, 33.7), RenderMouseRegion#51317@Offset(10.9, 33.7), RenderSemanticsAnnotations#13dc3@Offset(10.9, 33.7), RenderPointerListener#7aff4@Offset(10.9, 33.7), _RenderExclusiveMouseRegion#5cec0@Offset(10.9, 33.7), RenderSemanticsAnnotations#4d9a8@Offset(10.9, 33.7), _RenderLayoutSurrogateProxyBox#e47cd@Offset(10.9, 33.7), RenderFlex#f0532@Offset(319.4, 33.7), RenderStack#90a2a@Offset(319.4, 33.7), RenderPadding#fc4ce@Offset(319.4, 33.7), RenderDecoratedBox#60ca5@Offset(319.4, 33.7), _RenderInkFeatures#582e3@Offset(319.4, 33.7), RenderPhysicalModel#42cd3@Offset(319.4, 33.7), RenderCustomMultiChildLayoutBox#80032@Offset(319.4, 860.0), _RenderInkFeatures#31d21@Offset(319.4, 860.0), RenderPhysicalModel#3bbca@Offset(319.4, 860.0), RenderAbsorbPointer#c90ac@Offset(319.4, 860.0), RenderAnimatedOpacity#de2f4@Offset(319.4, 860.0), RenderExcludeSemantics#1c9a6@Offset(319.4, 860.0), RenderIgnorePointer#f41d2@Offset(319.4, 860.0), RenderStack#9d97b@Offset(319.4, 860.0), RenderSemanticsAnnotations#8a21d@Offset(319.4, 860.0), RenderRepaintBoundary#5d65a@Offset(319.4, 860.0), RenderIgnorePointer#42701@Offset(319.4, 860.0), RenderAnimatedOpacity#e35b3@Offset(319.4, 860.0), RenderAnimatedOpacity#43196@Offset(319.4, 860.0), _RenderColoredBox#1af2f@Offset(319.4, 860.0), RenderAnimatedOpacity#c2f29@Offset(319.4, 860.0), RenderIgnorePointer#616e0@Offset(319.4, 860.0), RenderAnimatedOpacity#389db@Offset(319.4, 860.0), RenderRepaintBoundary#f65b3@Offset(319.4, 860.0), RenderSemanticsAnnotations#e1693@Offset(319.4, 860.0), RenderOffstage#710ef@Offset(319.4, 860.0), RenderSemanticsAnnotations#8edb7@Offset(319.4, 860.0), _RenderTheater#e2038@Offset(319.4, 860.0), RenderAbsorbPointer#0e8db@Offset(319.4, 860.0), RenderPointerListener#80ccb@Offset(319.4, 860.0), RenderSemanticsAnnotations#cc07e@Offset(319.4, 860.0), RenderAnnotatedRegion<SystemUiOverlayStyle>#0b01d@Offset(319.4, 860.0), RenderCustomPaint#e20e2@Offset(319.4, 860.0), RenderSemanticsAnnotations#dffa9@Offset(319.4, 860.0), RenderSemanticsAnnotations#f7754@Offset(319.4, 860.0), RenderSemanticsAnnotations#7d93f@Offset(319.4, 860.0), RenderTapRegionSurface#27f59@Offset(319.4, 860.0), RenderSemanticsAnnotations#05a9f@Offset(319.4, 860.0), RenderSemanticsAnnotations#9bf69@Offset(319.4, 860.0), HitTestEntry<HitTestTarget>#c0121(_ReusableRenderView#cdf1c), HitTestEntry<HitTestTarget>#d9393(<IntegrationTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/calendar_500_test.dart:74:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+TC-011-37 run 3: month change after 5012 ms
+TC-011-37 run 4: grid after 667 ms
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate: [
+  Tooltip("Previous month", semantics: excluded, show duration: 0:00:01.500000, dependencies: [InheritedCupertinoTheme, _InheritedTheme, _LocalizationsScope-[GlobalKey#15a57], _ScrollableScope], state: TooltipState#89db9),
+]" derived an Offset (Offset(319.4, 860.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: _RenderLayoutSurrogateProxyBox#cfb63 relayoutBoundary=up9
+The hit test result at that offset is: HitTestResult(RenderPointerListener#c7de2@Offset(10.9, 33.7), RenderSemanticsAnnotations#bd5bb@Offset(10.9, 33.7), RenderMouseRegion#1c7cb@Offset(10.9, 33.7), RenderSemanticsAnnotations#b43ff@Offset(10.9, 33.7), RenderSemanticsAnnotations#920e3@Offset(10.9, 33.7), RenderSemanticsAnnotations#8126a@Offset(10.9, 33.7), RenderMergeSemantics#483ed@Offset(10.9, 33.7), RenderMouseRegion#749c1@Offset(10.9, 33.7), RenderSemanticsAnnotations#4390c@Offset(10.9, 33.7), RenderPointerListener#58963@Offset(10.9, 33.7), _RenderExclusiveMouseRegion#001ab@Offset(10.9, 33.7), RenderSemanticsAnnotations#46d1e@Offset(10.9, 33.7), _RenderLayoutSurrogateProxyBox#52449@Offset(10.9, 33.7), RenderFlex#292bd@Offset(319.4, 33.7), RenderStack#ac855@Offset(319.4, 33.7), RenderPadding#21727@Offset(319.4, 33.7), RenderDecoratedBox#fd8a4@Offset(319.4, 33.7), _RenderInkFeatures#97ba7@Offset(319.4, 33.7), RenderPhysicalModel#c031b@Offset(319.4, 33.7), RenderCustomMultiChildLayoutBox#2e109@Offset(319.4, 860.0), _RenderInkFeatures#9337b@Offset(319.4, 860.0), RenderPhysicalModel#bb258@Offset(319.4, 860.0), RenderAbsorbPointer#fb660@Offset(319.4, 860.0), RenderAnimatedOpacity#5baf3@Offset(319.4, 860.0), RenderExcludeSemantics#b3f39@Offset(319.4, 860.0), RenderIgnorePointer#5519c@Offset(319.4, 860.0), RenderStack#9e14e@Offset(319.4, 860.0), RenderSemanticsAnnotations#0314c@Offset(319.4, 860.0), RenderRepaintBoundary#b61c5@Offset(319.4, 860.0), RenderIgnorePointer#13c1f@Offset(319.4, 860.0), RenderAnimatedOpacity#56aac@Offset(319.4, 860.0), RenderAnimatedOpacity#ac6a7@Offset(319.4, 860.0), _RenderColoredBox#d58d6@Offset(319.4, 860.0), RenderAnimatedOpacity#db5f2@Offset(319.4, 860.0), RenderIgnorePointer#4dbcf@Offset(319.4, 860.0), RenderAnimatedOpacity#cf300@Offset(319.4, 860.0), RenderRepaintBoundary#55ad2@Offset(319.4, 860.0), RenderSemanticsAnnotations#c37a2@Offset(319.4, 860.0), RenderOffstage#22626@Offset(319.4, 860.0), RenderSemanticsAnnotations#01d72@Offset(319.4, 860.0), _RenderTheater#d33ad@Offset(319.4, 860.0), RenderAbsorbPointer#0734b@Offset(319.4, 860.0), RenderPointerListener#bf0a6@Offset(319.4, 860.0), RenderSemanticsAnnotations#c29ee@Offset(319.4, 860.0), RenderAnnotatedRegion<SystemUiOverlayStyle>#0ec6e@Offset(319.4, 860.0), RenderCustomPaint#e5ce0@Offset(319.4, 860.0), RenderSemanticsAnnotations#fbc5d@Offset(319.4, 860.0), RenderSemanticsAnnotations#ab0cc@Offset(319.4, 860.0), RenderSemanticsAnnotations#068e4@Offset(319.4, 860.0), RenderTapRegionSurface#b9317@Offset(319.4, 860.0), RenderSemanticsAnnotations#8cd51@Offset(319.4, 860.0), RenderSemanticsAnnotations#9a2ce@Offset(319.4, 860.0), HitTestEntry<HitTestTarget>#48611(_ReusableRenderView#cdf1c), HitTestEntry<HitTestTarget>#8ca79(<IntegrationTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/calendar_500_test.dart:74:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+TC-011-37 run 4: month change after 5013 ms
+TC-011-37 worst grid 2571 ms, change 5032 ms
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: a value less than <500>
+  Actual: <5032>
+   Which: is not a value less than <500>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/calendar_500_test.dart:84:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/calendar_500_test.dart line 84
+The test description was:
+  TC-011-37 five hundred spends: grid and month change within 500 ms
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:37 +0 -1: TC-011-37 five hundred spends: grid and month change within 500 ms [E]
+  Test failed. See exception logs above.
+  The test description was: TC-011-37 five hundred spends: grid and month change within 500 ms
+  
+00:37 +0 -1: (tearDownAll)
+00:37 +0 -1: Some tests failed.
+
+Failing tests:
+  C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/integration_test/calendar_500_test.dart: TC-011-37 five hundred spends: grid and month change within 500 ms

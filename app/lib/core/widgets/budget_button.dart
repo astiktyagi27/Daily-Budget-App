@@ -23,17 +23,18 @@ class BudgetButton extends StatefulWidget {
   }) : variant = BudgetButtonVariant.primary,
        icon = null;
 
-  /// Surface fill with a `borderStrong` outline.
+  /// Surface fill with a `borderStrong` outline, optionally with a leading
+  /// [icon] (Add spend).
   const new secondary({
     required this.label,
     required this.onPressed,
+    this.icon,
     this.loading = false,
     this.expand = true,
     this.focusNode,
     this.semanticsHint,
     super.key,
-  }) : variant = BudgetButtonVariant.secondary,
-       icon = null;
+  }) : variant = BudgetButtonVariant.secondary;
 
   /// Accent text, no fill.
   const new text({

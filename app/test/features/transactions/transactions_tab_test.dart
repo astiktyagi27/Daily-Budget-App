@@ -58,7 +58,7 @@ void main() {
     expect(todayLineText(tester), 'budget ₹830 · spent ₹0 · ₹830 left today');
     expect(find.text('Set up your month first'), findsNothing);
     await tapTab(tester, 'Home');
-    expect(findCopy('5 Nov – 4 Dec · ₹830 a day'), findsOneWidget);
+    expect(findCopy('₹830/day · 5 Nov – 4 Dec'), findsOneWidget);
     expect(find.text('Set up your month'), findsNothing);
   });
 
@@ -126,7 +126,8 @@ void main() {
       note: 'Groceries',
       createdAt: at(d(2026, 11, 9), 13),
     );
-    await pumpTransactions(tester, money: store);
+    // Tall enough for every day: the search and chips push the list down.
+    await pumpTransactions(tester, money: store, size: const Size(360, 1600));
 
     Finder heading(String text) => findCopy(text);
     final today = tester.getTopLeft(heading('Today').first).dy;
@@ -231,10 +232,11 @@ void main() {
     expect(find.text('Thu, 12 Nov'), findsOneWidget);
     expect(todayLineText(tester), 'budget ₹830 · spent ₹0 · ₹830 left today');
 
-    await tester.tap(find.text('Dinner'));
-    await tester.pumpAndSettle();
+    await tapRow(tester, 'Dinner');
     expect(find.text('Edit spend'), findsOneWidget);
     expect(find.textContaining('Thu, 12 Nov'), findsWidgets);
+    await tester.ensureVisible(find.byIcon(Icons.calendar_today_outlined));
+    await tester.pumpAndSettle();
     await tester.tap(find.byIcon(Icons.calendar_today_outlined));
     await tester.pumpAndSettle();
     final picker = tester.widget<CalendarDatePicker>(
@@ -301,9 +303,7 @@ void main() {
   testWidgets('TC-009-44 transactions hint still works with the new tab '
       'content', (tester) async {
     await pumpTransactions(tester, money: FakeMoneyStore(), hintsSeen: false);
-    const hint =
-        "Spotted a wrong amount or category later? You'll be able to fix it "
-        'right here.';
+    const hint = 'Tap a spend to fix it, or tap its category to change it.';
     expect(find.text(hint), findsOneWidget);
     await tester.tap(find.text('Got it'));
     await tester.pumpAndSettle();
@@ -325,19 +325,19 @@ void main() {
     );
     expect(find.bySemanticsLabel('More about Today'), findsOneWidget);
     expect(
-      find.bySemanticsLabel('₹250, Lunch, Monday 9 November'),
+      find.bySemanticsLabel('₹250, Lunch, Other, Monday 9 November'),
       findsOneWidget,
     );
     expect(
-      find.bySemanticsLabel('₹300, No note, Monday 9 November'),
+      find.bySemanticsLabel('₹300, No note, Other, Monday 9 November'),
       findsOneWidget,
     );
     expect(
       tester.getSemantics(
-        find.bySemanticsLabel('₹250, Lunch, Monday 9 November'),
+        find.bySemanticsLabel('₹250, Lunch, Other, Monday 9 November'),
       ),
       matchesSemantics(
-        label: '₹250, Lunch, Monday 9 November',
+        label: '₹250, Lunch, Other, Monday 9 November',
         hint: 'Edit',
         isButton: true,
         hasTapAction: true,

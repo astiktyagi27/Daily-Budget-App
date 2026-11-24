@@ -35,10 +35,6 @@ abstract final class ScreenCopy {
   static const homeEmptyDescription =
       "Tell us your salary and fixed costs, and we'll work out what you can "
       'spend each day.';
-  static const dashboardEmptyTitle = 'Insights are on their way';
-  static const dashboardEmptyDescription =
-      "After a few days of spending, you'll see where your money goes and "
-      'how many days you saved.';
 
   // F-003: Settings list.
   static const groupGeneral = 'General';

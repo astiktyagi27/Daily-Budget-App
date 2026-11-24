@@ -63,14 +63,14 @@ void main() {
       ),
       'hintTransactions': (
         HelpCopy.hintTransactions,
-        "Spotted a wrong amount or category later? You'll be able to fix it "
-            'right here.',
+        'Tap a spend to fix it, or tap its category to change it.',
       ),
       'hintSettings': (
         HelpCopy.hintSettings,
         'Change the theme and other options here. Tap (i) next to a setting '
             'to learn what it does.',
       ),
+      'hintCalendar': (HelpCopy.hintCalendar, 'Tap a day to see its spends.'),
       'hintGotItHint': (
         HelpCopy.hintGotItHint,
         "Dismiss this tip. It won't show again.",
@@ -175,15 +175,6 @@ void main() {
         ScreenCopy.homeEmptyDescription,
         "Tell us your salary and fixed costs, and we'll work out what you can "
             'spend each day.',
-      ),
-      'dashboardEmptyTitle': (
-        ScreenCopy.dashboardEmptyTitle,
-        'Insights are on their way',
-      ),
-      'dashboardEmptyDescription': (
-        ScreenCopy.dashboardEmptyDescription,
-        "After a few days of spending, you'll see where your money goes and "
-            'how many days you saved.',
       ),
       'groupGeneral': (ScreenCopy.groupGeneral, 'General'),
       'groupMoney': (ScreenCopy.groupMoney, 'Money'),

@@ -26,7 +26,7 @@ final class DriftSavingsRepository implements SavingsRepository {
   }
 
   @override
-  Future<CoverDecision> cover(
+  Future<CoverResult> cover(
     int monthId,
     CalendarDate day,
     Paise amount, {
@@ -38,19 +38,32 @@ final class DriftSavingsRepository implements SavingsRepository {
       () => _db.transaction(() async {
         final result = computeMonth(await loadMonthInput(_db, monthId, today));
         final decision = checkCover(result, day, amount);
-        if (decision is CoverAllowed) {
-          await _db
-              .into(_db.savingsMoves)
-              .insert(
-                SavingsMovesCompanion.insert(
-                  monthId: monthId,
-                  coveredDay: day,
-                  amountPaise: amount,
-                  madeAt: now,
-                ),
-              );
+        if (decision is! CoverAllowed) {
+          return (decision: decision, coverId: null);
         }
-        return decision;
+        final id = await _db
+            .into(_db.savingsMoves)
+            .insert(
+              SavingsMovesCompanion.insert(
+                monthId: monthId,
+                coveredDay: day,
+                amountPaise: amount,
+                madeAt: now,
+              ),
+            );
+        return (decision: decision, coverId: id);
+      }),
+    );
+  }
+
+  @override
+  Future<void> removeCovers(int monthId, Set<int> coverIds) {
+    return guarded(
+      StorageFailureKind.write,
+      () => _db.transaction(() async {
+        await (_db.delete(
+          _db.savingsMoves,
+        )..where((m) => m.monthId.equals(monthId) & m.id.isIn(coverIds))).go();
       }),
     );
   }

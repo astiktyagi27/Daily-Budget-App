@@ -75,6 +75,26 @@ void main() {
     );
   });
 
+  test('TC-010-30 home formats money only through the shared formatter', () {
+    final home = _dartFiles('lib/features/home');
+    expect(home, isNotEmpty);
+    expect(
+      home.map((f) => f.path.replaceAll(r'\', '/')),
+      contains('lib/features/home/widgets/summary_card.dart'),
+    );
+    expect(
+      _scan(home, _screensForbidden),
+      isEmpty,
+      reason: 'money text in lib/features/home must come from formatRupees',
+    );
+    // The domain view models do no rounding of their own either.
+    final models = [
+      File('lib/domain/budget/home_summary.dart'),
+      File('lib/domain/budget/safe_to_spend.dart'),
+    ];
+    expect(_scan(models, _formatterForbidden), isEmpty);
+  });
+
   test('TC-008-30 the guard catches what it should', () {
     // One probe per pattern, so a pattern that silently stopped matching
     // fails here instead of letting a bad file through.

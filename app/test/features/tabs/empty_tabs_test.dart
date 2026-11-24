@@ -18,11 +18,8 @@ const _tabs = {
     "Tell us your salary and fixed costs, and we'll work out what you can "
         'spend each day.',
   ),
-  'Dashboard': (
-    'Insights are on their way',
-    "After a few days of spending, you'll see where your money goes and how "
-        'many days you saved.',
-  ),
+  // The Dashboard placeholder was replaced by F-013; its no-month state is
+  // TC-013-02 (`dashboard_tab_test.dart`).
 };
 
 Finder get _page => find.byType(TabPage);

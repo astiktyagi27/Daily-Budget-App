@@ -1,0 +1,60 @@
+Resolving dependencies...
+Downloading packages...
+  built_collection 5.1.2 (6.0.0 available)
+  cli_util 0.6.0 (0.6.1 available)
+  code_assets 1.2.1 (2.2.0 available)
+  flutter_riverpod 3.4.3 (3.5.0 available)
+  jni 1.1.2 (1.2.1 available)
+  jni_flutter 1.0.4+1 (1.1.0 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  native_toolchain_c 0.19.2 (0.19.6 available)
+  objective_c 9.5.0 (9.6.4 available)
+  riverpod 3.4.3 (3.5.0 available)
+  shared_preferences_android 2.5.4 (2.5.5 available)
+  shared_preferences_foundation 2.5.7 (2.6.2 available)
+  sqlite3 3.9.1 (3.9.2 available)
+  test_api 0.7.12 (0.7.15 available)
+  vector_math 2.4.0 (2.4.4 available)
+Got dependencies!
+15 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Running Gradle task 'assembleProfile'...                        
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/C:/Users/mayan/.gradle/wrapper/dists/gradle-9.3.1-all/9ot9r568e8zfvvd4mn8rbu1j0/gradle-9.3.1/lib/native-platform-0.22-milestone-29.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+Running Gradle task 'assembleProfile'...                           33.8s
+√ Built build\app\outputs\flutter-apk\app-profile.apk (34.6MB)
+Installing build\app\outputs\flutter-apk\app-profile.apk...        483ms
+I/dailybudget.app(27548): Compiler allocated 5239KB to compile void android.view.ViewRootImpl.performTraversals(long)
+I/Choreographer(27548): Skipped 62 frames!  The application may be doing too much work on its main thread.
+D/WindowLayoutComponentImpl(27548): Register WindowLayoutInfoListener on Context=com.dailybudget.app.MainActivity@67b5d14, of which baseContext=android.app.ContextImpl@e3b3680
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:64337/SPu9wDyJbbQ=/
+VMServiceFlutterDriver: Isolate found with number: 7181858823258991
+VMServiceFlutterDriver: Isolate 7181858823258991 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter (27548): 00:00 +0: TC-014-30 statement with ten periods and five hundred spends is fast
+VMServiceFlutterDriver: Connected to Flutter application.
+D/InsetsController(27548): hide(ime())
+I/ImeTracker(27548): com.dailybudget.app:8e04aa03: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+D/WindowOnBackDispatcher(27548): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@1c5cb5b
+I/flutter (27548): TC-014-30 run 0: all periods built after 118 ms
+D/WindowOnBackDispatcher(27548): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@6ece1ab
+D/WindowOnBackDispatcher(27548): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@1c5cb5b
+I/flutter (27548): TC-014-30 run 1: all periods built after 95 ms
+D/WindowOnBackDispatcher(27548): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@6ece1ab
+D/WindowOnBackDispatcher(27548): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@1c5cb5b
+D/ProfileInstaller(27548): Installing profile for com.dailybudget.app
+I/flutter (27548): TC-014-30 run 2: all periods built after 100 ms
+D/WindowOnBackDispatcher(27548): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@6ece1ab
+D/WindowOnBackDispatcher(27548): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@1c5cb5b
+I/flutter (27548): TC-014-30 run 3: all periods built after 113 ms
+D/WindowOnBackDispatcher(27548): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@6ece1ab
+D/WindowOnBackDispatcher(27548): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@1c5cb5b
+I/flutter (27548): TC-014-30 run 4: all periods built after 97 ms
+I/flutter (27548): TC-014-30 worst of 5: 118 ms (limit 1000)
+I/flutter (27548): 00:03 +1: (tearDownAll)
+I/flutter (27548): 00:03 +2: All tests passed!
+All tests passed.

@@ -1,0 +1,102 @@
+00:00 +0: loading C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/integration_test/transactions_search_test.dart
+Running Gradle task 'assembleDebug'...                          
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/C:/Users/mayan/.gradle/wrapper/dists/gradle-9.3.1-all/9ot9r568e8zfvvd4mn8rbu1j0/gradle-9.3.1/lib/native-platform-0.22-milestone-29.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+Running Gradle task 'assembleDebug'...                             18.8s
+√ Built build\app\outputs\flutter-apk\app-debug.apk
+Installing build\app\outputs\flutter-apk\app-debug.apk...        1,280ms
+00:00 +0: TC-015-27 one thousand entries open quickly and scroll smoothly
+TC-015-27 open run 0: first rows after 830 ms
+TC-015-27 open run 1: first rows after 321 ms
+TC-015-27 open run 2: first rows after 337 ms
+TC-015-27 open run 3: first rows after 243 ms
+TC-015-27 open run 4: first rows after 218 ms
+TC-015-27 open worst of 5: 830 ms (limit 1000)
+TC-015-27 scroll warm-up: 1100 frames, worst build 131.7 ms, worst raster 16.2 ms
+TC-015-27 scroll timed 1: 1100 frames, worst build 44.6 ms, worst raster 16.8 ms
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: a value less than or equal to <32000>
+  Actual: <44650>
+   Which: is not a value less than or equal to <32000>
+timed scroll 1: worst UI build time in microseconds
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/transactions_search_test.dart:248:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/transactions_search_test.dart line 248
+The test description was:
+  TC-015-27 one thousand entries open quickly and scroll smoothly
+════════════════════════════════════════════════════════════════════════════════════════════════════
+01:43 +0 -1: TC-015-27 one thousand entries open quickly and scroll smoothly [E]
+  Test failed. See exception logs above.
+  The test description was: TC-015-27 one thousand entries open quickly and scroll smoothly
+  
+01:43 +0 -1: TC-015-28 search and filters update within three hundred milliseconds
+WARNING (drift): It looks like you've created the database class AppDatabase multiple times. When these two databases use the same QueryExecutor, race conditions will occur and might corrupt the database. 
+Try to follow the advice at https://drift.simonbinder.eu/faq/#using-the-database or, if you know what you're doing, set driftRuntimeOptions.dontWarnAboutMultipleDatabases = true
+Here is the stacktrace from when the database was opened a second time:
+#0      GeneratedDatabase._handleInstantiated (package:drift/src/runtime/api/db_base.dart:96:30)
+#1      GeneratedDatabase._whenConstructed (package:drift/src/runtime/api/db_base.dart:73:12)
+#2      new GeneratedDatabase (package:drift/src/runtime/api/db_base.dart:64:5)
+#3      new _$AppDatabase (package:daily_budget/data/database/app_database.g.dart:2391:36)
+#4      new AppDatabase (package:daily_budget/data/database/app_database.dart)
+#5      openAppDatabase (package:daily_budget/data/database/database_connection.dart:59:5)
+#6      _open (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/transactions_search_test.dart:38:33)
+#7      _seed (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/transactions_search_test.dart:105:22)
+#8      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/transactions_search_test.dart:277:28)
+#9      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:29)
+<asynchronous suspension>
+#10     TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#11     StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+This warning will only appear on debug builds.
+TC-015-28 search run 0: 304 ms, want 100 results · spent ₹5,412, results lines [100 results · spent ₹5,412]
+TC-015-28 search run 1: 283 ms, want 100 results · spent ₹5,412, results lines [100 results · spent ₹5,412]
+TC-015-28 search run 2: 283 ms, want 100 results · spent ₹5,412, results lines [100 results · spent ₹5,412]
+TC-015-28 search run 3: 275 ms, want 100 results · spent ₹5,412, results lines [100 results · spent ₹5,412]
+TC-015-28 search run 4: 288 ms, want 100 results · spent ₹5,412, results lines [100 results · spent ₹5,412]
+TC-015-28 search worst of 5: 304 ms (limit 300)
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: a value less than <300>
+  Actual: <304>
+   Which: is not a value less than <300>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/transactions_search_test.dart:311:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/transactions_search_test.dart line 311
+The test description was:
+  TC-015-28 search and filters update within three hundred milliseconds
+════════════════════════════════════════════════════════════════════════════════════════════════════
+01:52 +0 -2: TC-015-28 search and filters update within three hundred milliseconds [E]
+  Test failed. See exception logs above.
+  The test description was: TC-015-28 search and filters update within three hundred milliseconds
+  
+01:52 +0 -2: (tearDownAll)
+01:52 +0 -2: Some tests failed.
+
+Failing tests:
+  C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/integration_test/transactions_search_test.dart: TC-015-27 one thousand entries open quickly and scroll smoothly
+  C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/integration_test/transactions_search_test.dart: TC-015-28 search and filters update within three hundred milliseconds

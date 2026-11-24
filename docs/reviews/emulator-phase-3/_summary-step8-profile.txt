@@ -1,0 +1,6 @@
+calendar_500 exit 1 secs 49
+home_500 exit 0 secs 43
+statement_speed exit 0 secs 43
+dashboard_500 exit 0 secs 45
+transactions_search exit 0 secs 232
+all-finished

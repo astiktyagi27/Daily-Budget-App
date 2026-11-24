@@ -15,6 +15,22 @@ typedef DayGroup = ({
   List<Spend> spends,
 });
 
+int _newestAddedFirst(Spend a, Spend b) {
+  final byTime = b.createdAt.compareTo(a.createdAt);
+  return byTime != 0 ? byTime : b.id.compareTo(a.id);
+}
+
+/// The spends and money in dated [date], newest added first (by `createdAt`,
+/// then by id). Editing never moves one (D-048 (8)). Day details lists these
+/// (F-012 AC-3).
+List<Spend> spendsOnDay(List<Spend> spends, CalendarDate date) =>
+    List.unmodifiable(
+      <Spend>[
+        for (final spend in spends)
+          if (spend.date == date) spend,
+      ]..sort(_newestAddedFirst),
+    );
+
 /// Groups [spends] by day, the newest day first, and within a day the newest
 /// added first (by `createdAt`, then by id). Editing a spend never moves it
 /// (D-048). A spend dated after [today] (the device date was set back) keeps
@@ -23,9 +39,7 @@ List<DayGroup> groupSpendsByDay(List<Spend> spends, CalendarDate today) {
   final sorted = [...spends]
     ..sort((a, b) {
       final byDay = b.date.compareTo(a.date);
-      if (byDay != 0) return byDay;
-      final byTime = b.createdAt.compareTo(a.createdAt);
-      return byTime != 0 ? byTime : b.id.compareTo(a.id);
+      return byDay != 0 ? byDay : _newestAddedFirst(a, b);
     });
   final groups = <DayGroup>[];
   var i = 0;

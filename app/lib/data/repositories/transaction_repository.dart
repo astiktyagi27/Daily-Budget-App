@@ -8,6 +8,9 @@ final class StoredSpend {
 
   /// The note, or null when there is none (an empty note reads back null).
   final String? note;
+
+  /// The spend with its note, the shape the pure search works on (F-015).
+  NotedSpend get noted => (spend: spend, note: note);
 }
 
 /// What a spend write did to the savings covers (D-040, D-048).
@@ -32,21 +35,33 @@ abstract interface class TransactionRepository {
   /// Emits again after every add, edit and delete.
   Stream<List<StoredSpend>> watchMonthSpends(int monthId);
 
-  /// Adds a transaction. [today] is the device date the engine needs.
-  /// [direction] is [SpendDirection.spend] for every Phase 2 screen.
+  /// Adds a transaction. [today] is the device date the engine needs. The
+  /// direction (spend or money back) and the category are in [fields].
   Future<SpendWriteOutcome> add(
     int monthId,
     SpendFields fields, {
     required CalendarDate today,
     required int now,
-    SpendDirection direction = SpendDirection.spend,
   });
 
-  /// Changes the amount, date and note of transaction [id].
+  /// Changes the amount, date, note, direction and category of transaction
+  /// [id]. Turning a spend into money back (or back) is an ordinary update;
+  /// the cover rules run as for any edit (D-084 (3)).
   Future<SpendWriteOutcome> update(
     int id,
     SpendFields fields, {
     required CalendarDate today,
+    required int now,
+  });
+
+  /// Changes only the category of transaction [id] (and its `edited_at`).
+  /// A category is not money (F-015 AC-13), so the engine and the covers are
+  /// not touched, and the row may be of any month (AC-14). [category] null
+  /// clears it. Throws an [ArgumentError] for money in: a refund has no
+  /// category, and for an unknown [id].
+  Future<void> updateCategory(
+    int id,
+    SpendCategory? category, {
     required int now,
   });
 

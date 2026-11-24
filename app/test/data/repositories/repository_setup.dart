@@ -71,8 +71,19 @@ NewMonth e2NewMonth({PeriodValues? values, bool continued = false}) => NewMonth(
 );
 
 /// `SpendFields` of [amount] paise on [date].
-SpendFields fields(CalendarDate date, int amount, [String? note]) =>
-    (amount: Paise(amount), date: date, note: note);
+SpendFields fields(
+  CalendarDate date,
+  int amount, [
+  String? note,
+  SpendCategory? category,
+  SpendDirection direction = SpendDirection.spend,
+]) => (
+  amount: Paise(amount),
+  date: date,
+  note: note,
+  category: category,
+  direction: direction,
+);
 
 /// The rows of [table] as raw maps sorted by id (a "Row snapshot").
 Future<List<Map<String, Object?>>> rowSnapshot(

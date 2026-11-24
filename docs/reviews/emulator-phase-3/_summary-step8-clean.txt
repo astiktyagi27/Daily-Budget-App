@@ -1,0 +1,17 @@
+debug transactions_search exit 1 secs 85
+debug dashboard_500 exit 1 secs 44
+debug calendar_500 exit 1 secs 38
+debug home_500 exit 0 secs 34
+debug day_details_cover_flow exit 0 secs 37
+debug statement_speed exit 0 secs 34
+debug month_setup_flow exit 1 secs 60
+debug manual_transactions_flow exit 0 secs 43
+debug persistence exit 0 secs 30
+debug transactions_500 exit 0 secs 48
+debug money_back_flow exit 1 secs 47
+profile transactions_search exit 0 secs 210
+profile dashboard_500 exit 0 secs 21
+profile calendar_500 exit 1 secs 20
+profile home_500 exit 0 secs 20
+profile statement_speed exit 0 secs 19
+all-finished

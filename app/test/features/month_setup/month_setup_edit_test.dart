@@ -15,7 +15,7 @@ Future<FakeMoneyStore> _openEdit(
 }) async {
   final money = store ?? storeWithMonth();
   await pumpHome(tester, money: money, clock: MovableClock(today));
-  await tapText(tester, 'Edit this month');
+  await tapEditThisMonth(tester);
   return money;
 }
 
@@ -72,7 +72,7 @@ void main() {
       ...List.filled(15, 63000),
     ]);
     expect(store.spendsByMonth[month.id], hasLength(2));
-    expect(findCopy('5 Nov – 4 Dec · ₹630 a day'), findsOneWidget);
+    expect(findCopy('₹630/day · 5 Nov – 4 Dec'), findsOneWidget);
   });
 
   testWidgets('TC-008-21 salary edit shows 496 a day and stores the exact '
@@ -113,7 +113,7 @@ void main() {
     );
     await tapText(tester, 'Save changes');
     expect(store.months.single.periods, hasLength(2));
-    expect(findCopy('5 Nov – 4 Dec · ₹163 a day'), findsOneWidget);
+    expect(findCopy('₹163/day · 5 Nov – 4 Dec'), findsOneWidget);
   });
 
   testWidgets('TC-008-45 reverting an edit disables save changes again', (
@@ -211,7 +211,7 @@ void main() {
     await tester.tap(find.byTooltip('Back'));
     await tester.pumpAndSettle();
     expect(findCopy('Discard changes?'), findsNothing);
-    expect(findCopy('Edit this month'), findsOneWidget, reason: 'Home button');
+    expect(findCopy('Left this month'), findsOneWidget, reason: 'Home');
     expect(find.text('Save changes'), findsNothing);
   });
 

@@ -1,0 +1,51 @@
+Resolving dependencies...
+Downloading packages...
+  built_collection 5.1.2 (6.0.0 available)
+  cli_util 0.6.0 (0.6.1 available)
+  code_assets 1.2.1 (2.2.0 available)
+  flutter_riverpod 3.4.3 (3.5.0 available)
+  jni 1.1.2 (1.2.1 available)
+  jni_flutter 1.0.4+1 (1.1.0 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  native_toolchain_c 0.19.2 (0.19.6 available)
+  objective_c 9.5.0 (9.6.4 available)
+  riverpod 3.4.3 (3.5.0 available)
+  shared_preferences_android 2.5.4 (2.5.5 available)
+  shared_preferences_foundation 2.5.7 (2.6.2 available)
+  sqlite3 3.9.1 (3.9.2 available)
+  test_api 0.7.12 (0.7.15 available)
+  vector_math 2.4.0 (2.4.4 available)
+Got dependencies!
+15 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Running Gradle task 'assembleProfile'...                        
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/C:/Users/mayan/.gradle/wrapper/dists/gradle-9.3.1-all/9ot9r568e8zfvvd4mn8rbu1j0/gradle-9.3.1/lib/native-platform-0.22-milestone-29.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+Running Gradle task 'assembleProfile'...                           22.3s
+√ Built build\app\outputs\flutter-apk\app-profile.apk (44.8MB)
+Installing build\app\outputs\flutter-apk\app-profile.apk...        670ms
+I/Choreographer(29438): Skipped 38 frames!  The application may be doing too much work on its main thread.
+D/WindowLayoutComponentImpl(29438): Register WindowLayoutInfoListener on Context=com.dailybudget.app.MainActivity@67b5d14, of which baseContext=android.app.ContextImpl@e3b3680
+I/dailybudget.app(29438): Compiler allocated 5230KB to compile void android.view.ViewRootImpl.performTraversals(long)
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:56712/fm5M4oTMEfI=/
+VMServiceFlutterDriver: Isolate found with number: 280611394276939
+VMServiceFlutterDriver: Isolate 280611394276939 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter (29438): 00:00 +0: TC-010-43 home shows final figures within a second with 500 spends
+VMServiceFlutterDriver: Connected to Flutter application.
+D/InsetsController(29438): hide(ime())
+I/ImeTracker(29438): com.dailybudget.app:e35c5cb6: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+I/flutter (29438): TC-010-43 run 0: final figures after 190 ms
+I/flutter (29438): TC-010-43 run 1: final figures after 150 ms
+I/flutter (29438): TC-010-43 run 2: final figures after 139 ms
+I/flutter (29438): TC-010-43 run 3: final figures after 136 ms
+D/ProfileInstaller(29438): Installing profile for com.dailybudget.app
+I/flutter (29438): TC-010-43 run 4: final figures after 136 ms
+I/flutter (29438): TC-010-43 worst of 5: 190 ms (limit 1000)
+I/flutter (29438): 00:02 +1: (tearDownAll)
+All tests passed.
+I/flutter (29438): 00:02 +2: All tests passed!

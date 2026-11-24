@@ -42,8 +42,8 @@ abstract final class HelpCopy {
       "Check back after a week of spending. That's when your patterns start "
       'to show.';
   static const hintTransactions =
-      "Spotted a wrong amount or category later? You'll be able to fix it "
-      'right here.';
+      'Tap a spend to fix it, or tap its category to change it.';
+  static const hintCalendar = 'Tap a day to see its spends.';
   static const hintSettings =
       'Change the theme and other options here. Tap (i) next to a setting to '
       'learn what it does.';

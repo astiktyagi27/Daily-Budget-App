@@ -32,6 +32,24 @@ final class DriftMonthRepository implements MonthRepository {
       _watchFirst((m) => m.id.equals(monthId));
 
   @override
+  Stream<List<MonthRef>> watchMonthIndex() {
+    final query = _db.select(_db.budgetMonths)
+      ..orderBy([(m) => OrderingTerm.desc(m.startDay)]);
+    return guardedStream(
+      query.watch().map(
+        (rows) => [
+          for (final row in rows)
+            MonthRef(
+              id: row.id,
+              month: BudgetMonth.containing(row.salaryDay, row.startDay),
+              firstBudgetedDay: row.firstBudgetedDay,
+            ),
+        ],
+      ),
+    );
+  }
+
+  @override
   Future<StoredMonth?> latestConfirmedMonth() =>
       guarded(StorageFailureKind.read, () => watchLatestMonth().first);
 

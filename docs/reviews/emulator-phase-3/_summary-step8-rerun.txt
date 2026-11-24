@@ -1,0 +1,8 @@
+dashboard_500 exit 1 secs 39
+transactions_search exit 1 secs 140
+money_back_flow exit 1 secs 47
+home_500 exit 0 secs 31
+statement_speed exit 0 secs 34
+calendar_500 exit 1 secs 34
+month_setup_flow exit 1 secs 61
+all-finished

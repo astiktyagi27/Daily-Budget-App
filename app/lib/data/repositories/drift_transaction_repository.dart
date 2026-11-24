@@ -33,7 +33,6 @@ final class DriftTransactionRepository implements TransactionRepository {
     SpendFields fields, {
     required CalendarDate today,
     required int now,
-    SpendDirection direction = SpendDirection.spend,
   }) {
     _validate(fields);
     return guarded(
@@ -46,8 +45,9 @@ final class DriftTransactionRepository implements TransactionRepository {
                 monthId: monthId,
                 day: fields.date,
                 amountPaise: fields.amount,
-                direction: Value(directionColumn(direction)),
+                direction: Value(directionColumn(fields.direction)),
                 note: Value(fields.note ?? ''),
+                category: Value(fields.category?.key),
                 createdAt: now,
                 editedAt: now,
               ),
@@ -79,12 +79,43 @@ final class DriftTransactionRepository implements TransactionRepository {
             day: Value(fields.date),
             amountPaise: Value(fields.amount),
             note: Value(fields.note ?? ''),
+            direction: Value(directionColumn(fields.direction)),
+            category: Value(fields.category?.key),
             editedAt: Value(now),
           ),
         );
         return SpendWriteOutcome(
           id: id,
           reductions: await reconcileStoredCovers(_db, row.monthId, today),
+        );
+      }),
+    );
+  }
+
+  @override
+  Future<void> updateCategory(
+    int id,
+    SpendCategory? category, {
+    required int now,
+  }) {
+    return guarded(
+      StorageFailureKind.write,
+      () => _db.transaction(() async {
+        final row = await _rowOf(id);
+        if (directionOf(row.direction) == SpendDirection.moneyIn) {
+          throw ArgumentError.value(
+            id,
+            'id',
+            'is money in: it has no category',
+          );
+        }
+        await (_db.update(
+          _db.transactions,
+        )..where((t) => t.id.equals(id))).write(
+          TransactionsCompanion(
+            category: Value(category?.key),
+            editedAt: Value(now),
+          ),
         );
       }),
     );
@@ -123,6 +154,13 @@ final class DriftTransactionRepository implements TransactionRepository {
         fields.amount.value,
         'amount',
         'must be above 0',
+      );
+    }
+    if (fields.direction == SpendDirection.moneyIn && fields.category != null) {
+      throw ArgumentError.value(
+        fields.category,
+        'category',
+        'money in has no category',
       );
     }
   }

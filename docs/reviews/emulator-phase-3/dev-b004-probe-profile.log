@@ -1,0 +1,32 @@
+I/flutter (22110): 00:00 +0: TC-011-37 five hundred spends: grid and month change within 500 ms
+I/flutter (22110): PROBE run 0: final cells present after 212 ms (16 ms frames)
+I/flutter (22110): PROBE run 0: settled (16 ms steps) after 247 ms
+I/flutter (22110): TC-011-37 run 0: month change after 71 ms
+I/flutter (22110): PROBE run 1: final cells present after 166 ms (16 ms frames)
+I/flutter (22110): PROBE run 1: settled (16 ms steps) after 191 ms
+I/flutter (22110): TC-011-37 run 1: month change after 83 ms
+I/flutter (22110): PROBE run 2: final cells present after 203 ms (16 ms frames)
+I/flutter (22110): PROBE run 2: settled (16 ms steps) after 234 ms
+I/flutter (22110): TC-011-37 run 2: month change after 61 ms
+I/flutter (22110): PROBE run 3: final cells present after 169 ms (16 ms frames)
+I/flutter (22110): PROBE run 3: settled (16 ms steps) after 204 ms
+I/flutter (22110): TC-011-37 run 3: month change after 59 ms
+I/flutter (22110): PROBE run 4: final cells present after 171 ms (16 ms frames)
+I/flutter (22110): PROBE run 4: settled (16 ms steps) after 209 ms
+I/flutter (22110): TC-011-37 run 4: month change after 48 ms
+I/flutter (22270): 00:00 +0: TC-011-37 five hundred spends: grid and month change within 500 ms
+I/flutter (22270): PROBE run 0: final cells present after 231 ms (16 ms frames)
+I/flutter (22270): PROBE run 0: settled (16 ms steps) after 266 ms
+I/flutter (22270): TC-011-37 run 0: month change after 57 ms
+I/flutter (22270): PROBE run 1: final cells present after 234 ms (16 ms frames)
+I/flutter (22270): PROBE run 1: settled (16 ms steps) after 257 ms
+I/flutter (22270): TC-011-37 run 1: month change after 61 ms
+I/flutter (22270): PROBE run 2: final cells present after 142 ms (16 ms frames)
+I/flutter (22270): PROBE run 2: settled (16 ms steps) after 170 ms
+I/flutter (22270): TC-011-37 run 2: month change after 63 ms
+I/flutter (22270): PROBE run 3: final cells present after 144 ms (16 ms frames)
+I/flutter (22270): PROBE run 3: settled (16 ms steps) after 170 ms
+I/flutter (22270): TC-011-37 run 3: month change after 57 ms
+I/flutter (22270): PROBE run 4: final cells present after 145 ms (16 ms frames)
+I/flutter (22270): PROBE run 4: settled (16 ms steps) after 174 ms
+I/flutter (22270): TC-011-37 run 4: month change after 57 ms

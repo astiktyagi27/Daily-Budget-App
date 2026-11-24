@@ -100,9 +100,9 @@ Ratios are computed with the WCAG relative-luminance formula. AA needs **4.5 : 1
 | `textSecondary` on `neutralSoft` ("Coming soon" tag, disabled button label) | 5.56 | 6.37 | 5.69 | 4.5 |
 | `textSecondary` on `accentSoft` (hint card × icon) | 5.62 | 5.97 | 5.27 | 3.0 |
 | `borderStrong` on `bg` (tour page indicator, other slides) | 3.39 | 3.54 | 3.76 | 3.0 |
-| `accent` on `savedSoft` (change-day tick, Phase 3) | 7.09 | 5.97 | 5.30 | 3.0 |
+| `accent` on `savedSoft` (change-day tick, Phase 3) | 7.08 | 5.97 | 5.30 | 3.0 |
 | `accent` on `neutralSoft` (change-day tick) | 6.82 | 6.47 | 5.37 | 3.0 |
-| `accent` on `overspentSoft` (change-day tick) | 6.72 | 6.58 | 5.57 | 3.0 |
+| `accent` on `overspentSoft` (change-day tick) | 6.71 | 6.58 | 5.57 | 3.0 |
 | `textPrimary` on `neutralSoft` (category bar fill on its track, Phase 3) | 13.73 | 13.53 | 9.36 | 3.0 |
 
 Tightest pairs: Light `overspent` on `overspentSoft` (4.71) and Light `neutral` on `neutralSoft` (4.64). **Do not lighten** `overspent`/`neutral` or darken those fills in Light without re-running this check. Error text on a filled red uses `onError` = `#FFFFFF` on `#B4372F` (5.95) in Light, and `#1C1B22` on `#FF7B6F` (6.76) / `#FF9C8E` (8.46) in Dark / Dim.
@@ -158,7 +158,7 @@ Sizes are in sp, so they scale with the phone's font size. Line height is given 
 - **Screen readers:** semantics labels spell the sign: "minus ₹1,000" (TalkBack does not read U+2212 consistently). Labels contain no invisible characters (no U+2060 / U+00A0).
 - **No `−₹0`:** when the whole rupees are 0, there is no sign (−99 paise → `₹0`) (D-050).
 - **Under ₹1 (D-050):** a day result or difference that is not exactly ₹0 but rounds to ₹0 (1–99 paise either way: left today, overspent, short, saved, a cover taken back) reads `less than ₹1` (`less than ₹1 left today`, `overspent less than ₹1`, `◆ less than ₹1 short`). The result word and colour follow the exact paise. Totals, budgets and single spends keep the plain formatter (`₹0`).
-- **Short forms (Phase 3):** only inside calendar cells, amounts of ₹10,000 or more use `formatRupeesShort` (`₹12k`, `₹1.5L`, `₹10Cr`; rules in §7.5). Everywhere else amounts are written in full.
+- **Short forms (Phase 3):** only inside calendar cells, amounts of ₹10,000 or more use `formatRupeesShort` (`₹12k`, `₹1.5L`, `₹12L`, `₹10Cr`; rules in §7.5, same integer-only approach as the formatter above). Everywhere else, and in every screen-reader label, amounts are written in full.
 - **Arrows in working lines (Phase 3):** `→` (U+2192) is set in Plex like the digits. The F-002 font check adds U+2192 to the glyphs it confirms; if it is missing, the line uses the word `so` instead (`= ₹24,900 over 30 days, so ₹830/day`).
 - **Whole rupees, rounded down (D-038):** every amount outside an input field shows whole rupees, rounded toward ₹0 (₹830.50 → ₹830; −₹120.50 → −₹120). Paise are shown only inside input fields while typing or editing. This replaces the earlier "₹830.50 for a single transaction" example.
 
@@ -258,22 +258,28 @@ States: pressed = 8 % `textPrimary` overlay (Light) / 10 % `#FFFFFF` overlay (Da
 - The whole row is the touch target. The (i) has its own 48 dp target and does not trigger the row.
 
 ### 7.5 Calendar day cell
-Size: square, width = (content width − 2 × 20 dp gutters − 6 × 4 dp gaps) ÷ 7 (about 42–52 dp in portrait), with a 48 dp min touch target. In landscape or on wide screens the cell is capped at **56 dp** and the grid is centred. `radiusXs`. Inner padding 4 dp.
+Size: width = (screen width − 2 × **14 dp** grid gutters − 6 × 4 dp gaps) ÷ 7 (44.0 dp on a 360 dp phone, about 38–55 dp in portrait; the grid and its weekday strip use the 14 dp constant `calendarGridGutter`, 6 dp wider than the 20 dp page gutter, so the touch pitch reaches exactly 48 dp at 360 dp; D-075). Height = the width, or the content height when text is scaled up (all cells in a row take the tallest). In landscape or on wide screens the cell is capped at **56 dp** and the grid is centred. `radiusXs`. Inner padding 4 dp, except **6 dp at the top** (keeps the number clear of the change tick below).
+**Touch target:** the hit area is the cell plus half of each 4 dp gap, so neighbours never overlap: the pitch is (screen width − 24) ÷ 7, which is **48.0 dp wide on a 360 dp phone** and more on wider ones, and always at least 48 dp tall (D-075; earlier 16 dp gutters gave 47.4 dp). Phones narrower than 360 dp (grid area under 336 dp = 7 × 48) cannot give seven 48 dp columns: a documented exception, 42.3 dp on the 320 dp test phone, still far above the WCAG 2.2 minimum (24 dp, criterion 2.5.8).
 Content: day number top-left (`caption` weight 500), mark top-right (6 dp), net spent amount bottom-right (`moneySmall`, always with ₹, no paise).
 
 **Amount rules (Phase 3, F-011 §2.2):**
 - Whole rupees rounded toward ₹0 through the shared formatter (D-038, D-046). A past day with no spends shows `₹0`.
-- **Fit:** the amount sits in `FittedBox(fit: BoxFit.scaleDown)` limited to the cell's inner width, so `₹9,999` on a 360 dp phone renders at about 11 sp instead of clipping. Never an ellipsis.
-- **Short forms (cells only)** from the shared `formatRupeesShort(Paise)`, integer maths only, rounded toward ₹0, a trailing `.0` dropped:
+- **Fit:** the amount sits in `FittedBox(fit: BoxFit.scaleDown)` limited to the cell's inner width (36 dp on a 360 dp phone: 44 dp cell − 2 × 4 dp padding), so `₹9,999` renders at about 11 sp instead of clipping. Never an ellipsis. **Floor 9 sp:** if fitting would go below 9 sp, the amount is hidden like above 1.3× text (the label still has it). With the rules below this happens for a negative crore (`−₹100Cr`) and, on phones narrower than about 340 dp, for `−₹9,999`. Measured with the Plex Medium digit advances (T-454, `calendar.md` §10): on a 360 dp phone `₹9,999` fits at 10.9 and `−₹9,999` at 9.2, both above the floor and unchanged from 1.0× to 1.3× (hidden above 1.3×); the Developer still confirms on a real render.
+- **Short forms (cells only)** from the shared `formatRupeesShort(Paise)`. **When they apply** is decided by the amount alone, never by the phone width or text size, so the same day reads the same on every phone: from **₹10,000** (`abs`, whole rupees rounded toward ₹0, D-038/D-046). Below that the cell uses the full `formatRupees` text. Integer maths only, no `double`, no `intl`, a trailing `.0` dropped:
 
   | Net spent (whole rupees) | Cell shows | Rule |
   |---|---|---|
-  | below ₹10,000 | `₹9,999` | full amount, Indian grouping |
-  | ₹10,000 – ₹99,999 | `₹10k` · `₹12k` (₹12,999) · `₹99k` | thousands, lower-case `k`, no decimal |
-  | ₹1,00,000 – ₹99,99,999 | `₹1L` · `₹1.5L` (₹1,59,999) · `₹99.9L` | lakh, one decimal: `t = rupees ÷ 10,000`, shown `t ÷ 10` `.` `t % 10` |
-  | ₹1,00,00,000 and above | `₹1Cr` · `₹10Cr` · `₹12.3Cr` | crore, one decimal: `t = rupees ÷ 10,00,000` |
+  | below ₹10,000 | `₹9,999` | full `formatRupees` text, Indian grouping |
+  | ₹10,000 – ₹99,999 | `₹10k` · `₹12k` (₹12,999) · `₹99k` | thousands `n ÷ 1,000`, lower-case `k`, no decimal |
+  | ₹1,00,000 – ₹9,99,999 | `₹1L` · `₹1.5L` (₹1,59,999) · `₹9.9L` | lakh, one decimal: `t = n ÷ 10,000`, shown `t ÷ 10` `.` `t % 10` |
+  | ₹10,00,000 – ₹99,99,999 | `₹10L` · `₹12L` (₹12,99,999) · `₹99L` | lakh, no decimal: `n ÷ 1,00,000` |
+  | ₹1,00,00,000 – ₹9,99,99,999 | `₹1Cr` · `₹1.5Cr` · `₹9.9Cr` | crore, one decimal: `t = n ÷ 10,00,000` |
+  | ₹10,00,00,000 and above | `₹10Cr` · `₹12Cr` · `₹100Cr` | crore, no decimal: `n ÷ 1,00,00,000` |
 
-  Negative net spends (refunds bigger than spends, D-047) keep the sign: `−₹1,300`, `−₹12k`. The full amount is always in day details and in the cell's screen-reader label.
+  *Why one decimal only below 10 L / 10 Cr:* a decimal on a two-digit lakh (`₹12.3L`) is as wide as `₹12,345` and would fit-shrink under 10 sp; the no-decimal rows keep every short form about as wide as `₹1,000` or narrower. The step to a larger unit is exact (₹99,999 → `₹99k`, ₹1,00,000 → `₹1L`; ₹9,99,999 → `₹9.9L`, ₹10,00,000 → `₹10L`), because values are cut, never rounded up, so a short form never shows more than was spent.
+  Negative net spends (refunds bigger than spends, D-047) keep the sign: `−₹1,300`, `−₹12k`, `−₹1.5L` (U+2212 with the word joiner, as in §4.3).
+  **Consistency with `formatRupees` (D-069, D-070):** both take `Paise`, cut to whole rupees with the same `abs() ~/ 100` and sign rule (no `−₹0`), and use only integer division and string building; neither uses `intl` or `NumberFormat`. `formatRupeesShort` never groups with commas (its largest integer part is `100`), so it shares no grouping code and cannot disagree with the Indian 3-then-2 grouping; below ₹10,000 it simply calls `formatRupees`. Same ₹ + word joiner + digits unit. Short forms are for the cell only: day details, the label, Home, Dashboard and the statement always show the full `formatRupees` amount.
+  **Screen reader (TalkBack):** a cell is one merged node (`Semantics(button: true, label: …, excludeSemantics: true)`), so the visible `₹1.5L` is never read. The label is a full sentence with the full amount from `formatRupees`, using the same wording as any other day, e.g. `Thursday 5 November, spent ₹1,59,999, overspent ₹1,59,169`. The words `lakh`, `crore`, `L`, `k` and `Cr` do not appear in any label. Full-amount labels are read digit-group by digit-group by TalkBack the same way as everywhere else in the app. The full amount is also in day details.
 - **First day of a new calendar month** inside a budget month: the number slot reads `1 Dec` (same style, also fitted).
 - Above 1.3× text the amount is hidden; number and mark stay (§4.2).
 
@@ -285,12 +291,12 @@ Content: day number top-left (`caption` weight 500), mark top-right (6 dp), net 
 | **Today** | fill of today's result so far (or `surface` if nothing spent) | `accent`, weight 600 | spent so far, `textPrimary` | as its state | "Today, Friday 13 November, spent ₹420 so far, ₹410 left" |
 | | + 2 dp `accent` ring (inside the cell edge) | | | | |
 | **Future** (upcoming) | none; hairline `border` outline | `textSecondary` | none | none | "Saturday 14 November, upcoming" |
-| **Not budgeted** (Phase 3: days before a mid-month first use or a late setup, D-034, D-057) | none, **no outline** | `textSecondary` at **100 %** (readable, unlike Outside) | none | none | "5 November, not budgeted, before you started" (late setup: "…, before this month's setup"). Not tappable, no press effect |
+| **Not budgeted** (Phase 3: days before a mid-month first use or a late setup, D-034, D-057) | none, **no outline** | `textSecondary` at **100 %** (readable, unlike Outside) | none | none | "Thursday 5 November, not budgeted, before you started" (late setup: "Saturday 5 December, not budgeted, before this month's setup"; weekday like every other cell, D-075). Not tappable, no press effect |
 | **Outside month** (before salary date / after month end) | none | `textSecondary` at 50 % (decorative, not a tappable day) | none | none | excluded from screen reader |
 
 How the three "empty-looking" cells differ without colour: **Future** has a hairline box; **Not budgeted** has no box but a full-strength number; **Outside** has no box and a faded number. A caption under the grid names the not-budgeted days (`screens/calendar.md` §5.4).
 
-**Change-day marker (Phase 3, D-037):** on the first day of a new budget period (not the month's first period), a small **ink tick**, 12 × 3 dp, `accent`, `radiusFull`, centred horizontally 4 dp below the top edge (inside the today ring when both apply). It reuses the bottom-navigation tick (§7.7), the app's signature mark, so it reads as "something about the budget", not as a day result. Decorative; the label adds ", budget changed this day". Contrast of `accent` on every fill it can sit on is in §3 (lowest 5.30 : 1, Dim `savedSoft`).
+**Change-day marker (Phase 3, D-037):** on the first day of a new budget period (not the month's first period; any change of salary, target or fixed costs starts one), a small **ink tick**, 12 × 3 dp, `accent`, `radiusFull`, centred horizontally 4 dp below the top edge (y 4–7; inside the today ring, which is y 0–2, when both apply). It clears the day number (glyph top about 10 dp with the 6 dp top padding) and the mark (x from 32 dp on a 42 dp cell; the tick ends at x 27). It reuses the bottom-navigation tick (§7.7), the app's signature mark, so it reads as "something about the budget", not as a day result. It is a shape, not a colour: it survives grey-scale and colour-blindness, and it never replaces ●, ○ or ◆ (the cell keeps its own fill, mark and amount). Two changes on one day make one tick. The legend explains it only in months that have one. Not tappable by itself (the cell is). The label adds ", budget changed this day" (today: `Today, …, budget changed this day`). Contrast of `accent` on every fill it can sit on is in §3 (lowest 5.30 : 1, Dim `savedSoft`; non-text, needs 3 : 1): `savedSoft`, `neutralSoft`, `overspentSoft`, `surface` (today with nothing spent) and `bg` (upcoming; a change always starts today or earlier, so this is only a safety net).
 
 Pressed: cell scales to 0.96 for `motionFast`. Tap opens day details (Phase 3, `screens/day-details.md`). The weekday header row (M T W T F S S, `caption`, `textSecondary`) sits on a `sunken` strip. Full calendar spec: `screens/calendar.md`.
 
@@ -370,9 +376,9 @@ One row used by the calendar, the Dashboard and the month statement, so changing
 - Screen reader: the range is a heading; buttons `Previous month` / `Next month`, disabled hints `No earlier months` / `This is the current month`.
 
 ### 7.15 Chips and segmented control (Phase 3)
-- **Filter chip** (Transactions): height 40 dp (48 dp target), `radiusSm` (10 dp), padding 12 dp, `label` text, trailing 18 dp `expand_more`. Idle: `surface` fill, 1 dp `borderStrong`, `textPrimary`. **Active:** `accentSoft` fill, no outline, leading 18 dp `check` icon in `accent`, text `textPrimary` weight 600. The tick and weight are the non-colour cues. A row of chips scrolls sideways; it never wraps or clips.
+- **Filter chip** (Transactions; built as `BudgetFilterChip`, because Material already has a `FilterChip`): height 40 dp (48 dp target), `radiusSm` (10 dp), padding 12 dp, `label` text, trailing 18 dp `expand_more`. Idle: `surface` fill, 1 dp `borderStrong`, `textPrimary`. **Active:** `accentSoft` fill, no outline, leading 18 dp `check` icon in `accent`, text `textPrimary` weight 600. The tick and weight are the non-colour cues. A row of chips scrolls sideways; it never wraps or clips.
 - **Category chip** (on a list row): height 24 dp visible / 48 dp target (the target extends over the row's second line), `radiusXs`, `neutralSoft` fill, `caption` weight 500 in `textSecondary` (5.56 / 6.37 / 5.69 : 1). Pressed: `sunken`. It is its own control, separate from the row.
-- **Segmented control** (Dashboard): 2 segments, 44 dp tall (48 dp target), `sunken` track with 1 dp `border`, `radiusMd`. Selected segment: `surface` fill with 1 dp `borderStrong` edge, `label` weight 600 `textPrimary`, leading 16 dp `check`; unselected: no fill, `label` 500 `textSecondary`. Switch uses `motionBase`.
+- **Segmented control** (Dashboard): 2 segments, **48 dp tall** (the control is its own touch target; it was 44 dp, changed at Gate 3, D-089), `sunken` track with 1 dp `border`, `radiusMd`. Selected segment: `surface` fill with 1 dp `borderStrong` edge, `label` weight 600 `textPrimary`, leading 16 dp `check`; unselected: no fill, `label` 500 `textSecondary`. Switch uses `motionBase`.
 
 ### 7.16 Share bar row (Phase 3, Dashboard)
 A ranked row for "where the money went": line 1 = name (`label`, `textPrimary`) left; amount (`moneyMedium`) and share (`caption` 500, `textSecondary`, fixed 40 dp column, right-aligned: `70%`, `<1%`) right. Line 2 = a 6 dp bar, `radiusFull`, `textPrimary` fill on a `neutralSoft` track, length = exact share of the range total (integer paise), minimum 2 dp when the share is above 0. Ink, never green/red, never accent: it is a share, not a result. Bars are decorative; the amount and share text carry the meaning. No pies, no donuts, no axes.
@@ -481,8 +487,13 @@ Resolved on 2026-11-05 with the Phase 1 screen specs (`docs/design/screens/`):
 | 2026-11-11 | T-231 (Gate 3 N1): §7.8 sheet scrim screen-reader label is `Close` instead of "Scrim". No visual change; code in T-233 | Designer |
 | 2026-11-06 | T-128 (Gate 2 N1): Owner-preview Home mockup's hint card now shows the `Tip` overline, lightbulb and × like the real card (§7.11c). Mockup only; no spec change | Designer |
 | 2026-11-11 | Phase 3 screen specs (planned ahead, D-033; `screens/home-summary.md`, `calendar.md`, `day-details.md`, `dashboard.md`, `month-statement.md`, `transactions-search.md`). §7.5: **Not budgeted** cell state, **change-day marker** (ink tick), amount fit rule and **short forms** `₹12k` / `₹1.5L` / `₹10Cr` (`formatRupeesShort`), negative net amounts, landscape cap 56 dp (phase-3 overview open item 7). §3: `accent` on the three day fills and the share-bar pair (computed, all ≥ 5.30). §4.3: short-form pointer, `→` glyph check. §7.6: Phase 3 summary additions, ₹0 saved/overspent shown neutral with no mark. New §7.14 month switcher, §7.15 chips and segmented control, §7.16 share bar row. §8.4 `DayStatus.notBudgeted` + `periodStart` flag. Existing Phase 1–2 components unchanged. **Phase 3 parts pending Gate 2** | Designer |
+| 2026-11-16 | Phase 3 open item 7 finished (calendar cell, docs only): §7.5 short forms get an exact rule table (one decimal only below ₹10 L / ₹10 Cr, so `₹12.3L` becomes `₹12L`; floor 9 sp), when they apply (amount only), consistency with `formatRupees` (D-069/D-070) and the TalkBack rule (full sentence, full amount, merged node); change tick geometry and 6 dp top padding so it clears the number; cell height grows with text; grid gutters 16 dp and a 47.4 to 48 dp touch pitch. §3 and palette unchanged (no new colour pair; tick pairs re-verified). **Pending Gate 2** | Designer |
+| 2026-11-16 | T-310 (D-075): §7.5 grid and weekday-strip gutters 16 dp to 14 dp (cell 44 dp and pitch 48.0 dp at 360 dp, inner width 36 dp, exception below 360 dp), not-budgeted label gets the weekday. No colour or token change | Designer |
 | 2026-11-13 | T-248 (D-071): §7.13 with the keyboard open the dock stays visible directly above it; Next / Done keyboard actions; the no-dock block at the end above 1.3x is intended | Designer |
 | 2026-11-16 | T-251: §7.13 one line: the dock is the Scaffold bottom bar lifted by the keyboard inset, so snackbars stay above it. No visual change | Designer |
+
+| 2026-11-16 | T-451 / T-454 (Gate 2 Nice to have 5, 6): §3 Light tick ratios corrected to the computed 7.08 (`accent` on `savedSoft`) and 6.71 (on `overspentSoft`), now equal to `calendar.md` §9; §7.5 floor sentence replaced by the measured fit (`−₹9,999` 9.2 on 360 dp). No colour or token changed | Designer |
+| 2026-11-21 | Gate 3 Track E (D-091): §7.15 names the filter chip `BudgetFilterChip` (Material already has a `FilterChip`). No visual change | Designer |
 
 ---
 

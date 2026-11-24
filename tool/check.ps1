@@ -132,7 +132,12 @@ try {
 
     $step = 'dart format (check only)'
     Write-Host ('--- ' + $step)
-    & $dart format --output=none --set-exit-if-changed .
+    # Only the source folders, never `.`: a path over 260 characters under
+    # app/build (a profile build creates them) breaks `dart format` on
+    # Windows, and build output needs no formatting (D-093).
+    $formatFolders = @('lib', 'test', 'integration_test', 'test_driver') |
+        Where-Object { Test-Path -LiteralPath (Join-Path $appDir $_) }
+    & $dart format --output=none --set-exit-if-changed @formatFolders
     if ($LASTEXITCODE -ne 0) { Stop-WithFailure $step }
     Write-Result $step $true
 

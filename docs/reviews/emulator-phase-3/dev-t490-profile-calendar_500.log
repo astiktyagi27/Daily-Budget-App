@@ -1,0 +1,62 @@
+Resolving dependencies...
+Downloading packages...
+  built_collection 5.1.2 (6.0.0 available)
+  cli_util 0.6.0 (0.6.1 available)
+  code_assets 1.2.1 (2.2.0 available)
+  flutter_riverpod 3.4.3 (3.5.0 available)
+  jni 1.1.2 (1.2.1 available)
+  jni_flutter 1.0.4+1 (1.1.0 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  native_toolchain_c 0.19.2 (0.19.6 available)
+  objective_c 9.5.0 (9.6.4 available)
+  riverpod 3.4.3 (3.5.0 available)
+  shared_preferences_android 2.5.4 (2.5.5 available)
+  shared_preferences_foundation 2.5.7 (2.6.2 available)
+  sqlite3 3.9.1 (3.9.2 available)
+  test_api 0.7.12 (0.7.15 available)
+  vector_math 2.4.0 (2.4.4 available)
+Got dependencies!
+15 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Running Gradle task 'assembleProfile'...                        
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/C:/Users/mayan/.gradle/wrapper/dists/gradle-9.3.1-all/9ot9r568e8zfvvd4mn8rbu1j0/gradle-9.3.1/lib/native-platform-0.22-milestone-29.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+Running Gradle task 'assembleProfile'...                           39.3s
+√ Built build\app\outputs\flutter-apk\app-profile.apk (44.8MB)
+Installing build\app\outputs\flutter-apk\app-profile.apk...      1,612ms
+W/UiContextUtils(26327): Requested context is a non-UI Context. Creating a UI-Context with display: 0. Context: Context=android.app.Application@5bfc630, of which baseContext=android.app.ContextImpl@d6d950
+D/VRI[MainActivity](26327): WindowInsets changed: 1080x2400 statusBars:[0,63,0,0] navigationBars:[0,0,0,63] mandatorySystemGestures:[0,63,0,84] 
+I/Surface (26327): Creating surface for consumer unnamed-26327-0 with slotExpansion=1 for 64 slots
+I/Surface (26327): Creating surface for consumer VRI[MainActivity]#0(BLAST Consumer)0 with slotExpansion=1 for 64 slots
+I/Surface (26327): Creating surface for consumer unnamed-26327-1 with slotExpansion=1 for 64 slots
+I/Surface (26327): Creating surface for consumer 8e4918b SurfaceView[com.dailybudget.app/com.dailybudget.app.MainActivity]#1(BLAST Consumer)1 with slotExpansion=1 for 64 slots
+I/dailybudget.app(26327): Compiler allocated 5239KB to compile void android.view.ViewRootImpl.performTraversals(long)
+I/Choreographer(26327): Skipped 46 frames!  The application may be doing too much work on its main thread.
+D/WindowLayoutComponentImpl(26327): Register WindowLayoutInfoListener on Context=com.dailybudget.app.MainActivity@c602326, of which baseContext=android.app.ContextImpl@75ba703
+D/ProfileInstaller(26327): Installing profile for com.dailybudget.app
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:51337/D-Pvcu52Qns=/
+VMServiceFlutterDriver: Isolate found with number: 7789644447884043
+VMServiceFlutterDriver: Isolate 7789644447884043 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter (26327): 00:00 +0: TC-011-37 five hundred spends: grid and month change within 500 ms
+VMServiceFlutterDriver: Connected to Flutter application.
+D/InsetsController(26327): hide(ime())
+I/ImeTracker(26327): com.dailybudget.app:95acbb42: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+I/flutter (26327): TC-011-37 run 0: grid after 250 ms (16 ms frames, from launch)
+I/flutter (26327): TC-011-37 run 0: month change after 84 ms
+I/flutter (26327): TC-011-37 run 1: grid after 234 ms (16 ms frames, from launch)
+I/flutter (26327): TC-011-37 run 1: month change after 88 ms
+I/flutter (26327): TC-011-37 run 2: grid after 214 ms (16 ms frames, from launch)
+I/flutter (26327): TC-011-37 run 2: month change after 73 ms
+I/flutter (26327): TC-011-37 run 3: grid after 167 ms (16 ms frames, from launch)
+I/flutter (26327): TC-011-37 run 3: month change after 77 ms
+I/flutter (26327): TC-011-37 run 4: grid after 187 ms (16 ms frames, from launch)
+I/flutter (26327): TC-011-37 run 4: month change after 77 ms
+I/flutter (26327): TC-011-37 worst grid 250 ms, change 88 ms
+I/flutter (26327): 00:02 +1: (tearDownAll)
+All tests passed.
+I/flutter (26327): 00:02 +2: All tests passed!

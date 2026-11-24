@@ -6,11 +6,13 @@ import 'package:daily_budget/core/widgets/amount_field.dart';
 import 'package:daily_budget/data/preferences/in_memory_preferences_store.dart';
 import 'package:daily_budget/data/preferences/preference_keys.dart';
 import 'package:daily_budget/data/repositories/month_repository.dart';
+import 'package:daily_budget/data/repositories/savings_repository.dart';
 import 'package:daily_budget/domain/budget/budget.dart';
 import 'package:daily_budget/domain/preferences/hint_id.dart';
 import 'package:daily_budget/features/month_setup/widgets/salary_day_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:flutter_test/flutter_test.dart';
 
 import '../domain/budget/fixtures.dart';
@@ -100,6 +102,8 @@ Future<void> pumpHome(
   double textScale = 1,
   bool hintsSeen = true,
   bool disableAnimations = false,
+  List<Override> overrides = const [],
+  SavingsRepository? savings,
 }) async {
   theme.applyTo(tester);
   setUpScreen(
@@ -130,9 +134,10 @@ Future<void> pumpHome(
           FakeTransactionRepository(money),
         ),
         savingsRepositoryProvider.overrideWithValue(
-          FakeSavingsRepository(money),
+          savings ?? FakeSavingsRepository(money),
         ),
         clockProvider.overrideWithValue(clock.read),
+        ...overrides,
       ],
       child: const DailyBudgetApp(),
     ),
@@ -167,6 +172,15 @@ Future<void> tapVisible(WidgetTester tester, Finder finder) async {
   await tester.ensureVisible(finder.first);
   await tester.pumpAndSettle();
   await tester.tap(finder.first);
+}
+
+/// Opens Edit this month from Home: the ⋮ menu (tooltip `More`), then its
+/// `Edit this month` item (F-010 T-305).
+Future<void> tapEditThisMonth(WidgetTester tester) async {
+  await tapVisible(tester, find.byTooltip('More'));
+  await tester.pumpAndSettle();
+  await tester.tap(find.text('Edit this month'));
+  await tester.pumpAndSettle();
 }
 
 /// Taps the first text [label] (scrolled into view) and settles.

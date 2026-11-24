@@ -28,6 +28,7 @@ final class TodayLine {
     required this.netSpent,
     required this.result,
     required this.shortfall,
+    this.moneyIn = Paise.zero,
   });
 
   /// The Today line of [result] for its own `today`. Throws an
@@ -45,6 +46,7 @@ final class TodayLine {
       netSpent: day.netSpent,
       result: day.result!,
       shortfall: result.totals.shortfall,
+      moneyIn: day.moneyIn,
     );
   }
 
@@ -62,6 +64,10 @@ final class TodayLine {
 
   /// The month's shortfall (D-036), shown as `−₹x this month`; ₹0 if none.
   final Paise shortfall;
+
+  /// The money in (refunds, D-047) received today, already inside
+  /// [netSpent]: Home says `Includes ₹500 back from refunds`. ₹0 if none.
+  final Paise moneyIn;
 
   /// The amount after the result word: `result` without its sign.
   Paise get amount => result.isNegative ? -result : result;
@@ -81,4 +87,7 @@ final class TodayLine {
 
   /// Whether to show the month's shortfall line.
   bool get hasShortfall => shortfall.isPositive;
+
+  /// Whether today has money in, so Home adds the refunds line (AC-11).
+  bool get hasRefunds => moneyIn.isPositive;
 }

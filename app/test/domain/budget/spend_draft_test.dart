@@ -146,6 +146,8 @@ void main() {
       amount: p(25000),
       date: _nov9,
       note: 'Lunch',
+      category: null,
+      direction: SpendDirection.spend,
     ));
     expect(_draft('250').toFields(_limits).note, isNull);
     expect(_draft('250').copyWith(note: '   ').toFields(_limits).note, isNull);
@@ -202,5 +204,149 @@ void main() {
     );
     // Unreadable text still counts as typed.
     expect(initial.copyWith(amountText: 'abc').isChangedFrom(initial), isTrue);
+  });
+
+  test('TC-016-03 a money back draft becomes an in transaction', () {
+    final draft = _draft('500')
+        .copyWith(note: 'Amazon return', moneyBack: true);
+    expect(draft.toFields(_limits), (
+      amount: p(50000),
+      date: _nov9,
+      note: 'Amazon return',
+      category: null,
+      direction: SpendDirection.moneyIn,
+    ));
+    expect(_draft('500').toFields(_limits).direction, SpendDirection.spend);
+  });
+
+  test('TC-016-44 a refund never stores a category', () {
+    final draft = _draft('500')
+        .copyWith(category: SpendCategory.food, moneyBack: true);
+    expect(draft.toFields(_limits).category, isNull);
+    expect(draft.category, SpendCategory.food, reason: 'kept in the draft');
+    final back = draft.copyWith(moneyBack: false);
+    expect(back.toFields(_limits).category, SpendCategory.food);
+    expect(back.toFields(_limits).direction, SpendDirection.spend);
+  });
+
+  test('TC-016-46 converting a categorised spend clears its category', () {
+    final spend = Spend(
+      id: 4,
+      date: _nov9,
+      amount: p(25000),
+      createdAt: at(_nov9, 12),
+      category: SpendCategory.shopping,
+    );
+    final initial = SpendDraft.forEdit(spend, note: 'Shoes');
+    expect(initial.category, SpendCategory.shopping);
+    final converted = initial.copyWith(moneyBack: true);
+    expect(converted.isChangedFrom(initial), isTrue);
+    final fields = converted.toFields(_limits);
+    expect((fields.direction, fields.category), (SpendDirection.moneyIn, null));
+  });
+
+  test('TC-016-11 direction flips between in and out', () {
+    final refund = Spend(
+      id: 5,
+      date: _nov9,
+      amount: p(30000),
+      createdAt: at(_nov9, 12),
+      direction: SpendDirection.moneyIn,
+    );
+    final initial = SpendDraft.forEdit(refund);
+    expect(initial.moneyBack, isTrue);
+    expect(initial.toFields(_limits).direction, SpendDirection.moneyIn);
+    final spend = initial.copyWith(moneyBack: false);
+    final fields = spend.toFields(_limits);
+    expect((fields.direction, fields.category), (SpendDirection.spend, null));
+    expect(spend.effectiveCategory, SpendCategory.other);
+  });
+
+  test('TC-016-12 turning the switch counts as a change', () {
+    final refund = Spend(
+      id: 5,
+      date: _nov9,
+      amount: p(50000),
+      createdAt: at(_nov9, 12),
+      direction: SpendDirection.moneyIn,
+    );
+    final initial = SpendDraft.forEdit(refund);
+    expect(initial.isChangedFrom(initial), isFalse);
+    expect(initial.copyWith(moneyBack: false).isChangedFrom(initial), isTrue);
+    // A category picked while money back is on is not stored: no change.
+    expect(
+      initial.copyWith(category: SpendCategory.food).isChangedFrom(initial),
+      isFalse,
+    );
+  });
+
+  test('TC-015-64 changed compares the effective category', () {
+    final spend = Spend(
+      id: 4,
+      date: _nov9,
+      amount: p(25000),
+      createdAt: at(_nov9, 12),
+    );
+    final initial = SpendDraft.forEdit(spend, note: 'Lunch');
+    expect(initial.category, isNull);
+    expect(initial.effectiveCategory, SpendCategory.other);
+    // No category and Other are the same category.
+    expect(
+      initial.copyWith(category: SpendCategory.other).isChangedFrom(initial),
+      isFalse,
+    );
+    expect(
+      initial.copyWith(category: SpendCategory.food).isChangedFrom(initial),
+      isTrue,
+    );
+    final food = SpendDraft.forEdit(
+      Spend(
+        id: 4,
+        date: _nov9,
+        amount: p(25000),
+        createdAt: at(_nov9, 12),
+        category: SpendCategory.food,
+      ),
+      note: 'Lunch',
+    );
+    final other = food.copyWith(category: SpendCategory.other);
+    expect(other.isChangedFrom(food), isTrue);
+    expect(other.toFields(_limits).category, SpendCategory.other);
+  });
+
+  test('TC-016-07 a money back has the limits of a spend', () {
+    for (final text in ['', '0', '100000001', '12.345', 'abc']) {
+      expect(
+        _errors(_draft(text).copyWith(moneyBack: true)),
+        _errors(_draft(text)),
+        reason: text,
+      );
+    }
+    expect(_errors(_draft('500').copyWith(moneyBack: true)), isEmpty);
+  });
+
+  test('TC-016-09 a money back date follows the spend date limits', () {
+    final draft = _draft('500').copyWith(moneyBack: true);
+    expect(
+      _errors(draft.copyWith(date: d(2026, 11, 4))).single.problem,
+      SpendProblem.beforeFirstDay,
+    );
+    expect(
+      _errors(draft.copyWith(date: d(2026, 11, 10))).single.problem,
+      SpendProblem.afterLastDay,
+    );
+    expect(_errors(draft.copyWith(date: d(2026, 11, 5))), isEmpty);
+  });
+
+  test('TC-015-57 a category alone is a change from an empty add', () {
+    final initial = SpendDraft.forToday(_nov9);
+    expect(
+      initial.copyWith(category: SpendCategory.food).isChangedFrom(initial),
+      isTrue,
+    );
+    expect(
+      initial.copyWith(category: SpendCategory.other).isChangedFrom(initial),
+      isFalse,
+    );
   });
 }

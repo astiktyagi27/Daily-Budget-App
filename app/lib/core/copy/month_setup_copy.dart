@@ -250,14 +250,4 @@ abstract final class MonthSetupCopy {
   static const homeNewMonthDescription =
       "Check last month's numbers and confirm.";
   static const homeNewMonthHint = 'Set up your new budget month';
-  static const homeThisMonth = 'This month';
-  static const homeEditHint =
-      "Change this month's salary, target or fixed costs";
-  static String homeShortfall(String amount) => '$amount this month';
-  static const homeShortfallNote =
-      'Every spend this month counts as overspent.';
-  static String homeCardSpeech(String start, String end, String amount) =>
-      'This month, $start to $end, $amount a day.';
-  static String homeShortfallSpeech(String amount) =>
-      'Minus $amount this month. $homeShortfallNote';
 }

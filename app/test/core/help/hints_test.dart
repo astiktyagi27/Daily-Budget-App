@@ -26,9 +26,7 @@ const Map<String, String> _hints = {
   'Dashboard':
       "Check back after a week of spending. That's when your patterns start "
       'to show.',
-  'Transactions':
-      "Spotted a wrong amount or category later? You'll be able to fix it "
-      'right here.',
+  'Transactions': 'Tap a spend to fix it, or tap its category to change it.',
   'Settings':
       'Change the theme and other options here. Tap (i) next to a setting to '
       'learn what it does.',
@@ -38,6 +36,8 @@ const Map<String, String> _keys = {
   'Dashboard': 'hint.dashboard.v1.seen',
   'Transactions': 'hint.transactions.v1.seen',
   'Settings': 'hint.settings.v1.seen',
+  // The Home calendar's own tip (F-011, D-078): not a tab.
+  'Calendar': 'hint.calendar.v1.seen',
 };
 
 /// The hint card of the tab on screen (offstage tabs are not found).
@@ -381,12 +381,13 @@ void main() {
   });
 
   test('TC-004-21 each hint has its own id and key', () {
-    expect(HintId.values, hasLength(4));
+    expect(HintId.values, hasLength(5));
     expect(HintId.values.map((id) => id.storageSuffix).toSet(), {
       'home.v1',
       'dashboard.v1',
       'transactions.v1',
       'settings.v1',
+      'calendar.v1',
     });
     final keys = HintId.values.map(PreferenceKeys.hintSeen).toSet();
     expect(keys, _keys.values.toSet());

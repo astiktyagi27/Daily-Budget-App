@@ -47,7 +47,7 @@ const _Control _homeSetUp = (
 
 const Map<P1Screen, List<_Control>> _expected = {
   P1Screen.home: [_homeSetUp, ..._nav],
-  P1Screen.dashboard: _nav,
+  P1Screen.dashboard: [..._setUpMonth, ..._nav],
   P1Screen.transactions: [..._setUpMonth, ..._nav],
   P1Screen.settings: [..._settingsRows, ..._nav],
   P1Screen.settingsEnd: [..._settingsRows, ..._nav],
@@ -62,7 +62,7 @@ const Map<P1Screen, List<_Control>> _expected = {
     (label: 'Got it', hint: 'Close this explanation'),
   ],
   P1Screen.homeWithHint: [..._hint, _homeSetUp, ..._nav],
-  P1Screen.dashboardWithHint: [..._hint, ..._nav],
+  P1Screen.dashboardWithHint: [..._hint, ..._setUpMonth, ..._nav],
   P1Screen.transactionsWithHint: [..._hint, ..._setUpMonth, ..._nav],
   P1Screen.settingsWithHint: [..._hint, ..._settingsRows, ..._nav],
   P1Screen.slide1: _slides123,

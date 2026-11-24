@@ -1,0 +1,33 @@
+00:00 +0: loading C:/Users/mayan/Documents/Idea bank/daily-budget-app/app/integration_test/day_details_cover_flow_test.dart
+Running Gradle task 'assembleDebug'...                          
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/C:/Users/mayan/.gradle/wrapper/dists/gradle-9.3.1-all/9ot9r568e8zfvvd4mn8rbu1j0/gradle-9.3.1/lib/native-platform-0.22-milestone-29.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+Running Gradle task 'assembleDebug'...                             18.5s
+√ Built build\app\outputs\flutter-apk\app-debug.apk
+Installing build\app\outputs\flutter-apk\app-debug.apk...        1,013ms
+00:00 +0: TC-012-08 cover undo and remove survive a restart
+WARNING (drift): It looks like you've created the database class AppDatabase multiple times. When these two databases use the same QueryExecutor, race conditions will occur and might corrupt the database. 
+Try to follow the advice at https://drift.simonbinder.eu/faq/#using-the-database or, if you know what you're doing, set driftRuntimeOptions.dontWarnAboutMultipleDatabases = true
+Here is the stacktrace from when the database was opened a second time:
+#0      GeneratedDatabase._handleInstantiated (package:drift/src/runtime/api/db_base.dart:96:30)
+#1      GeneratedDatabase._whenConstructed (package:drift/src/runtime/api/db_base.dart:73:12)
+#2      new GeneratedDatabase (package:drift/src/runtime/api/db_base.dart:64:5)
+#3      new _$AppDatabase (package:daily_budget/data/database/app_database.g.dart:2391:36)
+#4      new AppDatabase (package:daily_budget/data/database/app_database.dart)
+#5      openAppDatabase (package:daily_budget/data/database/database_connection.dart:59:5)
+#6      openOnFile (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/real_app.dart:21:38)
+#7      main.<anonymous closure>.storedCovers (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/day_details_cover_flow_test.dart:54:27)
+#8      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/day_details_cover_flow_test.dart:101:18)
+<asynchronous suspension>
+#9      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#10     TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#11     StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+This warning will only appear on debug builds.
+00:09 +1: (tearDownAll)
+00:10 +1: All tests passed!

@@ -24,6 +24,7 @@ Future<void> _save(WidgetTester tester) async {
   FocusManager.instance.primaryFocus?.unfocus();
   await tester.pumpAndSettle();
   await tapLabel(tester, 'Save');
+  await scrollToTop(tester);
 }
 
 Future<void> _addSpend(
@@ -37,11 +38,12 @@ Future<void> _addSpend(
 }
 
 Future<void> _openEdit(WidgetTester tester, String rowText) async {
-  await tester.tap(find.text(rowText));
-  await tester.pumpAndSettle();
+  await tapRow(tester, rowText);
 }
 
 Future<void> _pickDay(WidgetTester tester, String day) async {
+  await tester.ensureVisible(find.byIcon(Icons.calendar_today_outlined));
+  await tester.pumpAndSettle();
   await tester.tap(find.byIcon(Icons.calendar_today_outlined));
   await tester.pumpAndSettle();
   await tester.tap(find.text(day));
@@ -54,6 +56,7 @@ Future<void> _saveChanges(WidgetTester tester) async {
   FocusManager.instance.primaryFocus?.unfocus();
   await tester.pumpAndSettle();
   await tapLabel(tester, 'Save changes');
+  await scrollToTop(tester);
 }
 
 String _noteText(WidgetTester tester) =>
@@ -134,6 +137,8 @@ void main() {
     await pumpTransactions(tester, money: e2Store());
     await _openAdd(tester);
     expect(find.text('Today · Mon, 9 Nov'), findsOneWidget);
+    await tester.ensureVisible(find.byIcon(Icons.calendar_today_outlined));
+    await tester.pumpAndSettle();
     await tester.tap(find.byIcon(Icons.calendar_today_outlined));
     await tester.pumpAndSettle();
     expect(find.text('Pick the day you spent it'), findsOneWidget);
@@ -162,6 +167,8 @@ void main() {
       clock: TestClock(DateTime(2026, 11, 12, 10)),
     );
     await _openAdd(tester);
+    await tester.ensureVisible(find.byIcon(Icons.calendar_today_outlined));
+    await tester.pumpAndSettle();
     await tester.tap(find.byIcon(Icons.calendar_today_outlined));
     await tester.pumpAndSettle();
     final picker = tester.widget<CalendarDatePicker>(
@@ -232,12 +239,18 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.text('Delete').last);
     await tester.pumpAndSettle();
+    await scrollToTop(tester);
     expect(todayLineText(tester), 'budget ₹830 · spent ₹520 · ₹310 left today');
     await _openAdd(tester);
     await _fill(tester, '310');
     await _pickDay(tester, '8');
     await _save(tester);
     expect(todayLineText(tester), 'budget ₹830 · spent ₹520 · ₹310 left today');
+    await tester.scrollUntilVisible(
+      find.text('Yesterday'),
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
     expect(find.text('Yesterday'), findsOneWidget);
     expect(find.text('Spend added'), findsOneWidget);
   });
@@ -460,6 +473,8 @@ void main() {
       clock: TestClock(DateTime(2026, 11, 12, 10)),
     );
     await _openEdit(tester, 'Lunch');
+    await tester.ensureVisible(find.byIcon(Icons.calendar_today_outlined));
+    await tester.pumpAndSettle();
     await tester.tap(find.byIcon(Icons.calendar_today_outlined));
     await tester.pumpAndSettle();
     final picker = tester.widget<CalendarDatePicker>(

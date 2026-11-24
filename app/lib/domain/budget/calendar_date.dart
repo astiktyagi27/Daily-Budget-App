@@ -40,6 +40,10 @@ extension type const CalendarDate.fromDayNumber(int dayNumber) {
 
   int get day => _utcMidnight.day;
 
+  /// The weekday, 0 for Monday to 6 for Sunday. 1 January 1970 (day number
+  /// 0) was a Thursday.
+  int get weekdayIndex => (dayNumber + 3) % 7;
+
   /// The date [days] days later (earlier when negative).
   CalendarDate addDays(int days) =>
       CalendarDate.fromDayNumber(dayNumber + days);

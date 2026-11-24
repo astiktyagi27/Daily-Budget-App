@@ -7,6 +7,7 @@
 | **Author** | Tester (written **before** development, approved by Project Manager at Gate 1) |
 | **Status** | Approved (Gate 1, 2026-11-10); Step 8 run R1 2026-11-13: 45 Pass, 1 Partial, 1 Blocked, 1 Not run, 1 N/A, 0 Fail; **run R2 2026-11-16 (Gate 4 conditions): 47 Pass, 1 Blocked-needs-human (TC-009-22), 1 N/A (TC-009-18), 0 Fail** (report in section 5) |
 | **Change history** | 2026-11-10 (Tester, Step 4): first version, TC-009-01 … TC-009-48. Same day: aligned with the Developer's draft plan (file names, impact §2.1, open questions in §2.3) and AC → TC map added (§2.4); no ID changed. 2026-11-10 (PM, Gate 1/2): sheets-not-dialogs and finder rule (F-008 §0); TC-009-02, -18, -21, -28, -30, -34, -40 aligned with the approved design and D-048/D-050; notes §2.3 answered; status Approved |
+| | 2026-11-16 (Tester, T-312): Phase 3 impact note added to §2.1 (shared `TodayResultLine`, `TodayLine.moneyIn`, editor order D-074); no case or ID changed |
 
 ## 0. How to run these cases
 
@@ -101,6 +102,7 @@ Aligned with plan F-009 §8 (F-003 Transactions cases and `test/features/tabs/em
 - **F-004:** TC-004-06 gains the Phase 2 controls via TC-009-21; Transactions hint TC-009-44.
 - **F-006/F-007/F-008:** Today line numbers from the engine (TC-006-11, -14, -21); stores via repositories (TC-007-11, -18); setup buttons lead to F-008 (TC-008-01).
 - `tests/REGRESSION.md`: add "worked example §2 steps 1–6 on the emulator" (TC-009-45) after Step 8.
+- **Phase 3 (T-312, D-077, F-010 T-303 and T-305):** F-009 has no case for the F-008 This month card, so nothing here retires. What changes: (1) the Today line moves to the shared `TodayResultLine` (`core/widgets/today_result_line.dart`) used by the Transactions Today card and by Home's Today card; **TC-009-09, -10, -39, -40** are run before and after the extraction and again with F-010 (they are the proof nothing changed), plus TC-009-23, -29, -45, -47 and the Transactions sweep TC-009-20; the widget finder or file path in the `Automated test` cells may move with the extraction, the expectations do not. (2) `TodayLine` gains an optional `moneyIn` (default ₹0): existing F-009 calls and cases are unchanged. (3) The F-009 editor is edited later by F-012 T-342, F-015 T-420 and T-424 and F-016 T-442 (D-074: one owner at a time, each lands green first); the F-009 re-run list stands. (4) With F-010 the Home tab also shows today's line (`Today · Fri, 13 Nov`); the Transactions copy `Today: budget … · spent … · … left today` of TC-009-09 stays exactly as it is.
 
 ### 2.2 Regression
 All F-001 to F-005 Regression-yes cases (with the F-003 updates above), F-006 to F-008 cases, and `tests/REGRESSION.md`.

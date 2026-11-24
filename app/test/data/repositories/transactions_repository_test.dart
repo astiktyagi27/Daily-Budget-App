@@ -347,10 +347,9 @@ void main() {
     final nov12 = d(2026, 11, 12);
     await repos.spends.add(
       month.id,
-      fields(nov12, 50000, 'Refund'),
+      fields(nov12, 50000, 'Refund', null, SpendDirection.moneyIn),
       today: nov12,
       now: at(nov12, 8),
-      direction: SpendDirection.moneyIn,
     );
     await repos.spends.add(
       month.id,
@@ -392,6 +391,44 @@ void main() {
         "created_at, edited_at) VALUES (${month.id}, 20766, 5, 'refund', 0, 0)",
       ),
       throwsA(isA<Exception>()),
+    );
+  });
+  test('TC-016-41 stored money back uses the in direction', () async {
+    final (repos, month) = await seeded();
+    await repos.spends.add(
+      month,
+      fields(nov9, 50000, 'Amazon return', null, SpendDirection.moneyIn),
+      today: today,
+      now: at(today, 8),
+    );
+    await repos.spends.add(
+      month,
+      fields(nov9, 25000, 'Lunch'),
+      today: today,
+      now: at(today, 9),
+    );
+    final rows = await repos.db
+        .customSelect(
+          'SELECT direction, category, source, amount_paise FROM transactions '
+          'ORDER BY id',
+        )
+        .get();
+    expect(
+      [for (final r in rows) r.data],
+      [
+        {
+          'direction': 'money_in',
+          'category': null,
+          'source': 'manual',
+          'amount_paise': 50000,
+        },
+        {
+          'direction': 'spend',
+          'category': null,
+          'source': 'manual',
+          'amount_paise': 25000,
+        },
+      ],
     );
   });
 }

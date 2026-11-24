@@ -21,6 +21,7 @@ class AmountField extends StatelessWidget {
     this.hintText,
     this.enabled = true,
     this.large = false,
+    this.currencyPrefix = prefix,
     this.textInputAction,
     this.onChanged,
     this.onEditingComplete,
@@ -45,6 +46,9 @@ class AmountField extends StatelessWidget {
 
   /// The 64 dp field with the value in `moneyLarge` (Add spend).
   final bool large;
+
+  /// The fixed prefix shown in the field: [prefix], or `+₹` for money back.
+  final String currencyPrefix;
   final TextInputAction? textInputAction;
   final ValueChanged<String>? onChanged;
   final VoidCallback? onEditingComplete;
@@ -62,6 +66,7 @@ class AmountField extends StatelessWidget {
       hintText: hintText,
       enabled: enabled,
       isAmount: true,
+      prefix: currencyPrefix,
       large: large,
       textInputAction: textInputAction,
       onChanged: onChanged,

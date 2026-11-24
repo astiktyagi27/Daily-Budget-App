@@ -149,6 +149,9 @@ class _MonthSetupScreenState extends ConsumerState<MonthSetupScreen> {
         SnackBar(
           content: Text(MonthSetupCopy.removedMessage(removed.item.name)),
           duration: const Duration(seconds: 6),
+          // A snackbar with an action stays until dismissed unless told not
+          // to; it stays only while a screen reader is on (design §6, D-077).
+          persist: MediaQuery.accessibleNavigationOf(context),
           action: SnackBarAction(
             label: MonthSetupCopy.undo,
             onPressed: () => _controller.restoreItem(removed),

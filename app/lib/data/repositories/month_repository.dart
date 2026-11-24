@@ -24,6 +24,23 @@ final class StoredMonth {
   final List<BudgetPeriod> periods;
 }
 
+/// One stored month in the month index: just enough to browse between months
+/// (F-011 AC-12), without periods or fixed costs.
+final class MonthRef {
+  const new({
+    required this.id,
+    required this.month,
+    required this.firstBudgetedDay,
+  });
+
+  final int id;
+
+  final BudgetMonth month;
+
+  /// The month's start, or the setup day of a mid-month start (D-034, D-057).
+  final CalendarDate firstBudgetedDay;
+}
+
 /// What F-008 saves when the user confirms a month: the month and its first
 /// period with that period's fixed costs, as one unit (F-007 AC-4).
 final class NewMonth {
@@ -59,6 +76,13 @@ abstract interface class MonthRepository {
 
   /// One month by id, or null if it does not exist.
   Stream<StoredMonth?> watchMonth(int monthId);
+
+  /// Every stored month, newest first (by start date), with no entry for a
+  /// month that was never set up (the consumer sees the gap in the dates).
+  /// Empty before the first setup, never an error for that. Emits again when
+  /// a month is added; a period, fixed cost or spend change does not change
+  /// it (D-074, D-078).
+  Stream<List<MonthRef>> watchMonthIndex();
 
   Future<StoredMonth?> latestConfirmedMonth();
 

@@ -6,7 +6,7 @@ import 'fake_money_store.dart';
 /// In-memory [TransactionRepository] for widget tests (F-007 plan 2). Lists
 /// come back in the real order: newest day, newest created, highest id.
 final class FakeTransactionRepository implements TransactionRepository {
-  const new(this.store);
+  new(this.store);
 
   final FakeMoneyStore store;
 
@@ -21,7 +21,7 @@ final class FakeTransactionRepository implements TransactionRepository {
 
   @override
   Stream<List<StoredSpend>> watchMonthSpends(int monthId) =>
-      store.watch(() => _sorted(monthId));
+      store.watch(() => _sorted(monthId), monthId: monthId);
 
   @override
   Future<SpendWriteOutcome> add(
@@ -29,7 +29,6 @@ final class FakeTransactionRepository implements TransactionRepository {
     SpendFields fields, {
     required CalendarDate today,
     required int now,
-    SpendDirection direction = SpendDirection.spend,
   }) async {
     _validate(fields);
     store.checkWrite();
@@ -43,7 +42,8 @@ final class FakeTransactionRepository implements TransactionRepository {
               date: fields.date,
               amount: fields.amount,
               createdAt: now,
-              direction: direction,
+              direction: fields.direction,
+              category: fields.category,
             ),
             note: fields.note,
           ),
@@ -68,11 +68,42 @@ final class FakeTransactionRepository implements TransactionRepository {
         date: fields.date,
         amount: fields.amount,
         createdAt: old.createdAt,
-        direction: old.direction,
+        direction: fields.direction,
+        category: fields.category,
       ),
       note: fields.note,
     );
     return _finish(id, monthId, today);
+  }
+
+  /// How many [updateCategory] calls wrote (a no-op pick must not write).
+  int categoryWrites = 0;
+
+  @override
+  Future<void> updateCategory(
+    int id,
+    SpendCategory? category, {
+    required int now,
+  }) async {
+    store.checkWrite();
+    final (monthId, index) = _find(id);
+    final old = store.spendsByMonth[monthId]![index];
+    if (old.spend.direction == SpendDirection.moneyIn) {
+      throw ArgumentError.value(id, 'id', 'is money in: it has no category');
+    }
+    categoryWrites++;
+    store.spendsByMonth[monthId]![index] = StoredSpend(
+      spend: Spend(
+        id: id,
+        date: old.spend.date,
+        amount: old.spend.amount,
+        createdAt: old.spend.createdAt,
+        direction: old.spend.direction,
+        category: category,
+      ),
+      note: old.note,
+    );
+    store.notify();
   }
 
   @override
@@ -106,6 +137,13 @@ final class FakeTransactionRepository implements TransactionRepository {
         fields.amount.value,
         'amount',
         'must be above 0',
+      );
+    }
+    if (fields.direction == SpendDirection.moneyIn && fields.category != null) {
+      throw ArgumentError.value(
+        fields.category,
+        'category',
+        'money in has no category',
       );
     }
   }

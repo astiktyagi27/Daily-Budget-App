@@ -1,0 +1,14 @@
+home_500 exit 1 secs 67
+calendar_500 exit 1 secs 59
+day_details_cover_flow exit 0 secs 47
+statement_speed exit 1 secs 47
+dashboard_500 exit 1 secs 39
+manual_transactions_flow exit 0 secs 55
+money_back_flow exit 1 secs 63
+month_setup_flow exit 1 secs 75
+persistence exit 0 secs 40
+transactions_500 exit 0 secs 64
+transactions_search exit 1 secs 53
+onboarding_flow exit 0 secs 39
+preferences_persistence exit 0 secs 40
+all-finished

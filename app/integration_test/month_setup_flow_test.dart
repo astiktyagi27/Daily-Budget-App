@@ -14,7 +14,7 @@ import 'real_preferences.dart';
 /// 5 Nov 2026, the first day of month E2 (salary day 5th).
 final _fifthNov = DateTime(2026, 11, 5, 10);
 
-const _e2Home = '5 Nov – 4 Dec · ₹830 a day';
+const _e2Home = '₹830/day · 5 Nov – 4 Dec';
 
 Future<void> _enterE2AndStart(WidgetTester tester) async {
   await pumpUntil(
@@ -86,6 +86,9 @@ void main() {
       reason: 'Home shows $_e2Home after the restart',
     );
 
+    // T-305: Edit this month moved into the overflow menu of the summary.
+    await tester.tap(find.byTooltip('More'));
+    await tester.pumpAndSettle();
     await tapText(tester, 'Edit this month');
     expect(typed(tester, amountInput('Monthly salary')), '40000');
     expect(

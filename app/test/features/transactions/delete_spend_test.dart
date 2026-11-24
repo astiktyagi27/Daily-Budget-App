@@ -6,8 +6,7 @@ import '../../helpers/transactions_harness.dart';
 import '../../support/find_copy.dart';
 
 Future<void> _openDelete(WidgetTester tester, String rowText) async {
-  await tester.tap(find.text(rowText));
-  await tester.pumpAndSettle();
+  await tapRow(tester, rowText);
   await tester.ensureVisible(find.text('Delete'));
   await tester.pumpAndSettle();
   await tester.tap(find.text('Delete'));

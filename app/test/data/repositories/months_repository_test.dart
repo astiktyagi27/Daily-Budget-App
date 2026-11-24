@@ -41,7 +41,8 @@ void main() {
         today: today,
         now: at(today, 9),
       );
-      expect(decision, isA<CoverAllowed>());
+      expect(decision.decision, isA<CoverAllowed>());
+      expect(decision.coverId, isNotNull);
       await repos.db.close();
 
       // Restart (sim, DB): a new database object on the same file.
@@ -150,7 +151,8 @@ void main() {
       today: today,
       now: at(today, 9),
     );
-    expect(decision, isA<CoverAllowed>());
+    expect(decision.decision, isA<CoverAllowed>());
+    expect(decision.coverId, isNotNull);
     await pumpEventQueue();
     expect(moves.values, hasLength(2));
     expect(moves.values.last.single.amount, const Paise(17000));
@@ -162,7 +164,8 @@ void main() {
       today: today,
       now: at(today, 10),
     );
-    expect(refused, isA<CoverRefused>());
+    expect(refused.decision, isA<CoverRefused>());
+    expect(refused.coverId, isNull);
     await pumpEventQueue();
     expect(moves.values, hasLength(2));
     expect(current.errors, isEmpty);

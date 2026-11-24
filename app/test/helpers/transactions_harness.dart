@@ -65,6 +65,43 @@ int addSpendTo(
   String? note,
   int? createdAt,
   int monthIndex = 0,
+}) => _addTransaction(
+  store,
+  date,
+  paise,
+  SpendDirection.spend,
+  note: note,
+  createdAt: createdAt,
+  monthIndex: monthIndex,
+);
+
+/// Adds money in (a refund, D-047) of [paise] on [date] to the store's month;
+/// `addSpendTo` has no direction (Phase 3 harness, T-308).
+int addMoneyInTo(
+  FakeMoneyStore store,
+  CalendarDate date,
+  int paise, {
+  String? note,
+  int? createdAt,
+  int monthIndex = 0,
+}) => _addTransaction(
+  store,
+  date,
+  paise,
+  SpendDirection.moneyIn,
+  note: note,
+  createdAt: createdAt,
+  monthIndex: monthIndex,
+);
+
+int _addTransaction(
+  FakeMoneyStore store,
+  CalendarDate date,
+  int paise,
+  SpendDirection direction, {
+  String? note,
+  int? createdAt,
+  int monthIndex = 0,
 }) {
   final monthId = store.months[monthIndex].id;
   final id = store.nextId();
@@ -77,6 +114,7 @@ int addSpendTo(
             date: date,
             amount: Paise(paise),
             createdAt: createdAt ?? at(date, 12),
+            direction: direction,
           ),
           note: note,
         ),
@@ -180,6 +218,27 @@ Future<void> typeInto(WidgetTester tester, Finder field, String text) async {
 /// The editor's amount field and note field.
 Finder get amountInput => find.byType(TextField).first;
 Finder get noteInput => find.byType(TextField).last;
+
+/// Scrolls the list until [text] is on screen, then taps it. The search and
+/// the chips push the rows down (F-015), so a row is not always built or
+/// visible when the tab opens.
+Future<void> tapRow(WidgetTester tester, String text) async {
+  await tester.scrollUntilVisible(
+    find.text(text),
+    200,
+    scrollable: find.byType(Scrollable).first,
+  );
+  await tester.pumpAndSettle();
+  await tester.tap(find.text(text).first);
+  await tester.pumpAndSettle();
+}
+
+/// Scrolls the tab back to its top (the Today card), as the user does after
+/// a long list.
+Future<void> scrollToTop(WidgetTester tester) async {
+  await tester.drag(find.byType(Scrollable).first, const Offset(0, 5000));
+  await tester.pumpAndSettle();
+}
 
 /// Taps the first button whose label is [label].
 Future<void> tapLabel(WidgetTester tester, String label) async {

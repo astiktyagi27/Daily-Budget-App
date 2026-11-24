@@ -1,3 +1,4 @@
+import 'package:daily_budget/core/copy/money_back_copy.dart';
 import 'package:daily_budget/core/copy/storage_copy.dart';
 import 'package:daily_budget/core/copy/transactions_copy.dart';
 import 'package:daily_budget/core/format/date_format.dart';
@@ -16,28 +17,44 @@ import 'package:daily_budget/data/repositories/month_repository.dart';
 import 'package:daily_budget/data/repositories/storage_exception.dart';
 import 'package:daily_budget/data/repositories/transaction_repository.dart';
 import 'package:daily_budget/domain/budget/budget.dart';
+import 'package:daily_budget/features/transactions/widgets/category_field.dart';
 import 'package:daily_budget/features/transactions/widgets/delete_spend_sheet.dart';
 import 'package:daily_budget/features/transactions/widgets/discard_spend_sheet.dart';
+import 'package:daily_budget/features/transactions/widgets/money_back_switch.dart';
 import 'package:daily_budget/features/transactions/widgets/note_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-enum SpendEditorOutcome { added, updated, deleted }
+/// What the editor did, named by what the entry **is after** the write: a
+/// refund turned into a spend and saved is `updated`, not `moneyBackUpdated`
+/// (D-084 (4), F-016 TC-016-11).
+enum SpendEditorOutcome {
+  added,
+  updated,
+  deleted,
+  moneyBackAdded,
+  moneyBackUpdated,
+  moneyBackDeleted,
+}
 
 /// What the editor hands back when it closes after a write: what happened,
-/// and the covers the write took back (D-040), for the tab to explain.
+/// the covers the write took back (D-040), for the tab to explain, and the
+/// day the spend was saved on (or deleted from), so a caller can say it moved.
 typedef SpendEditorResult = ({
   SpendEditorOutcome outcome,
   List<CoverReduction> reductions,
+  CalendarDate date,
 });
 
 /// The full-screen Add / Edit spend form (`transactions.md` §8). [editing]
-/// null adds a spend.
+/// null adds a spend, dated [initialDate] when given (day details opens it on
+/// its day) and today otherwise; editing ignores [initialDate].
 class SpendEditorScreen extends ConsumerStatefulWidget {
-  const new({required this.month, this.editing, super.key});
+  const new({required this.month, this.editing, this.initialDate, super.key});
 
   final StoredMonth month;
   final StoredSpend? editing;
+  final CalendarDate? initialDate;
 
   @override
   ConsumerState<SpendEditorScreen> createState() => _SpendEditorScreenState();
@@ -49,6 +66,8 @@ class _SpendEditorScreenState extends ConsumerState<SpendEditorScreen> {
   late final TextEditingController _note;
   final _amountFocus = FocusNode(debugLabel: 'SpendAmount');
   late CalendarDate _date;
+  SpendCategory? _category;
+  late bool _moneyBack;
   bool _saving = false;
   bool _showErrors = false;
 
@@ -59,9 +78,11 @@ class _SpendEditorScreenState extends ConsumerState<SpendEditorScreen> {
     super.initState();
     final editing = widget.editing;
     _initial = editing == null
-        ? SpendDraft.forToday(ref.read(todayProvider))
+        ? SpendDraft(date: widget.initialDate ?? ref.read(todayProvider))
         : SpendDraft.forEdit(editing.spend, note: editing.note);
     _date = _initial.date;
+    _category = _initial.category;
+    _moneyBack = _initial.moneyBack;
     _amount = TextEditingController(text: _initial.amountText);
     _note = TextEditingController(text: _initial.note);
     if (!_isEdit) {
@@ -79,8 +100,20 @@ class _SpendEditorScreenState extends ConsumerState<SpendEditorScreen> {
     super.dispose();
   }
 
-  SpendDraft get _draft =>
-      SpendDraft(date: _date, amountText: _amount.text, note: _note.text);
+  SpendDraft get _draft => SpendDraft(
+    date: _date,
+    amountText: _amount.text,
+    note: _note.text,
+    category: _category,
+    moneyBack: _moneyBack,
+  );
+
+  /// Whether leaving needs a Discard question. On Add the Money back switch
+  /// alone is not input (nothing typed, nothing lost); a category picked on
+  /// its own is (F-015 §2.6, D-082 (6)).
+  bool get _hasUnsaved => _isEdit
+      ? _draft.isChangedFrom(_initial)
+      : _draft.copyWith(moneyBack: _initial.moneyBack).isChangedFrom(_initial);
 
   SpendDateLimits get _limits => spendDateLimits(
     month: widget.month.month,
@@ -142,10 +175,14 @@ class _SpendEditorScreenState extends ConsumerState<SpendEditorScreen> {
             );
       if (!mounted) return;
       Navigator.of(context).pop<SpendEditorResult>((
-        outcome: editing == null
-            ? SpendEditorOutcome.added
-            : SpendEditorOutcome.updated,
+        outcome: switch ((editing == null, draft.moneyBack)) {
+          (true, false) => SpendEditorOutcome.added,
+          (true, true) => SpendEditorOutcome.moneyBackAdded,
+          (false, false) => SpendEditorOutcome.updated,
+          (false, true) => SpendEditorOutcome.moneyBackUpdated,
+        },
         reductions: written.reductions,
+        date: draft.date,
       ));
     } on StorageException {
       if (!mounted) return;
@@ -158,10 +195,12 @@ class _SpendEditorScreenState extends ConsumerState<SpendEditorScreen> {
     final editing = widget.editing;
     if (editing == null || _saving) return;
     final messenger = ScaffoldMessenger.of(context);
+    final wasMoneyBack = editing.spend.direction == SpendDirection.moneyIn;
     final confirmed = await showDeleteSpendSheet(
       context,
       amount: editing.spend.amount,
       date: editing.spend.date,
+      isMoneyBack: wasMoneyBack,
     );
     if (!confirmed || !mounted) return;
     setState(() => _saving = true);
@@ -171,8 +210,11 @@ class _SpendEditorScreenState extends ConsumerState<SpendEditorScreen> {
           .delete(editing.spend.id, today: ref.read(todayProvider));
       if (!mounted) return;
       Navigator.of(context).pop<SpendEditorResult>((
-        outcome: SpendEditorOutcome.deleted,
+        outcome: wasMoneyBack
+            ? SpendEditorOutcome.moneyBackDeleted
+            : SpendEditorOutcome.deleted,
         reductions: written.reductions,
+        date: editing.spend.date,
       ));
     } on StorageException {
       if (!mounted) return;
@@ -200,6 +242,13 @@ class _SpendEditorScreenState extends ConsumerState<SpendEditorScreen> {
   /// Room above the pinned dock: its button, padding and the rule.
   static const double _dockClearance = 96;
 
+  String _title(bool moneyBack) => switch ((_isEdit, moneyBack)) {
+    (false, false) => TransactionsCopy.addTitle,
+    (true, false) => TransactionsCopy.editTitle,
+    (false, true) => MoneyBackCopy.addTitle,
+    (true, true) => MoneyBackCopy.editTitle,
+  };
+
   String? _amountError(List<SpendError> errors) {
     for (final error in errors) {
       if (error.field != SpendField.amount) continue;
@@ -220,13 +269,19 @@ class _SpendEditorScreenState extends ConsumerState<SpendEditorScreen> {
     final dateError = errors.any((e) => e.field == SpendField.date)
         ? TransactionsCopy.dateOutOfRange
         : null;
-    final changed = _draft.isChangedFrom(_initial);
+    final changed = _hasUnsaved;
     final canSave = !_isEdit || changed;
     final docked = ActionDock.fits(context);
+    final moneyBack = _moneyBack;
+    final motion = BudgetMotion.of(context);
+    final wasMoneyBack =
+        widget.editing?.spend.direction == SpendDirection.moneyIn;
     final save = BudgetButton.primary(
       label: _isEdit ? TransactionsCopy.saveChanges : TransactionsCopy.save,
       semanticsHint: _isEdit
           ? TransactionsCopy.saveChangesHint
+          : moneyBack
+          ? MoneyBackCopy.saveHint
           : TransactionsCopy.saveHint,
       loading: _saving,
       onPressed: canSave ? _save : null,
@@ -236,7 +291,11 @@ class _SpendEditorScreenState extends ConsumerState<SpendEditorScreen> {
       canPop: !changed || _saving,
       onPopInvokedWithResult: (didPop, _) async {
         if (didPop) return;
-        final discard = await showDiscardSpendSheet(context, isEdit: _isEdit);
+        final discard = await showDiscardSpendSheet(
+          context,
+          isEdit: _isEdit,
+          isMoneyBack: moneyBack,
+        );
         if (discard && context.mounted) Navigator.of(context).pop();
       },
       child: Scaffold(
@@ -270,28 +329,45 @@ class _SpendEditorScreenState extends ConsumerState<SpendEditorScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Semantics(
-                        header: true,
-                        child: Text(
-                          _isEdit
-                              ? TransactionsCopy.editTitle
-                              : TransactionsCopy.addTitle,
-                          style: context.budgetText.headline.copyWith(
-                            color: context.budgetColors.textPrimary,
+                      AnimatedSwitcher(
+                        duration: motion.base,
+                        child: Semantics(
+                          key: ValueKey(moneyBack),
+                          header: true,
+                          child: Align(
+                            alignment: AlignmentDirectional.centerStart,
+                            child: Text(
+                              _title(moneyBack),
+                              style: context.budgetText.headline.copyWith(
+                                color: context.budgetColors.textPrimary,
+                              ),
+                            ),
                           ),
                         ),
                       ),
                       const SizedBox(height: BudgetSpacing.space5),
                       AmountField(
-                        label: TransactionsCopy.amountLabel,
-                        description: TransactionsCopy.amountDescription,
+                        label: moneyBack
+                            ? MoneyBackCopy.amountLabel
+                            : TransactionsCopy.amountLabel,
+                        description: moneyBack
+                            ? MoneyBackCopy.amountDescription
+                            : TransactionsCopy.amountDescription,
+                        currencyPrefix: moneyBack
+                            ? MoneyBackCopy.amountPrefix
+                            : AmountField.prefix,
                         controller: _amount,
                         focusNode: _amountFocus,
                         errorText: _amountError(errors),
                         large: true,
                         onChanged: (_) => _touch(),
                       ),
-                      const SizedBox(height: BudgetSpacing.space5),
+                      const SizedBox(height: BudgetSpacing.space3),
+                      MoneyBackSwitch(
+                        value: moneyBack,
+                        onChanged: (on) => setState(() => _moneyBack = on),
+                      ),
+                      const SizedBox(height: BudgetSpacing.space3),
                       _DateField(
                         date: _date,
                         today: today,
@@ -299,7 +375,32 @@ class _SpendEditorScreenState extends ConsumerState<SpendEditorScreen> {
                         onTap: _pickDate,
                       ),
                       const SizedBox(height: BudgetSpacing.space5),
-                      NoteField(controller: _note, onChanged: (_) => _touch()),
+                      NoteField(
+                        controller: _note,
+                        onChanged: (_) => _touch(),
+                        description: moneyBack
+                            ? MoneyBackCopy.noteDescription
+                            : TransactionsCopy.noteDescription,
+                      ),
+                      // A refund has no category: the row collapses and the
+                      // picked one waits in the draft (F-016 AC-2).
+                      AnimatedSize(
+                        duration: motion.emphasis,
+                        curve: BudgetMotion.decelerate,
+                        alignment: Alignment.topCenter,
+                        child: moneyBack
+                            ? const SizedBox(width: double.infinity)
+                            : Padding(
+                                padding: const EdgeInsets.only(
+                                  top: BudgetSpacing.space5,
+                                ),
+                                child: CategoryField(
+                                  category: _draft.effectiveCategory,
+                                  onPicked: (picked) =>
+                                      setState(() => _category = picked),
+                                ),
+                              ),
+                      ),
                       if (!docked) ...[
                         const SizedBox(height: BudgetSpacing.space6),
                         save,
@@ -308,7 +409,9 @@ class _SpendEditorScreenState extends ConsumerState<SpendEditorScreen> {
                         const SizedBox(height: BudgetSpacing.space8),
                         BudgetButton.destructive(
                           label: TransactionsCopy.delete,
-                          semanticsHint: TransactionsCopy.deleteHint,
+                          semanticsHint: wasMoneyBack
+                              ? MoneyBackCopy.deleteHint
+                              : TransactionsCopy.deleteHint,
                           onPressed: _saving ? null : _delete,
                         ),
                       ],

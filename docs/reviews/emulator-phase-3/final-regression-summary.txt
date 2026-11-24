@@ -1,0 +1,14 @@
+calendar_500 exit 1
+dashboard_500 exit 0
+day_details_cover_flow exit 0
+home_500 exit 1
+manual_transactions_flow exit 0
+onboarding_flow exit 0
+persistence exit 0
+preferences_persistence exit 0
+statement_speed exit 0
+transactions_500 exit 0
+transactions_search exit 0
+money_back_flow exit 0
+month_setup_flow exit 0
+DONE

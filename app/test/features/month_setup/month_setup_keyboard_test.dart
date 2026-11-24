@@ -50,7 +50,7 @@ Future<void> _open(
         size: size,
         textScale: textScale,
       );
-      await tapText(tester, 'Edit this month');
+      await tapEditThisMonth(tester);
   }
 }
 

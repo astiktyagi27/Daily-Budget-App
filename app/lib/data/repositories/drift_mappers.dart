@@ -35,6 +35,7 @@ StoredSpend storedSpendOf(TransactionRow row) => StoredSpend(
     amount: row.amountPaise,
     createdAt: row.createdAt,
     direction: directionOf(row.direction),
+    category: row.category == null ? null : SpendCategory.fromKey(row.category),
   ),
   note: row.note.isEmpty ? null : row.note,
 );

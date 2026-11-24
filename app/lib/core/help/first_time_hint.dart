@@ -27,6 +27,7 @@ class FirstTimeHint extends ConsumerStatefulWidget {
     HintId.dashboard => HelpCopy.hintDashboard,
     HintId.transactions => HelpCopy.hintTransactions,
     HintId.settings => HelpCopy.hintSettings,
+    HintId.calendar => HelpCopy.hintCalendar,
   };
 
   @override

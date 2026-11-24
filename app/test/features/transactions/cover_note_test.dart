@@ -19,10 +19,7 @@ import '../../helpers/transactions_harness.dart';
 }
 
 Future<void> _edit(WidgetTester tester, String row, String amount) async {
-  await tester.ensureVisible(find.text(row));
-  await tester.pumpAndSettle();
-  await tester.tap(find.text(row));
-  await tester.pumpAndSettle();
+  await tapRow(tester, row);
   await tester.enterText(amountInput, amount);
   await tester.pump();
   await tapLabel(tester, 'Save changes');

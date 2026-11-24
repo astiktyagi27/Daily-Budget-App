@@ -28,8 +28,33 @@ String formatRupeesForSpeech(Paise amount) {
   return amount.isNegative && rupees > 0 ? 'minus $text' : text;
 }
 
+/// The amount as a calendar cell writes it (F-011 AC-11, design system §7.5,
+/// D-073): below ₹10,000 the full [formatRupees] text; from ₹10,000 thousands
+/// (`₹12k`), lakh (`₹1.5L`, `₹12L`) and crore (`₹1.5Cr`, `₹12Cr`), cut and
+/// never rounded up, a trailing `.0` dropped. The amount alone decides. The
+/// sign is kept; `−₹0` never appears.
+String formatRupeesShort(Paise amount) {
+  final rupees = _wholeRupees(amount);
+  if (rupees < 10000) return formatRupees(amount);
+  final text = switch (rupees) {
+    < 100000 => '${rupees ~/ 1000}k',
+    < 1000000 => _oneDecimal(rupees ~/ 10000, 'L'),
+    < 10000000 => '${rupees ~/ 100000}L',
+    < 100000000 => _oneDecimal(rupees ~/ 1000000, 'Cr'),
+    _ => '${rupees ~/ 10000000}Cr',
+  };
+  return amount.isNegative ? '$_minus$_wordJoiner₹$text' : '₹$text';
+}
+
+/// [tenths] tenths of a unit: `15` and `L` give `1.5L`, `10` gives `1L`.
+String _oneDecimal(int tenths, String unit) {
+  final whole = tenths ~/ 10;
+  final decimal = tenths % 10;
+  return decimal == 0 ? '$whole$unit' : '$whole.$decimal$unit';
+}
+
 /// Whole rupees of [amount] without its sign, rounded down.
-int _wholeRupees(Paise amount) => amount.value.abs() ~/ 100;
+int _wholeRupees(Paise amount) => amount.wholeRupees.abs();
 
 /// `1234567` becomes `12,34,567`: the last three digits, then pairs.
 String _groupIndian(int rupees) {
@@ -43,4 +68,13 @@ String _groupIndian(int rupees) {
     groups.add(head.substring(start, end));
   }
   return '${groups.reversed.join(',')},$tail';
+}
+
+/// The amount in words for a long sentence read by a screen reader:
+/// `35,000 rupees`, `minus 1,000 rupees`, `1 rupee` (F-014 AC-16).
+String formatRupeesSpoken(Paise amount) {
+  final rupees = _wholeRupees(amount);
+  final unit = rupees == 1 ? 'rupee' : 'rupees';
+  final text = '${_groupIndian(rupees)} $unit';
+  return amount.isNegative && rupees > 0 ? 'minus $text' : text;
 }

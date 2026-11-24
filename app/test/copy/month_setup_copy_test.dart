@@ -403,28 +403,6 @@ void main() {
         MonthSetupCopy.homeNewMonthHint,
         'Set up your new budget month',
       ),
-      'homeThisMonth': (MonthSetupCopy.homeThisMonth, 'This month'),
-      'homeEditHint': (
-        MonthSetupCopy.homeEditHint,
-        "Change this month's salary, target or fixed costs",
-      ),
-      'homeShortfall': (
-        MonthSetupCopy.homeShortfall('−₹1,000'),
-        '−₹1,000 this month',
-      ),
-      'homeShortfallNote': (
-        MonthSetupCopy.homeShortfallNote,
-        'Every spend this month counts as overspent.',
-      ),
-      'homeCardSpeech': (
-        MonthSetupCopy.homeCardSpeech('5 November', '4 December', '₹830'),
-        'This month, 5 November to 4 December, ₹830 a day.',
-      ),
-      'homeShortfallSpeech': (
-        MonthSetupCopy.homeShortfallSpeech('₹1,000'),
-        'Minus ₹1,000 this month. Every spend this month counts as '
-            'overspent.',
-      ),
     };
     for (final MapEntry(key: name, value: (actual, expected)) in copy.entries) {
       expect(actual, expected, reason: name);

@@ -4,7 +4,7 @@
 
 A minimalist Android app that reads your bank SMS alerts, splits your monthly salary into a **daily budget**, and shows every rupee you spend on a **calendar** — so you always know whether today you are under budget (saved) or over budget (overspent).
 
-**Status:** ✅ Phase 0 approved by the Owner (2026-11-05). ✅ Phase 1 — Design system & app shell: approved by the Owner and pushed to GitHub (2026-11-11, commit `73bac1e`). 🟡 Phase 2 (engine, database, month setup, manual transactions): all four features are Done and the Project Manager signed it off (Gate 5, 2026-11-16); the CEO report and your approval are pending.
+**Status:** ✅ Phase 0 approved by the Owner (2026-11-05). ✅ Phase 1 — Design system & app shell: approved by the Owner and pushed to GitHub (2026-11-11, commit `73bac1e`). ✅ Phase 2 — Budget engine, database, month setup, manual transactions: approved by the Owner and pushed to GitHub (2026-11-16, commit `589e12d`). 🟡 Phase 3 (Home summary, Calendar, Day details, Dashboard, Month statement, Transactions list, Money back, Safe to spend): all eight features built, tested and signed off by the Project Manager (Gate 5, 2026-11-24, `docs/reviews/phase-3-signoff.md`); waiting for the CEO report and the Owner's approval, then the Phase 3 commit.
 
 ---
 

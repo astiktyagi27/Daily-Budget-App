@@ -1,5 +1,8 @@
+import 'package:daily_budget/core/copy/money_back_copy.dart';
 import 'package:daily_budget/core/copy/transactions_copy.dart';
+import 'package:daily_budget/core/format/date_format.dart';
 import 'package:daily_budget/data/repositories/transaction_repository.dart';
+import 'package:daily_budget/domain/budget/budget.dart';
 import 'package:daily_budget/features/month_setup/month_setup_controller.dart';
 import 'package:daily_budget/features/transactions/month_setup_launcher.dart';
 import 'package:daily_budget/features/transactions/spend_editor_screen.dart';
@@ -30,10 +33,16 @@ class _Busy extends Notifier<bool> {
 ///   the snackbar.
 /// * New month not set up: the decision sheet, with **Set up this month**.
 /// * Anything else (no month, date set back): nothing.
+///
+/// Day details (F-012) passes [date], the day an added spend starts on, and
+/// [fromDay], the day it is open on: an edit saved on another day then says
+/// `Spend moved to <day>` (AC-13).
 Future<void> openSpendEditor(
   BuildContext context,
   WidgetRef ref, {
   StoredSpend? edit,
+  CalendarDate? date,
+  CalendarDate? fromDay,
 }) async {
   if (ref.read(_busyProvider)) return;
   final view = ref.read(transactionsViewProvider).value;
@@ -53,7 +62,11 @@ Future<void> openSpendEditor(
       case CurrentMonthView(:final canAdd, :final stored) when canAdd:
         final result = await navigator.push<SpendEditorResult>(
           MaterialPageRoute(
-            builder: (_) => SpendEditorScreen(month: stored, editing: edit),
+            builder: (_) => SpendEditorScreen(
+              month: stored,
+              editing: edit,
+              initialDate: date,
+            ),
           ),
         );
         if (result == null) return;
@@ -64,8 +77,14 @@ Future<void> openSpendEditor(
           SnackBar(
             content: Text(switch (result.outcome) {
               SpendEditorOutcome.added => TransactionsCopy.spendAdded,
+              SpendEditorOutcome.updated
+                  when fromDay != null && result.date != fromDay =>
+                TransactionsCopy.spendMoved(formatWeekdayDayMonth(result.date)),
               SpendEditorOutcome.updated => TransactionsCopy.spendUpdated,
               SpendEditorOutcome.deleted => TransactionsCopy.spendDeleted,
+              SpendEditorOutcome.moneyBackAdded => MoneyBackCopy.added,
+              SpendEditorOutcome.moneyBackUpdated => MoneyBackCopy.updated,
+              SpendEditorOutcome.moneyBackDeleted => MoneyBackCopy.deleted,
             }),
           ),
         );

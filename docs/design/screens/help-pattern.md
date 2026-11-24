@@ -73,8 +73,9 @@ An inline card at the top of the tab body, directly under the title (`app-shell.
 |---|---|
 | Home | `Use the tabs at the bottom to move around. Home is where you'll check today's budget each day.` |
 | Dashboard | `Check back after a week of spending. That's when your patterns start to show.` |
-| Transactions | `Spotted a wrong amount or category later? You'll be able to fix it right here.` |
+| Transactions (`HintId.transactions`, `hint.transactions.v1`, text changed in Phase 3, T-450) | `Tap a spend to fix it, or tap its category to change it.` (Phase 1 text was `Spotted a wrong amount or category later? You'll be able to fix it right here.`; replaced because in Phase 3 editing is possible. Same ID, so people who already dismissed the tip do not see it again.) |
 | Settings | `Change the theme and other options here. Tap (i) next to a setting to learn what it does.` |
+| Calendar (on Home, Phase 3, `HintId.calendar`, `hint.calendar.v1`) | `Tap a day to see its spends.` |
 
 | Control | Label | Tooltip / screen reader |
 |---|---|---|
@@ -89,7 +90,9 @@ An inline card at the top of the tab body, directly under the title (`app-shell.
 - **Got it** or **×**: the card collapses (height to 0 + fade, `motionEmphasis` 320 ms; instant with Remove animations); content below moves up smoothly; "seen" is saved for that tab only. TalkBack focus moves to the first item after where the card was.
 - Not dismissed → it shows again next time (tab switch or restart; F-004 AC-9).
 - At most one card per screen (one per tab).
-- Each hint has its own ID (`hint.home.v1`, `hint.dashboard.v1`, `hint.transactions.v1`, `hint.settings.v1`) so a later phase can show a new tip by bumping the version.
+- **The transactions tip (Phase 3, T-450):** `hint.transactions.v1` keeps its ID and card (`Tip` overline, Got it / ×, position per `transactions-search.md`: above the Today card up to 1.3x text, below it above 1.3x). It shows on the first visit to the Transactions tab after onboarding, whether or not any spend exists yet, until dismissed. Screen reader: `Tip. Tap a spend to fix it, or tap its category to change it.` A device where it was already dismissed with the old text stays dismissed.
+- Each hint has its own ID (`hint.home.v1`, `hint.dashboard.v1`, `hint.transactions.v1`, `hint.settings.v1`, and from Phase 3 `hint.calendar.v1`) so a later phase can show a new tip by bumping the version.
+- **The calendar tip (Phase 3, F-011, D-078):** it is the only second tip on a tab. It sits on Home **directly above the calendar** (below the Today card), the same card, `Tip` overline and Got it / × behaviour, and shows **only after `hint.home.v1` has been dismissed**, so Home never shows two tips at once (at most one per screen). Not dismissed → shows again next visit; dismissing it saves `hint.calendar.v1` only (Home's flag is untouched). Screen reader: `Tip. Tap a day to see its spends.` TalkBack focus after dismissing moves to the month switcher. It teaches the one thing the calendar's legend (i) leaves implicit; the (i) text ends with the same sentence, which is fine because the tip disappears for good while the (i) stays. Not shown during onboarding (F-004 AC-11), when Home has no confirmed month, or when the calendar shows only a load error.
 
 ## 5. Long-press tooltip (standard navigation controls)
 - Flutter `Tooltip` styled by `tooltipTheme`: `inverseSurface` fill, `radiusSm` (10 dp), `body` text in `onInverseSurface`, padding 12 × 8 dp, max width 280 dp, shown above the control with 8 dp gap; Light gets the `float` shadow, Dark/Dim none.
@@ -140,6 +143,8 @@ Phase 1 has no visible errors.
 | 2026-11-05 | First version | Designer |
 | 2026-11-05 | Gate 2 review (Project Manager, `docs/reviews/design-phase-1.md`): status → Approved at Gate 2 | Project Manager |
 | 2026-11-06 | T-128 (Gate 2 N2): change-history table added. No spec content changed | Designer |
+| 2026-11-16 | T-310 (D-078): §4.2 new row for the calendar hint `hint.calendar.v1` (`Tap a day to see its spends.`), §4.3 its ID and when it shows. No change to the card or the four existing tips | Designer |
+| 2026-11-16 | T-450 (Gate 2 Must fix 1): §4.2 Transactions row now `Tap a spend to fix it, or tap its category to change it.` (same ID `hint.transactions.v1`), §4.3 note on when it shows. Matches `transactions-search.md` T-7 and F-015 §5. F-004 §5 and TC-004-09 follow (T-452, T-453) | Designer |
 
 ---
 

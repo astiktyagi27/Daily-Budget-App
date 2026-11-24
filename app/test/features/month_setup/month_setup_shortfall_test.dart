@@ -115,7 +115,7 @@ void main() {
         findsOneWidget,
         reason: day.iso,
       );
-      expect(findCopy('5 Nov – 4 Dec · ₹0 a day'), findsOneWidget);
+      expect(findCopy('₹0/day · 5 Nov – 4 Dec'), findsOneWidget);
     }
   });
 

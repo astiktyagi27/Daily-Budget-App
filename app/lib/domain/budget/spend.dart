@@ -1,5 +1,6 @@
 import 'package:daily_budget/domain/budget/calendar_date.dart';
 import 'package:daily_budget/domain/budget/paise.dart';
+import 'package:daily_budget/domain/budget/spend_category.dart';
 
 /// Whether a transaction is a spend or money in, such as a refund (D-047).
 enum SpendDirection { spend, moneyIn }
@@ -13,6 +14,7 @@ final class Spend {
     required this.amount,
     required this.createdAt,
     this.direction = SpendDirection.spend,
+    this.category,
   });
 
   final int id;
@@ -25,4 +27,8 @@ final class Spend {
   final int createdAt;
 
   final SpendDirection direction;
+
+  /// The category, or null when none was stored (it reads as Other). The
+  /// engine never reads it: no money rule depends on a category (F-013).
+  final SpendCategory? category;
 }

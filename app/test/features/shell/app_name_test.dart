@@ -100,14 +100,14 @@ void main() {
         'Your daily budget lives here. Tell us your salary and fixed costs, '
         "and we'll work out what you can spend each day.";
     const dashboardText =
-        "Insights are on their way. After a few days of spending, you'll see "
-        'where your money goes and how many days you saved.';
+        'Set up your month first. Your spends need a budget month. It takes a '
+        'minute.';
     const transactionsText =
         'Set up your month first. Your spends need a budget month. It takes a '
         'minute.';
     final bodies = {
       'Home': ['Daily Budget App', homeText, 'Set up your month'],
-      'Dashboard': ['Dashboard', dashboardText],
+      'Dashboard': ['Dashboard', dashboardText, 'Set up your month'],
       'Transactions': ['Transactions', transactionsText, 'Set up your month'],
       'Settings': [
         'Settings',

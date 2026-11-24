@@ -199,7 +199,7 @@ void main() {
       expect(findCopy(line), findsOneWidget, reason: text);
       await _tapStart(tester);
       expect((_savedValues(store) as FullMonthValues).salary, p(paise));
-      expect(findCopy('This month'), findsOneWidget, reason: text);
+      expect(findCopy('Left this month'), findsOneWidget, reason: text);
     }
   });
 
@@ -287,6 +287,36 @@ void main() {
     await _tapStart(tester);
     expect(findCopy('Give this cost a name'), findsOneWidget);
     expect(store.months, isEmpty);
+  });
+
+  testWidgets('TC-008-08 the removed cost Undo leaves after six seconds', (
+    tester,
+  ) async {
+    await _openOnStartDay(tester);
+    await enterE2(tester);
+    await tapVisible(tester, find.byTooltip('Remove EMI'));
+    await tester.pumpAndSettle();
+    expect(find.text('Undo'), findsOneWidget);
+    await tester.pump(const Duration(seconds: 5));
+    expect(find.text('Undo'), findsOneWidget);
+    await tester.pump(const Duration(seconds: 2));
+    await tester.pumpAndSettle();
+    expect(find.text('Undo'), findsNothing);
+    expect(findCopy('EMI removed'), findsNothing);
+  });
+
+  testWidgets('TC-008-08 the removed cost Undo stays while a screen reader is '
+      'on', (tester) async {
+    tester.platformDispatcher.accessibilityFeaturesTestValue =
+        const FakeAccessibilityFeatures(accessibleNavigation: true);
+    addTearDown(tester.platformDispatcher.clearAccessibilityFeaturesTestValue);
+    await _openOnStartDay(tester);
+    await enterE2(tester);
+    await tapVisible(tester, find.byTooltip('Remove EMI'));
+    await tester.pumpAndSettle();
+    await tester.pump(const Duration(seconds: 30));
+    await tester.pump();
+    expect(find.text('Undo'), findsOneWidget);
   });
 
   testWidgets('TC-008-09 the thirty first fixed cost cannot be added', (
@@ -486,7 +516,7 @@ void main() {
     expect(_start, findsNothing, reason: 'one navigation back to Home');
     // The second tap may land on the bar below the closing screen.
     await tapTab(tester, 'Home');
-    expect(findCopy('5 Nov – 4 Dec · ₹830 a day'), findsOneWidget);
+    expect(findCopy('₹830/day · 5 Nov – 4 Dec'), findsOneWidget);
   });
 
   testWidgets('TC-008-17 failed save keeps the entered values', (tester) async {

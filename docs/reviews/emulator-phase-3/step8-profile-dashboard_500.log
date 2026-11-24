@@ -1,0 +1,261 @@
+Resolving dependencies...
+Downloading packages...
+  built_collection 5.1.2 (6.0.0 available)
+  code_assets 1.2.1 (2.2.0 available)
+  flutter_riverpod 3.4.3 (3.5.0 available)
+  jni_flutter 1.0.4+1 (1.1.0 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  native_toolchain_c 0.19.2 (0.19.6 available)
+  objective_c 9.5.0 (9.6.4 available)
+  riverpod 3.4.3 (3.5.0 available)
+  shared_preferences_android 2.5.4 (2.5.5 available)
+  shared_preferences_foundation 2.5.7 (2.6.2 available)
+  test_api 0.7.12 (0.7.15 available)
+  vector_math 2.4.0 (2.4.4 available)
+Got dependencies!
+12 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Running Gradle task 'assembleProfile'...                        
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/C:/Users/mayan/.gradle/wrapper/dists/gradle-9.3.1-all/9ot9r568e8zfvvd4mn8rbu1j0/gradle-9.3.1/lib/native-platform-0.22-milestone-29.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+Running Gradle task 'assembleProfile'...                           32.0s
+√ Built build\app\outputs\flutter-apk\app-profile.apk (44.8MB)
+Installing build\app\outputs\flutter-apk\app-profile.apk...        475ms
+D/VRI[MainActivity](29304): WindowInsets changed: 1080x2400 statusBars:[0,63,0,0] navigationBars:[0,0,0,63] mandatorySystemGestures:[0,63,0,84] 
+I/Surface (29304): Creating surface for consumer unnamed-29304-0 with slotExpansion=1 for 64 slots
+I/Surface (29304): Creating surface for consumer VRI[MainActivity]#0(BLAST Consumer)0 with slotExpansion=1 for 64 slots
+I/Surface (29304): Creating surface for consumer unnamed-29304-1 with slotExpansion=1 for 64 slots
+I/Surface (29304): Creating surface for consumer 91f6681 SurfaceView[com.dailybudget.app/com.dailybudget.app.MainActivity]#1(BLAST Consumer)1 with slotExpansion=1 for 64 slots
+I/dailybudget.app(29304): Compiler allocated 5239KB to compile void android.view.ViewRootImpl.performTraversals(long)
+I/Choreographer(29304): Skipped 61 frames!  The application may be doing too much work on its main thread.
+D/WindowLayoutComponentImpl(29304): Register WindowLayoutInfoListener on Context=com.dailybudget.app.MainActivity@67b5d14, of which baseContext=android.app.ContextImpl@e3b3680
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:55480/uqEpM7UJRIU=/
+VMServiceFlutterDriver: Isolate found with number: 1954990118281607
+VMServiceFlutterDriver: Isolate 1954990118281607 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter (29304): 00:00 +0: TC-013-32 dashboard with five hundred spends is fast
+VMServiceFlutterDriver: Connected to Flutter application.
+D/InsetsController(29304): hide(ime())
+I/ImeTracker(29304): com.dailybudget.app:a69422c1: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+D/DesktopExperienceFlags(29304): Toggle override initialized to: false
+D/WindowOnBackDispatcher(29304): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@ff77b1
+I/flutter (29304): TC-013-32 run 0: final figures after 89 ms
+D/WindowOnBackDispatcher(29304): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@6ece1ab
+D/WindowOnBackDispatcher(29304): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@ff77b1
+I/flutter (29304): TC-013-32 run 1: final figures after 54 ms
+D/WindowOnBackDispatcher(29304): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@6ece1ab
+D/WindowOnBackDispatcher(29304): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@ff77b1
+I/flutter (29304): TC-013-32 run 2: final figures after 62 ms
+D/WindowOnBackDispatcher(29304): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@6ece1ab
+D/WindowOnBackDispatcher(29304): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@ff77b1
+I/flutter (29304): TC-013-32 run 3: final figures after 53 ms
+D/WindowOnBackDispatcher(29304): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@6ece1ab
+D/ProfileInstaller(29304): Installing profile for com.dailybudget.app
+D/WindowOnBackDispatcher(29304): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@ff77b1
+I/flutter (29304): TC-013-32 run 4: final figures after 67 ms
+I/flutter (29304): TC-013-32 worst of 5: 89 ms (limit 500)
+I/flutter (29304): 
+I/flutter (29304): Warning: A call to tap() with finder "Found 1 widget with text "This month" (ignoring all but first): [
+I/flutter (29304):   Instance of 'StatelessElement',
+I/flutter (29304): ]" derived an Offset (Instance of 'Offset') that would not hit test on the specified widget.
+I/flutter (29304): Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+I/flutter (29304): Indeed, Instance of 'Offset' is outside the bounds of the root of the render tree, Instance of 'Size'.
+I/flutter (29304): The finder corresponds to this RenderBox: Instance of 'RenderParagraph'
+I/flutter (29304): The hit test result at that offset is: Instance of 'HitTestResult'
+I/flutter (29304): #0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165)
+I/flutter (29304): #1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947)
+I/flutter (29304): #2      WidgetController.tap (package:flutter_test/src/controller.dart:1080)
+I/flutter (29304): #3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/dashboard_500_test.dart:142)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #6      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1707)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): To silence this warning, pass "warnIfMissed: false" to "tap()".
+I/flutter (29304): To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+I/flutter (29304): 
+I/flutter (29304): 
+I/flutter (29304): Warning: A call to tap() with finder "Found 1 widget with text "One day": [
+I/flutter (29304):   Instance of 'StatelessElement',
+I/flutter (29304): ]" derived an Offset (Instance of 'Offset') that would not hit test on the specified widget.
+I/flutter (29304): Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+I/flutter (29304): Indeed, Instance of 'Offset' is outside the bounds of the root of the render tree, Instance of 'Size'.
+I/flutter (29304): The finder corresponds to this RenderBox: Instance of 'RenderParagraph'
+I/flutter (29304): The hit test result at that offset is: Instance of 'HitTestResult'
+I/flutter (29304): #0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165)
+I/flutter (29304): #1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947)
+I/flutter (29304): #2      WidgetController.tap (package:flutter_test/src/controller.dart:1080)
+I/flutter (29304): #3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/dashboard_500_test.dart:138)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #6      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1707)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): To silence this warning, pass "warnIfMissed: false" to "tap()".
+I/flutter (29304): To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+I/flutter (29304): 
+I/flutter (29304): 
+I/flutter (29304): Warning: A call to tap() with finder "Found 1 widget with text "This month" (ignoring all but first): [
+I/flutter (29304):   Instance of 'StatelessElement',
+I/flutter (29304): ]" derived an Offset (Instance of 'Offset') that would not hit test on the specified widget.
+I/flutter (29304): Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+I/flutter (29304): Indeed, Instance of 'Offset' is outside the bounds of the root of the render tree, Instance of 'Size'.
+I/flutter (29304): The finder corresponds to this RenderBox: Instance of 'RenderParagraph'
+I/flutter (29304): The hit test result at that offset is: Instance of 'HitTestResult'
+I/flutter (29304): #0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165)
+I/flutter (29304): #1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947)
+I/flutter (29304): #2      WidgetController.tap (package:flutter_test/src/controller.dart:1080)
+I/flutter (29304): #3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/dashboard_500_test.dart:142)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #6      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1707)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): To silence this warning, pass "warnIfMissed: false" to "tap()".
+I/flutter (29304): To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+I/flutter (29304): 
+I/flutter (29304): 
+I/flutter (29304): Warning: A call to tap() with finder "Found 1 widget with text "One day": [
+I/flutter (29304):   Instance of 'StatelessElement',
+I/flutter (29304): ]" derived an Offset (Instance of 'Offset') that would not hit test on the specified widget.
+I/flutter (29304): Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+I/flutter (29304): Indeed, Instance of 'Offset' is outside the bounds of the root of the render tree, Instance of 'Size'.
+I/flutter (29304): The finder corresponds to this RenderBox: Instance of 'RenderParagraph'
+I/flutter (29304): The hit test result at that offset is: Instance of 'HitTestResult'
+I/flutter (29304): #0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165)
+I/flutter (29304): #1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947)
+I/flutter (29304): #2      WidgetController.tap (package:flutter_test/src/controller.dart:1080)
+I/flutter (29304): #3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/dashboard_500_test.dart:138)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #6      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1707)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): To silence this warning, pass "warnIfMissed: false" to "tap()".
+I/flutter (29304): To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+I/flutter (29304): 
+I/flutter (29304): 
+I/flutter (29304): Warning: A call to tap() with finder "Found 1 widget with text "This month" (ignoring all but first): [
+I/flutter (29304):   Instance of 'StatelessElement',
+I/flutter (29304): ]" derived an Offset (Instance of 'Offset') that would not hit test on the specified widget.
+I/flutter (29304): Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+I/flutter (29304): Indeed, Instance of 'Offset' is outside the bounds of the root of the render tree, Instance of 'Size'.
+I/flutter (29304): The finder corresponds to this RenderBox: Instance of 'RenderParagraph'
+I/flutter (29304): The hit test result at that offset is: Instance of 'HitTestResult'
+I/flutter (29304): #0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165)
+I/flutter (29304): #1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947)
+I/flutter (29304): #2      WidgetController.tap (package:flutter_test/src/controller.dart:1080)
+I/flutter (29304): #3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/dashboard_500_test.dart:142)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #6      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1707)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): To silence this warning, pass "warnIfMissed: false" to "tap()".
+I/flutter (29304): To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+I/flutter (29304): 
+I/flutter (29304): 
+I/flutter (29304): Warning: A call to tap() with finder "Found 1 widget with text "One day": [
+I/flutter (29304):   Instance of 'StatelessElement',
+I/flutter (29304): ]" derived an Offset (Instance of 'Offset') that would not hit test on the specified widget.
+I/flutter (29304): Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+I/flutter (29304): Indeed, Instance of 'Offset' is outside the bounds of the root of the render tree, Instance of 'Size'.
+I/flutter (29304): The finder corresponds to this RenderBox: Instance of 'RenderParagraph'
+I/flutter (29304): The hit test result at that offset is: Instance of 'HitTestResult'
+I/flutter (29304): #0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165)
+I/flutter (29304): #1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947)
+I/flutter (29304): #2      WidgetController.tap (package:flutter_test/src/controller.dart:1080)
+I/flutter (29304): #3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/dashboard_500_test.dart:138)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #6      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1707)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): To silence this warning, pass "warnIfMissed: false" to "tap()".
+I/flutter (29304): To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+I/flutter (29304): 
+I/flutter (29304): 
+I/flutter (29304): Warning: A call to tap() with finder "Found 1 widget with text "This month" (ignoring all but first): [
+I/flutter (29304):   Instance of 'StatelessElement',
+I/flutter (29304): ]" derived an Offset (Instance of 'Offset') that would not hit test on the specified widget.
+I/flutter (29304): Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+I/flutter (29304): Indeed, Instance of 'Offset' is outside the bounds of the root of the render tree, Instance of 'Size'.
+I/flutter (29304): The finder corresponds to this RenderBox: Instance of 'RenderParagraph'
+I/flutter (29304): The hit test result at that offset is: Instance of 'HitTestResult'
+I/flutter (29304): #0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165)
+I/flutter (29304): #1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947)
+I/flutter (29304): #2      WidgetController.tap (package:flutter_test/src/controller.dart:1080)
+I/flutter (29304): #3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/dashboard_500_test.dart:142)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #6      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1707)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): To silence this warning, pass "warnIfMissed: false" to "tap()".
+I/flutter (29304): To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+I/flutter (29304): 
+I/flutter (29304): 
+I/flutter (29304): Warning: A call to tap() with finder "Found 1 widget with text "One day": [
+I/flutter (29304):   Instance of 'StatelessElement',
+I/flutter (29304): ]" derived an Offset (Instance of 'Offset') that would not hit test on the specified widget.
+I/flutter (29304): Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+I/flutter (29304): Indeed, Instance of 'Offset' is outside the bounds of the root of the render tree, Instance of 'Size'.
+I/flutter (29304): The finder corresponds to this RenderBox: Instance of 'RenderParagraph'
+I/flutter (29304): The hit test result at that offset is: Instance of 'HitTestResult'
+I/flutter (29304): #0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165)
+I/flutter (29304): #1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947)
+I/flutter (29304): #2      WidgetController.tap (package:flutter_test/src/controller.dart:1080)
+I/flutter (29304): #3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/dashboard_500_test.dart:138)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #6      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1707)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): To silence this warning, pass "warnIfMissed: false" to "tap()".
+I/flutter (29304): To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+I/flutter (29304): 
+I/flutter (29304): 
+I/flutter (29304): Warning: A call to tap() with finder "Found 1 widget with text "This month" (ignoring all but first): [
+I/flutter (29304):   Instance of 'StatelessElement',
+I/flutter (29304): ]" derived an Offset (Instance of 'Offset') that would not hit test on the specified widget.
+I/flutter (29304): Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+I/flutter (29304): Indeed, Instance of 'Offset' is outside the bounds of the root of the render tree, Instance of 'Size'.
+I/flutter (29304): The finder corresponds to this RenderBox: Instance of 'RenderParagraph'
+I/flutter (29304): The hit test result at that offset is: Instance of 'HitTestResult'
+I/flutter (29304): #0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165)
+I/flutter (29304): #1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947)
+I/flutter (29304): #2      WidgetController.tap (package:flutter_test/src/controller.dart:1080)
+I/flutter (29304): #3      main.<anonymous closure> (file:///C:/Users/mayan/Documents/Idea%20bank/daily-budget-app/app/integration_test/dashboard_500_test.dart:142)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): #6      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1707)
+I/flutter (29304): <asynchronous suspension>
+I/flutter (29304): To silence this warning, pass "warnIfMissed: false" to "tap()".
+I/flutter (29304): To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+I/flutter (29304): 
+I/flutter (29304): 00:04 +1: (tearDownAll)
+All tests passed.
+I/flutter (29304): 00:04 +2: All tests passed!

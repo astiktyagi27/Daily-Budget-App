@@ -21,6 +21,7 @@ class BudgetTextField extends StatelessWidget {
     this.errorText,
     this.enabled = true,
     this.isAmount = false,
+    this.prefix = '₹',
     this.large = false,
     this.info,
     this.textInputAction,
@@ -43,6 +44,9 @@ class BudgetTextField extends StatelessWidget {
   /// A fixed "₹" prefix, the money style and the number keypad with a
   /// decimal point.
   final bool isAmount;
+
+  /// The fixed prefix of an amount field (`₹`; `+₹` for money back).
+  final String prefix;
 
   /// The big amount field (design system §7.3, Add spend): the value in
   /// `moneyLarge`, 64 dp tall. Only with [isAmount].
@@ -98,7 +102,7 @@ class BudgetTextField extends StatelessWidget {
                 : TextInputType.text,
             decoration: InputDecoration(
               hintText: hintText,
-              prefixText: isAmount ? '₹' : null,
+              prefixText: isAmount ? prefix : null,
               prefixStyle: large
                   ? moneyStyle.copyWith(color: colors.textSecondary)
                   : null,

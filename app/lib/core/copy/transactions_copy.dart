@@ -81,6 +81,9 @@ abstract final class TransactionsCopy {
   static const spendUpdated = 'Spend updated';
   static const spendDeleted = 'Spend deleted';
 
+  /// `Spend moved to Sun, 8 Nov` (a saved edit changed the day, F-012 AC-13).
+  static String spendMoved(String date) => 'Spend moved to $date';
+
   // Delete sheet.
   static const deleteTitle = 'Delete this spend?';
   static const deleteCancel = 'Cancel';
@@ -120,6 +123,10 @@ abstract final class TransactionsCopy {
 
   static String rowSemantics(String amount, String note, String date) =>
       '$amount, $note, $date';
+
+  /// A money-in row in day details: `Refund, ₹500, Amazon return`.
+  static String refundRowSemantics(String amount, String note) =>
+      'Refund, $amount, $note';
 
   static String todaySemantics({
     required String budget,

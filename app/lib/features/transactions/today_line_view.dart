@@ -5,6 +5,7 @@ import 'package:daily_budget/core/theme/budget_text.dart';
 import 'package:daily_budget/core/theme/budget_tokens.dart';
 import 'package:daily_budget/core/theme/theme_context.dart';
 import 'package:daily_budget/core/widgets/budget_card.dart';
+import 'package:daily_budget/core/widgets/today_result_line.dart';
 import 'package:daily_budget/domain/budget/budget.dart';
 import 'package:flutter/material.dart';
 
@@ -21,10 +22,10 @@ class TodayLineView extends StatelessWidget {
   final TodayLine line;
 
   /// Names the line so tests can read its text (marks left out).
-  static const ValueKey<String> lineKey = ValueKey('today-line');
+  static const ValueKey<String> lineKey = TodayResultLine.lineKey;
 
   /// The decorative mark before the result (●, ○, ◆).
-  static const ValueKey<String> markKey = ValueKey('today-mark');
+  static const ValueKey<String> markKey = TodayResultLine.markKey;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +64,7 @@ class TodayLineView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  _Line(line: line),
+                  TodayResultLine(line: line),
                   if (hasShortfall) ...[
                     const SizedBox(height: BudgetSpacing.space3),
                     _ShortfallPanel(shortfall: line.shortfall),
@@ -80,139 +81,9 @@ class TodayLineView extends StatelessWidget {
   String _sentence() => TransactionsCopy.todaySemantics(
     budget: formatRupeesForSpeech(line.budget),
     spent: formatRupeesForSpeech(line.netSpent),
-    result: switch (line.kind) {
-      TodayResultKind.leftToday =>
-        '${formatRupeesForSpeech(line.amount)} '
-            '${TransactionsCopy.leftTodayWord}',
-      TodayResultKind.leftUnderRupee =>
-        '${TransactionsCopy.lessThanOneRupee} '
-            '${TransactionsCopy.leftTodayWord}',
-      TodayResultKind.onBudget => TransactionsCopy.onBudgetWord,
-      TodayResultKind.overspentUnderRupee =>
-        '${TransactionsCopy.overspentWord} '
-            '${TransactionsCopy.lessThanOneRupee}',
-      TodayResultKind.overspent =>
-        '${TransactionsCopy.overspentWord} '
-            '${formatRupeesForSpeech(line.amount)}',
-    },
+    result: TodayResultLine.resultSpeech(line),
     shortfall: line.hasShortfall ? formatRupeesForSpeech(line.shortfall) : null,
   );
-}
-
-class _Line extends StatelessWidget {
-  const new({required this.line});
-
-  final TodayLine line;
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.budgetColors;
-    final base = BudgetTypeScale.bodyLarge.copyWith(color: colors.textPrimary);
-    final amountStyle = base.copyWith(
-      fontWeight: FontWeight.w600,
-      fontFeatures: const [FontFeature.tabularFigures()],
-    );
-
-    InlineSpan amount(String text, [TextStyle? style]) =>
-        TextSpan(text: text, style: style ?? amountStyle);
-
-    final resultColor = switch (line.kind) {
-      TodayResultKind.leftToday ||
-      TodayResultKind.leftUnderRupee => colors.saved,
-      TodayResultKind.onBudget => colors.neutral,
-      TodayResultKind.overspentUnderRupee ||
-      TodayResultKind.overspent => colors.overspent,
-    };
-    final mark = switch (line.kind) {
-      TodayResultKind.leftToday || TodayResultKind.leftUnderRupee => '●',
-      TodayResultKind.onBudget => '○',
-      TodayResultKind.overspentUnderRupee || TodayResultKind.overspent => '◆',
-    };
-    final resultStyle = base.copyWith(color: resultColor);
-    final resultAmountStyle = amountStyle.copyWith(color: resultColor);
-    final motion = BudgetMotion.of(context);
-
-    // The result's amount counts up to its new value; the words change at
-    // once (design review point 10).
-    Widget result() {
-      Text words(List<InlineSpan> spans) =>
-          Text.rich(TextSpan(style: resultStyle, children: spans));
-      switch (line.kind) {
-        case TodayResultKind.leftToday:
-          return TweenAnimationBuilder<int>(
-            tween: IntTween(end: line.amount.value),
-            duration: motion.count,
-            builder: (context, value, _) => words([
-              amount(formatRupees(Paise(value)), resultAmountStyle),
-              const TextSpan(text: ' ${TransactionsCopy.leftTodayWord}'),
-            ]),
-          );
-        case TodayResultKind.overspent:
-          return TweenAnimationBuilder<int>(
-            tween: IntTween(end: line.amount.value),
-            duration: motion.count,
-            builder: (context, value, _) => words([
-              const TextSpan(text: '${TransactionsCopy.overspentWord} '),
-              amount(formatRupees(Paise(value)), resultAmountStyle),
-            ]),
-          );
-        case TodayResultKind.leftUnderRupee:
-          return words(const [
-            TextSpan(
-              text:
-                  '${TransactionsCopy.lessThanOneRupee} '
-                  '${TransactionsCopy.leftTodayWord}',
-            ),
-          ]);
-        case TodayResultKind.onBudget:
-          return words(const [TextSpan(text: TransactionsCopy.onBudgetWord)]);
-        case TodayResultKind.overspentUnderRupee:
-          return words(const [
-            TextSpan(
-              text:
-                  '${TransactionsCopy.overspentWord} '
-                  '${TransactionsCopy.lessThanOneRupee}',
-            ),
-          ]);
-      }
-    }
-
-    return Wrap(
-      key: TodayLineView.lineKey,
-      spacing: BudgetSpacing.space2,
-      children: [
-        Text.rich(
-          TextSpan(
-            style: base,
-            children: [
-              const TextSpan(text: '${TransactionsCopy.budgetWord} '),
-              amount(formatRupees(line.budget)),
-              const TextSpan(text: ' ·'),
-            ],
-          ),
-        ),
-        Text.rich(
-          TextSpan(
-            style: base,
-            children: [
-              const TextSpan(text: '${TransactionsCopy.spentWord} '),
-              amount(formatRupees(line.netSpent)),
-              const TextSpan(text: ' ·'),
-            ],
-          ),
-        ),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(mark, key: TodayLineView.markKey, style: resultStyle),
-            const SizedBox(width: BudgetSpacing.space1),
-            Flexible(child: result()),
-          ],
-        ),
-      ],
-    );
-  }
 }
 
 class _ShortfallPanel extends StatelessWidget {

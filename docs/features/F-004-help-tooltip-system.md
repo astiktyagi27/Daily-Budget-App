@@ -93,8 +93,9 @@ Visual form (sheet vs popup, card style, icon) is **per design system** (`docs/d
 | Hint card overline | `Tip` | Screen reader reads the card as `Tip. <hint text>` |
 | Hint — Home | — | `Use the tabs at the bottom to move around. Home is where you'll check today's budget each day.` |
 | Hint — Dashboard | — | `Check back after a week of spending. That's when your patterns start to show.` |
-| Hint — Transactions | — | `Spotted a wrong amount or category later? You'll be able to fix it right here.` |
+| Hint — Transactions | — | `Tap a spend to fix it, or tap its category to change it.` |
 | Hint — Settings | — | `Change the theme and other options here. Tap (i) next to a setting to learn what it does.` |
+| Hint — Calendar | — | `Tap a day to see its spends.` |
 | Hint dismiss button | `Got it` | Screen reader hint: `Dismiss this tip. It won't show again.` |
 | Hint close (×) | (icon only) | Tooltip / screen reader: `Dismiss tip` |
 
@@ -132,6 +133,8 @@ Explanation bodies for specific controls live in each feature's own section 5 (e
 | 2026-11-05 | §5 finalised by Designer (`docs/design/screens/help-pattern.md`): Home, Dashboard and Transactions hint texts rewritten so they no longer repeat the empty state shown under them; added the `Tip` overline and the help-sheet form of the (i) explanation. Settings hint unchanged. The §2 example (Home hint text) is illustrative; §5 is the source of truth. | Designer |
 | 2026-11-05 | Gate 1 reconciliation (PM): §2.3/§2.4 rule clarified — standard navigation controls need a screen-reader hint, and a long-press tooltip only when icon-only or a bottom tab (Material guidance; matches the §5 tables); §2.5 example uses the final Home hint; Developer Mode edge case replaced (D-029); status → Plan approved, task IDs added. No AC changed. | Project Manager |
 | 2026-11-11 | Step 9: section 7 (technical) filled in; status → Done after Gate 4 passed | Developer |
+| 2026-11-16 | T-311 (D-078): §5 gains the `hint.calendar.v1` row, `Tap a day to see its spends.` (same wording as `help-pattern.md` §4.2; shown on Home above the calendar after `hint.home.v1` is dismissed, F-011 §5). Additive copy only, no AC changed | Product Manager |
+| 2026-11-16 | T-452 (Gate 2, `docs/reviews/design-phase-3.md` Must fix 1): §5 `Hint — Transactions` row now reads `Tap a spend to fix it, or tap its category to change it.` (id `hint.transactions.v1` unchanged), replacing the Phase 1 text; same wording as `help-pattern.md` §4.2, as done for `hint.calendar.v1` in T-311. Copy only, no AC changed | Product Manager |
 
 ## Suggested additions *(for the CEO — not in scope until approved)*
 - **"Show tips again"** in Settings (also listed in F-003). It resets all hint flags in one tap and makes manual testing much faster.

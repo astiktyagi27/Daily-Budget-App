@@ -5,6 +5,7 @@ import 'package:daily_budget/domain/budget/budget_month.dart';
 import 'package:daily_budget/domain/budget/calendar_date.dart';
 import 'package:daily_budget/domain/budget/paise.dart';
 import 'package:daily_budget/domain/budget/spend.dart';
+import 'package:daily_budget/domain/budget/spend_category.dart';
 
 /// The longest note. The text field enforces it, counting characters the
 /// way the user sees them (emoji, Hindi), which pure Dart cannot; the draft
@@ -54,12 +55,26 @@ enum SpendProblem {
 typedef SpendError = ({SpendField field, SpendProblem problem});
 
 /// The checked fields of a spend, ready to store. The note is trimmed and
-/// null when empty. The repository adds the id and the times.
-typedef SpendFields = ({Paise amount, CalendarDate date, String? note});
+/// null when empty. `category` is null when none is stored (it reads as
+/// Other) and always null for money in; `direction` says spend or money
+/// back (F-015 T-420, F-016). The repository adds the id and the times.
+typedef SpendFields = ({
+  Paise amount,
+  CalendarDate date,
+  String? note,
+  SpendCategory? category,
+  SpendDirection direction,
+});
 
 /// The Add/Edit spend form as typed, in pure Dart (F-009 plan §1.3).
 final class SpendDraft {
-  const new({required this.date, this.amountText = '', this.note = ''});
+  const new({
+    required this.date,
+    this.amountText = '',
+    this.note = '',
+    this.category,
+    this.moneyBack = false,
+  });
 
   /// A new spend, dated [today].
   factory forToday(CalendarDate today) => SpendDraft(date: today);
@@ -70,6 +85,8 @@ final class SpendDraft {
     date: spend.date,
     amountText: amountInputText(spend.amount),
     note: note ?? '',
+    category: spend.category,
+    moneyBack: spend.direction == SpendDirection.moneyIn,
   );
 
   final String amountText;
@@ -78,12 +95,29 @@ final class SpendDraft {
 
   final String note;
 
-  SpendDraft copyWith({String? amountText, CalendarDate? date, String? note}) =>
-      SpendDraft(
-        amountText: amountText ?? this.amountText,
-        date: date ?? this.date,
-        note: note ?? this.note,
-      );
+  /// The chosen category, or null when none (reads as Other). It stays in the
+  /// draft while [moneyBack] is on and is not stored then (F-016 AC-2).
+  final SpendCategory? category;
+
+  /// The Money back / refund switch (D-054): money paid back to the user.
+  final bool moneyBack;
+
+  /// The category that counts: none and Other are the same (F-015 plan 1.6).
+  SpendCategory get effectiveCategory => category ?? SpendCategory.other;
+
+  SpendDraft copyWith({
+    String? amountText,
+    CalendarDate? date,
+    String? note,
+    SpendCategory? category,
+    bool? moneyBack,
+  }) => SpendDraft(
+    amountText: amountText ?? this.amountText,
+    date: date ?? this.date,
+    note: note ?? this.note,
+    category: category ?? this.category,
+    moneyBack: moneyBack ?? this.moneyBack,
+  );
 
   /// Every problem, in screen order. Empty when the spend can be saved.
   List<SpendError> validate(SpendDateLimits limits) {
@@ -119,13 +153,18 @@ final class SpendDraft {
         amount: paise,
         date: date,
         note: trimmed.isEmpty ? null : trimmed,
+        // A refund has no category: it is dropped in the same write.
+        category: moneyBack ? null : category,
+        direction: moneyBack ? SpendDirection.moneyIn : SpendDirection.spend,
       );
     }
     throw StateError('The draft has problems; call validate() first.');
   }
 
   /// Whether the typed values differ from [initial] (Save changes and the
-  /// discard guard). `300.5` and `300.50` are the same amount.
+  /// discard guard). `300.5` and `300.50` are the same amount; no category
+  /// and Other are the same category, and the category is ignored while
+  /// Money back is on (a refund has none).
   bool isChangedFrom(SpendDraft initial) =>
       _signature() != initial._signature();
 
@@ -137,5 +176,7 @@ final class SpendDraft {
     },
     date.dayNumber,
     note.trim(),
+    moneyBack,
+    if (!moneyBack) effectiveCategory.key,
   ]);
 }

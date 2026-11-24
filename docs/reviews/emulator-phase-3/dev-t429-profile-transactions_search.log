@@ -1,0 +1,87 @@
+Resolving dependencies...
+Downloading packages...
+  built_collection 5.1.2 (6.0.0 available)
+  cli_util 0.6.0 (0.6.1 available)
+  code_assets 1.2.1 (2.2.0 available)
+  flutter_riverpod 3.4.3 (3.5.0 available)
+  jni 1.1.2 (1.2.1 available)
+  jni_flutter 1.0.4+1 (1.1.0 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  native_toolchain_c 0.19.2 (0.19.6 available)
+  objective_c 9.5.0 (9.6.4 available)
+  riverpod 3.4.3 (3.5.0 available)
+  shared_preferences_android 2.5.4 (2.5.5 available)
+  shared_preferences_foundation 2.5.7 (2.6.2 available)
+  sqlite3 3.9.1 (3.9.2 available)
+  test_api 0.7.12 (0.7.15 available)
+  vector_math 2.4.0 (2.4.4 available)
+Got dependencies!
+15 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Running Gradle task 'assembleProfile'...                        
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/C:/Users/mayan/.gradle/wrapper/dists/gradle-9.3.1-all/9ot9r568e8zfvvd4mn8rbu1j0/gradle-9.3.1/lib/native-platform-0.22-milestone-29.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+Running Gradle task 'assembleProfile'...                           32.2s
+√ Built build\app\outputs\flutter-apk\app-profile.apk (44.8MB)
+Installing build\app\outputs\flutter-apk\app-profile.apk...        633ms
+I/Choreographer(27741): Skipped 40 frames!  The application may be doing too much work on its main thread.
+D/WindowLayoutComponentImpl(27741): Register WindowLayoutInfoListener on Context=com.dailybudget.app.MainActivity@508bb67, of which baseContext=android.app.ContextImpl@e3b3680
+I/dailybudget.app(27741): Compiler allocated 5230KB to compile void android.view.ViewRootImpl.performTraversals(long)
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:57721/XFoXQ-w-zI0=/
+VMServiceFlutterDriver: Isolate found with number: 25135860375283
+VMServiceFlutterDriver: Isolate 25135860375283 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter (27741): 00:00 +0: TC-015-27 one thousand entries open quickly and scroll smoothly
+VMServiceFlutterDriver: Connected to Flutter application.
+D/InsetsController(27741): hide(ime())
+I/ImeTracker(27741): com.dailybudget.app:35c61151: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+D/DesktopExperienceFlags(27741): Toggle override initialized to: false
+D/WindowOnBackDispatcher(27741): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@d4b3d35
+I/flutter (27741): TC-015-27 open run 0: first rows after 83 ms
+D/WindowOnBackDispatcher(27741): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@9a7a7fa
+D/WindowOnBackDispatcher(27741): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@d4b3d35
+I/flutter (27741): TC-015-27 open run 1: first rows after 67 ms
+D/WindowOnBackDispatcher(27741): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@9a7a7fa
+D/WindowOnBackDispatcher(27741): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@d4b3d35
+I/flutter (27741): TC-015-27 open run 2: first rows after 58 ms
+D/WindowOnBackDispatcher(27741): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@9a7a7fa
+D/WindowOnBackDispatcher(27741): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@d4b3d35
+I/flutter (27741): TC-015-27 open run 3: first rows after 75 ms
+D/WindowOnBackDispatcher(27741): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@9a7a7fa
+D/ProfileInstaller(27741): Installing profile for com.dailybudget.app
+I/flutter (27741): TC-015-27 open run 4: first rows after 77 ms
+I/flutter (27741): TC-015-27 open worst of 5: 83 ms (limit 1000)
+D/WindowOnBackDispatcher(27741): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@d4b3d35
+I/dailybudget.app(27741): Background young concurrent mark compact GC freed 2492KB AllocSpace bytes, 0(0B) LOS objects, 49% free, 2467KB/4934KB, paused 878us,5.532ms total 23.223ms
+I/flutter (27741): TC-015-27 scroll warm-up: 1100 frames, worst build 8.9 ms, worst raster 21.7 ms
+I/flutter (27741): TC-015-27 scroll timed 1: 1100 frames, worst build 8.3 ms, worst raster 11.8 ms
+I/dailybudget.app(27741): Background young concurrent mark compact GC freed 2432KB AllocSpace bytes, 0(0B) LOS objects, 49% free, 2515KB/4934KB, paused 5.422ms,2.644ms total 21.324ms
+I/flutter (27741): TC-015-27 scroll timed 2: 1100 frames, worst build 8.1 ms, worst raster 18.7 ms
+I/flutter (27741): TC-015-27 scroll timed 3: 1100 frames, worst build 7.6 ms, worst raster 23.0 ms
+I/flutter (27741): TC-015-27 oldest day: expected ₹489, on screen [₹489 shown, ₹87, ₹65, ₹43, ₹21, ₹98, ₹76, ₹54, ₹32, ₹10]
+I/flutter (27741): 02:50 +1: TC-015-28 search and filters update within three hundred milliseconds
+I/flutter (27741): TC-015-28 search run 0: 273 ms, want 100 results · spent ₹5,412, results lines [100 results · spent ₹5,412]
+I/flutter (27741): TC-015-28 search run 1: 275 ms, want 100 results · spent ₹5,412, results lines [100 results · spent ₹5,412]
+I/flutter (27741): TC-015-28 search run 2: 274 ms, want 100 results · spent ₹5,412, results lines [100 results · spent ₹5,412]
+I/flutter (27741): TC-015-28 search run 3: 271 ms, want 100 results · spent ₹5,412, results lines [100 results · spent ₹5,412]
+I/flutter (27741): TC-015-28 search run 4: 272 ms, want 100 results · spent ₹5,412, results lines [100 results · spent ₹5,412]
+I/flutter (27741): TC-015-28 search worst of 5: 275 ms (limit 300)
+I/flutter (27741): TC-015-28 category run 0: 29 ms
+I/flutter (27741): TC-015-28 category run 1: 30 ms
+I/flutter (27741): TC-015-28 category run 2: 30 ms
+I/flutter (27741): TC-015-28 category run 3: 27 ms
+I/flutter (27741): TC-015-28 category run 4: 46 ms
+I/flutter (27741): TC-015-28 category worst of 5: 46 ms (limit 300)
+I/flutter (27741): TC-015-28 dates run 0: 28 ms
+I/flutter (27741): TC-015-28 dates run 1: 29 ms
+I/flutter (27741): TC-015-28 dates run 2: 31 ms
+I/flutter (27741): TC-015-28 dates run 3: 30 ms
+I/flutter (27741): TC-015-28 dates run 4: 32 ms
+I/flutter (27741): TC-015-28 dates worst of 5: 32 ms (limit 300)
+I/flutter (27741): 03:09 +2: (tearDownAll)
+All tests passed.
+I/flutter (27741): 03:09 +3: All tests passed!
